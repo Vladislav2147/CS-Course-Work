@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using CourseWorkClasses.Products.Computer;
 
 namespace CourseWorkClasses
 {
@@ -10,6 +11,7 @@ namespace CourseWorkClasses
 	{
 		static void Main(string[] args)
 		{
+			
 		}
 	}
 }

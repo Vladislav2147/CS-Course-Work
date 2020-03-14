@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using CourseWorkClasses.Products;
 
 namespace CourseWorkClasses
 {
@@ -31,9 +32,12 @@ namespace CourseWorkClasses
 			{
 				Products.Add(product);
 			}
-			
+			else
+			{
+				throw new ProductAlreadyExistsException($"Product");
+			}
 		}
 
-		public void 
+		//public void 
 	}
 }

@@ -1,0 +1,6 @@
+F:\course work\CourseWorkClasses\CourseWorkClasses\bin\Debug\CourseWorkClasses.exe.config
+F:\course work\CourseWorkClasses\CourseWorkClasses\bin\Debug\CourseWorkClasses.exe
+F:\course work\CourseWorkClasses\CourseWorkClasses\bin\Debug\CourseWorkClasses.pdb
+F:\course work\CourseWorkClasses\CourseWorkClasses\obj\Debug\CourseWorkClasses.exe
+F:\course work\CourseWorkClasses\CourseWorkClasses\obj\Debug\CourseWorkClasses.pdb
+F:\course work\CourseWorkClasses\CourseWorkClasses\obj\Debug\CourseWorkClasses.csprojAssemblyReference.cache
