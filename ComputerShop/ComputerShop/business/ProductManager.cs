@@ -29,6 +29,7 @@ namespace ComputerShop.business
 		public void ChangeItem(Product newItem)
 		{
 			DeleteById(newItem.Id);
+			ComputerShopContext.SaveChanges();
 			AddToDb(newItem);
 		}
 
