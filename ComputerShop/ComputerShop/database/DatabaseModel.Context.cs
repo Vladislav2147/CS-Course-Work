@@ -26,10 +26,10 @@ namespace ComputerShop.database
         }
     
         public virtual DbSet<Customer> Customer { get; set; }
-        public virtual DbSet<Order> order { get; set; }
-        public virtual DbSet<Photo> photo { get; set; }
-        public virtual DbSet<Product> product { get; set; }
-        public virtual DbSet<Supply> supply { get; set; }
+        public virtual DbSet<Order> Order { get; set; }
+        public virtual DbSet<Photo> Photo { get; set; }
+        public virtual DbSet<Product> Product { get; set; }
+        public virtual DbSet<Supply> Supply { get; set; }
         public virtual DbSet<User> User { get; set; }
         public virtual DbSet<DeliveredToWareHouse> DeliveredToWareHouse { get; set; }
         public virtual DbSet<Ordered> Ordered { get; set; }

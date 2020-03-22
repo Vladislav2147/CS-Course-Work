@@ -12,7 +12,7 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="order">
+    <EntitySetMapping Name="Order">
       <EntityTypeMapping TypeName="ComputerShopModel.Order">
         <MappingFragment StoreEntitySet="order">
           <ScalarProperty Name="Id" ColumnName="id" />
@@ -21,7 +21,7 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="photo">
+    <EntitySetMapping Name="Photo">
       <EntityTypeMapping TypeName="ComputerShopModel.Photo">
         <MappingFragment StoreEntitySet="photo">
           <ScalarProperty Name="Id" ColumnName="id" />
@@ -30,7 +30,7 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="product">
+    <EntitySetMapping Name="Product">
       <EntityTypeMapping TypeName="IsTypeOf(ComputerShopModel.Product)">
         <MappingFragment StoreEntitySet="product">
           <ScalarProperty Name="Id" ColumnName="id" />
@@ -53,7 +53,7 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="supply">
+    <EntitySetMapping Name="Supply">
       <EntityTypeMapping TypeName="ComputerShopModel.Supply">
         <MappingFragment StoreEntitySet="supply">
           <ScalarProperty Name="Id" ColumnName="id" />

@@ -154,35 +154,35 @@
   </Association>
   <EntityContainer Name="ComputerShopContext" annotation:LazyLoadingEnabled="true">
     <EntitySet Name="Customer" EntityType="ComputerShopModel.Customer" />
-    <EntitySet Name="order" EntityType="ComputerShopModel.Order" />
-    <EntitySet Name="photo" EntityType="ComputerShopModel.Photo" />
-    <EntitySet Name="product" EntityType="ComputerShopModel.Product" />
-    <EntitySet Name="supply" EntityType="ComputerShopModel.Supply" />
+    <EntitySet Name="Order" EntityType="ComputerShopModel.Order" />
+    <EntitySet Name="Photo" EntityType="ComputerShopModel.Photo" />
+    <EntitySet Name="Product" EntityType="ComputerShopModel.Product" />
+    <EntitySet Name="Supply" EntityType="ComputerShopModel.Supply" />
     <EntitySet Name="User" EntityType="ComputerShopModel.User" />
     <EntitySet Name="DeliveredToWareHouse" EntityType="ComputerShopModel.DeliveredToWareHouse" />
     <EntitySet Name="Ordered" EntityType="ComputerShopModel.Ordered" />
     <AssociationSet Name="FK_order_customer" Association="Self.FK_order_customer">
       <End Role="customer" EntitySet="Customer" />
-      <End Role="order" EntitySet="order" />
+      <End Role="order" EntitySet="Order" />
     </AssociationSet>
     <AssociationSet Name="FK_photo_product" Association="Self.FK_photo_product">
-      <End Role="product" EntitySet="product" />
-      <End Role="photo" EntitySet="photo" />
+      <End Role="product" EntitySet="Product" />
+      <End Role="photo" EntitySet="Photo" />
     </AssociationSet>
     <AssociationSet Name="FK_delivered_to_warehouse_product" Association="Self.FK_delivered_to_warehouse_product">
-      <End Role="product" EntitySet="product" />
+      <End Role="product" EntitySet="Product" />
       <End Role="delivered_to_warehouse" EntitySet="DeliveredToWareHouse" />
     </AssociationSet>
     <AssociationSet Name="FK_ordered_product" Association="Self.FK_ordered_product">
-      <End Role="product" EntitySet="product" />
+      <End Role="product" EntitySet="Product" />
       <End Role="ordered" EntitySet="Ordered" />
     </AssociationSet>
     <AssociationSet Name="FK_delivered_to_warehouse_supply" Association="Self.FK_delivered_to_warehouse_supply">
-      <End Role="supply" EntitySet="supply" />
+      <End Role="supply" EntitySet="Supply" />
       <End Role="delivered_to_warehouse" EntitySet="DeliveredToWareHouse" />
     </AssociationSet>
     <AssociationSet Name="FK_ordered_order1" Association="ComputerShopModel.FK_ordered_order1">
-      <End Role="order" EntitySet="order" />
+      <End Role="order" EntitySet="Order" />
       <End Role="Ordered" EntitySet="Ordered" />
     </AssociationSet>
   </EntityContainer>
