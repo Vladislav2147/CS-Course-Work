@@ -1,0 +1,92 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="Хранилище ComputerShopModelContainer" CdmEntityContainer="ComputerShopContext">
+    <EntitySetMapping Name="Customer">
+      <EntityTypeMapping TypeName="ComputerShopModel.Customer">
+        <MappingFragment StoreEntitySet="customer">
+          <ScalarProperty Name="Id" ColumnName="id" />
+          <ScalarProperty Name="Phone" ColumnName="phone" />
+          <ScalarProperty Name="Email" ColumnName="email" />
+          <ScalarProperty Name="Name" ColumnName="name" />
+          <ScalarProperty Name="Address" ColumnName="address" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="order">
+      <EntityTypeMapping TypeName="ComputerShopModel.Order">
+        <MappingFragment StoreEntitySet="order">
+          <ScalarProperty Name="Id" ColumnName="id" />
+          <ScalarProperty Name="CustomerId" ColumnName="customer_id" />
+          <ScalarProperty Name="Date" ColumnName="date" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="photo">
+      <EntityTypeMapping TypeName="ComputerShopModel.Photo">
+        <MappingFragment StoreEntitySet="photo">
+          <ScalarProperty Name="Id" ColumnName="id" />
+          <ScalarProperty Name="ProdictId" ColumnName="product_id" />
+          <ScalarProperty Name="Path" ColumnName="path" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="product">
+      <EntityTypeMapping TypeName="IsTypeOf(ComputerShopModel.Product)">
+        <MappingFragment StoreEntitySet="product">
+          <ScalarProperty Name="Id" ColumnName="id" />
+          <ScalarProperty Name="Year" ColumnName="year" />
+          <ScalarProperty Name="Amount" ColumnName="amount" />
+          <ScalarProperty Name="Price" ColumnName="price" />
+          <ScalarProperty Name="Name" ColumnName="name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+      <EntityTypeMapping TypeName="IsTypeOf(ComputerShopModel.Computer)">
+        <MappingFragment StoreEntitySet="computer">
+          <ScalarProperty Name="GraphicsCard" ColumnName="graphics_card" />
+          <ScalarProperty Name="OpticalDrive" ColumnName="optical_drive" />
+          <ScalarProperty Name="HardDrive" ColumnName="hard_drive" />
+          <ScalarProperty Name="Ram" ColumnName="ram" />
+          <ScalarProperty Name="Processor" ColumnName="processor" />
+          <ScalarProperty Name="Type" ColumnName="type" />
+          <ScalarProperty Name="Producer" ColumnName="producer" />
+          <ScalarProperty Name="Id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="supply">
+      <EntityTypeMapping TypeName="ComputerShopModel.Supply">
+        <MappingFragment StoreEntitySet="supply">
+          <ScalarProperty Name="Id" ColumnName="id" />
+          <ScalarProperty Name="Date" ColumnName="date" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="User">
+      <EntityTypeMapping TypeName="ComputerShopModel.User">
+        <MappingFragment StoreEntitySet="user">
+          <ScalarProperty Name="Email" ColumnName="email" />
+          <ScalarProperty Name="Login" ColumnName="login" />
+          <ScalarProperty Name="Password" ColumnName="password" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DeliveredToWareHouse">
+      <EntityTypeMapping TypeName="ComputerShopModel.DeliveredToWareHouse">
+        <MappingFragment StoreEntitySet="delivered_to_warehouse">
+          <ScalarProperty Name="SupplyId" ColumnName="supply_id" />
+          <ScalarProperty Name="ProductId" ColumnName="product_id" />
+          <ScalarProperty Name="Amount" ColumnName="amount" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Ordered">
+      <EntityTypeMapping TypeName="ComputerShopModel.Ordered">
+        <MappingFragment StoreEntitySet="ordered">
+          <ScalarProperty Name="OrderId" ColumnName="order_id" />
+          <ScalarProperty Name="ProductId" ColumnName="product_id" />
+          <ScalarProperty Name="Amount" ColumnName="amount" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

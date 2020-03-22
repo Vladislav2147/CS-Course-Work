@@ -1,0 +1,210 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Хранилище ComputerShopModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="computer">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" Nullable="false" />
+    <Property Name="producer" Type="nvarchar" MaxLength="20" />
+    <Property Name="type" Type="nvarchar" MaxLength="20" />
+    <Property Name="processor" Type="nvarchar" MaxLength="30" />
+    <Property Name="ram" Type="nvarchar" MaxLength="20" />
+    <Property Name="hard_drive" Type="nvarchar" MaxLength="30" />
+    <Property Name="optical_drive" Type="nvarchar" MaxLength="20" />
+    <Property Name="graphics_card" Type="nvarchar" MaxLength="30" />
+  </EntityType>
+  <EntityType Name="customer">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" Nullable="false" />
+    <Property Name="phone" Type="nvarchar" MaxLength="20" />
+    <Property Name="email" Type="nvarchar" MaxLength="30" Nullable="false" />
+    <Property Name="name" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="address" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="delivered_to_warehouse">
+    <Key>
+      <PropertyRef Name="supply_id" />
+      <PropertyRef Name="product_id" />
+      <PropertyRef Name="amount" />
+    </Key>
+    <Property Name="supply_id" Type="int" Nullable="false" />
+    <Property Name="product_id" Type="int" Nullable="false" />
+    <Property Name="amount" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="order">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" Nullable="false" />
+    <Property Name="customer_id" Type="int" Nullable="false" />
+    <Property Name="date" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ordered">
+    <Key>
+      <PropertyRef Name="order_id" />
+      <PropertyRef Name="product_id" />
+      <PropertyRef Name="amount" />
+    </Key>
+    <Property Name="order_id" Type="int" Nullable="false" />
+    <Property Name="product_id" Type="int" Nullable="false" />
+    <Property Name="amount" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="photo">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" Nullable="false" />
+    <Property Name="product_id" Type="int" Nullable="false" />
+    <Property Name="path" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="product">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" Nullable="false" />
+    <Property Name="name" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="price" Type="money" Nullable="false" />
+    <Property Name="amount" Type="int" Nullable="false" />
+    <Property Name="year" Type="int" />
+  </EntityType>
+  <EntityType Name="supply">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" Nullable="false" />
+    <Property Name="date" Type="date" Nullable="false" />
+  </EntityType>
+  <EntityType Name="user">
+    <Key>
+      <PropertyRef Name="email" />
+    </Key>
+    <Property Name="email" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="login" Type="nvarchar" MaxLength="30" Nullable="false" />
+    <Property Name="password" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_computer_product">
+    <End Role="product" Type="Self.product" Multiplicity="1" />
+    <End Role="computer" Type="Self.computer" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="product">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="computer">
+        <PropertyRef Name="id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_delivered_to_warehouse_product">
+    <End Role="product" Type="Self.product" Multiplicity="1" />
+    <End Role="delivered_to_warehouse" Type="Self.delivered_to_warehouse" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="product">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="delivered_to_warehouse">
+        <PropertyRef Name="product_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_delivered_to_warehouse_supply">
+    <End Role="supply" Type="Self.supply" Multiplicity="1" />
+    <End Role="delivered_to_warehouse" Type="Self.delivered_to_warehouse" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="supply">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="delivered_to_warehouse">
+        <PropertyRef Name="supply_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_order_customer">
+    <End Role="customer" Type="Self.customer" Multiplicity="1" />
+    <End Role="order" Type="Self.order" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="customer">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="order">
+        <PropertyRef Name="customer_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ordered_order">
+    <End Role="order" Type="Self.order" Multiplicity="1" />
+    <End Role="ordered" Type="Self.ordered" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="order">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="ordered">
+        <PropertyRef Name="order_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ordered_product">
+    <End Role="product" Type="Self.product" Multiplicity="1" />
+    <End Role="ordered" Type="Self.ordered" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="product">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="ordered">
+        <PropertyRef Name="product_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_photo_product">
+    <End Role="product" Type="Self.product" Multiplicity="1" />
+    <End Role="photo" Type="Self.photo" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="product">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="photo">
+        <PropertyRef Name="product_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="Хранилище ComputerShopModelContainer">
+    <EntitySet Name="computer" EntityType="Self.computer" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="customer" EntityType="Self.customer" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="delivered_to_warehouse" EntityType="Self.delivered_to_warehouse" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="order" EntityType="Self.order" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ordered" EntityType="Self.ordered" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="photo" EntityType="Self.photo" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="product" EntityType="Self.product" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="supply" EntityType="Self.supply" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="user" EntityType="Self.user" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_computer_product" Association="Self.FK_computer_product">
+      <End Role="product" EntitySet="product" />
+      <End Role="computer" EntitySet="computer" />
+    </AssociationSet>
+    <AssociationSet Name="FK_delivered_to_warehouse_product" Association="Self.FK_delivered_to_warehouse_product">
+      <End Role="product" EntitySet="product" />
+      <End Role="delivered_to_warehouse" EntitySet="delivered_to_warehouse" />
+    </AssociationSet>
+    <AssociationSet Name="FK_delivered_to_warehouse_supply" Association="Self.FK_delivered_to_warehouse_supply">
+      <End Role="supply" EntitySet="supply" />
+      <End Role="delivered_to_warehouse" EntitySet="delivered_to_warehouse" />
+    </AssociationSet>
+    <AssociationSet Name="FK_order_customer" Association="Self.FK_order_customer">
+      <End Role="customer" EntitySet="customer" />
+      <End Role="order" EntitySet="order" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ordered_order" Association="Self.FK_ordered_order">
+      <End Role="order" EntitySet="order" />
+      <End Role="ordered" EntitySet="ordered" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ordered_product" Association="Self.FK_ordered_product">
+      <End Role="product" EntitySet="product" />
+      <End Role="ordered" EntitySet="ordered" />
+    </AssociationSet>
+    <AssociationSet Name="FK_photo_product" Association="Self.FK_photo_product">
+      <End Role="product" EntitySet="product" />
+      <End Role="photo" EntitySet="photo" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
