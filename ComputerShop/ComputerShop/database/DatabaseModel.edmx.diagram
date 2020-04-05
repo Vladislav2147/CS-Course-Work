@@ -5,13 +5,12 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="9691b9eeda0c4f1882006c989e52f509" Name="Diagram1" ZoomLevel="94">
-        <EntityTypeShape EntityType="ComputerShopModel.Computer" Width="1.5" PointX="0.5" PointY="3.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="ComputerShopModel.Customer" Width="1.5" PointX="2.875" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ComputerShopModel.Computer" Width="1.5" PointX="0.75" PointY="4.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="ComputerShopModel.Customer" Width="1.5" PointX="7.875" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="ComputerShopModel.Order" Width="1.5" PointX="5.25" PointY="0.875" IsExpanded="true" />
         <EntityTypeShape EntityType="ComputerShopModel.Photo" Width="1.5" PointX="2.875" PointY="6.5" IsExpanded="true" />
         <EntityTypeShape EntityType="ComputerShopModel.Product" Width="1.5" PointX="2.75" PointY="3.5" IsExpanded="true" />
         <EntityTypeShape EntityType="ComputerShopModel.Supply" Width="1.5" PointX="7.75" PointY="6" IsExpanded="true" />
-        <EntityTypeShape EntityType="ComputerShopModel.User" Width="1.5" PointX="8.75" PointY="2.625" IsExpanded="true" />
         <EntityTypeShape EntityType="ComputerShopModel.DeliveredToWareHouse" Width="1.5" PointX="5.5" PointY="5.75" IsExpanded="true" />
         <EntityTypeShape EntityType="ComputerShopModel.Ordered" Width="1.5" PointX="5.375" PointY="3.25" IsExpanded="true" />
         <AssociationConnector Association="ComputerShopModel.FK_order_customer" ManuallyRouted="false" />
@@ -21,6 +20,19 @@
         <AssociationConnector Association="ComputerShopModel.FK_delivered_to_warehouse_supply" ManuallyRouted="false" />
         <InheritanceConnector EntityType="ComputerShopModel.Computer" />
         <AssociationConnector Association="ComputerShopModel.FK_ordered_order1" />
+        <EntityTypeShape EntityType="ComputerShopModel.Desktop" Width="1.5" PointX="4.625" PointY="9.625" />
+        <EntityTypeShape EntityType="ComputerShopModel.Laptop" Width="1.5" PointX="2.5" PointY="9.625" />
+        <EntityTypeShape EntityType="ComputerShopModel.Monoblock" Width="1.5" PointX="0.75" PointY="9.625" />
+        <EntityTypeShape EntityType="ComputerShopModel.Mouse" Width="1.5" PointX="0.5" PointY="0.5" />
+        <EntityTypeShape EntityType="ComputerShopModel.Peripherals" Width="1.5" PointX="0.625" PointY="2.125" />
+        <InheritanceConnector EntityType="ComputerShopModel.Desktop" />
+        <InheritanceConnector EntityType="ComputerShopModel.Monoblock" />
+        <InheritanceConnector EntityType="ComputerShopModel.Laptop" />
+        <InheritanceConnector EntityType="ComputerShopModel.Peripherals" />
+        <InheritanceConnector EntityType="ComputerShopModel.Mouse" />
+        <InheritanceConnector EntityType="ComputerShopModel.Mouse" />
+        <EntityTypeShape EntityType="ComputerShopModel.Keyboard" Width="1.5" PointX="2.625" PointY="0.5" />
+        <InheritanceConnector EntityType="ComputerShopModel.Keyboard" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

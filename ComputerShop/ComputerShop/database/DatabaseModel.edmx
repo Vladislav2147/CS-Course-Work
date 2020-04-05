@@ -13,10 +13,18 @@
           <Property Name="producer" Type="nvarchar" MaxLength="20" />
           <Property Name="type" Type="nvarchar" MaxLength="20" />
           <Property Name="processor" Type="nvarchar" MaxLength="30" />
+          <Property Name="cores" Type="int" />
+          <Property Name="frequency" Type="int" />
           <Property Name="ram" Type="nvarchar" MaxLength="20" />
-          <Property Name="hard_drive" Type="nvarchar" MaxLength="30" />
+          <Property Name="ram_size" Type="int" />
+          <Property Name="hard_drive_type" Type="nvarchar" MaxLength="30" />
+          <Property Name="hard_drive_size" Type="int" />
           <Property Name="optical_drive" Type="nvarchar" MaxLength="20" />
           <Property Name="graphics_card" Type="nvarchar" MaxLength="30" />
+          <Property Name="operating_system" Type="nvarchar" MaxLength="30" />
+          <Property Name="interfaces" Type="nvarchar" MaxLength="50" />
+          <Property Name="equipment" Type="nvarchar" MaxLength="50" />
+          <Property Name="pc_case" Type="nvarchar" MaxLength="30" />
         </EntityType>
         <EntityType Name="customer">
           <Key>
@@ -27,6 +35,8 @@
           <Property Name="email" Type="nvarchar" MaxLength="30" Nullable="false" />
           <Property Name="name" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="address" Type="nvarchar" MaxLength="50" />
+          <Property Name="login" Type="nvarchar" MaxLength="30" Nullable="false" />
+          <Property Name="password" Type="nchar" MaxLength="20" Nullable="false" />
         </EntityType>
         <EntityType Name="delivered_to_warehouse">
           <Key>
@@ -37,6 +47,48 @@
           <Property Name="supply_id" Type="int" Nullable="false" />
           <Property Name="product_id" Type="int" Nullable="false" />
           <Property Name="amount" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="desktop">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="power_supply" Type="nvarchar" MaxLength="30" />
+        </EntityType>
+        <EntityType Name="keyboard">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="key_technology" Type="nchar" MaxLength="10" />
+          <Property Name="key_form" Type="nchar" MaxLength="10" />
+        </EntityType>
+        <EntityType Name="laptop">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="screen_diagonal" Type="int" />
+          <Property Name="screen_resolution" Type="nchar" MaxLength="10" />
+          <Property Name="screen_technology" Type="nchar" MaxLength="10" />
+          <Property Name="battery_capacity" Type="int" />
+        </EntityType>
+        <EntityType Name="monoblock">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="screen_diagonal" Type="int" />
+          <Property Name="screen_resolution" Type="nchar" MaxLength="10" />
+          <Property Name="screen_technology" Type="nchar" MaxLength="10" />
+        </EntityType>
+        <EntityType Name="mouse">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="sensor_type" Type="nchar" MaxLength="10" />
+          <Property Name="sensor_resolution" Type="nchar" MaxLength="10" />
         </EntityType>
         <EntityType Name="order">
           <Key>
@@ -55,6 +107,15 @@
           <Property Name="order_id" Type="int" Nullable="false" />
           <Property Name="product_id" Type="int" Nullable="false" />
           <Property Name="amount" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="peripherals">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="interface" Type="nchar" MaxLength="10" />
+          <Property Name="material" Type="nchar" MaxLength="10" />
+          <Property Name="color" Type="nchar" MaxLength="10" />
         </EntityType>
         <EntityType Name="photo">
           <Key>
@@ -80,14 +141,6 @@
           </Key>
           <Property Name="id" Type="int" Nullable="false" />
           <Property Name="date" Type="date" Nullable="false" />
-        </EntityType>
-        <EntityType Name="user">
-          <Key>
-            <PropertyRef Name="email" />
-          </Key>
-          <Property Name="email" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="login" Type="nvarchar" MaxLength="30" Nullable="false" />
-          <Property Name="password" Type="nvarchar" MaxLength="50" Nullable="false" />
         </EntityType>
         <Association Name="FK_computer_product">
           <End Role="product" Type="Self.product" Multiplicity="1" />
@@ -122,6 +175,54 @@
             </Principal>
             <Dependent Role="delivered_to_warehouse">
               <PropertyRef Name="supply_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_desktop_computer1">
+          <End Role="computer" Type="Self.computer" Multiplicity="1" />
+          <End Role="desktop" Type="Self.desktop" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="computer">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="desktop">
+              <PropertyRef Name="id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_laptop_computer">
+          <End Role="computer" Type="Self.computer" Multiplicity="1" />
+          <End Role="laptop" Type="Self.laptop" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="computer">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="laptop">
+              <PropertyRef Name="id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_monoblock_computer">
+          <End Role="computer" Type="Self.computer" Multiplicity="1" />
+          <End Role="monoblock" Type="Self.monoblock" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="computer">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="monoblock">
+              <PropertyRef Name="id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_mouse_peripherals">
+          <End Role="peripherals" Type="Self.peripherals" Multiplicity="1" />
+          <End Role="mouse" Type="Self.mouse" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="peripherals">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="mouse">
+              <PropertyRef Name="id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -161,6 +262,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_peripherals_product">
+          <End Role="product" Type="Self.product" Multiplicity="1" />
+          <End Role="peripherals" Type="Self.peripherals" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="product">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="peripherals">
+              <PropertyRef Name="id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_photo_product">
           <End Role="product" Type="Self.product" Multiplicity="1" />
           <End Role="photo" Type="Self.photo" Multiplicity="*" />
@@ -177,12 +290,17 @@
           <EntitySet Name="computer" EntityType="Self.computer" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="customer" EntityType="Self.customer" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="delivered_to_warehouse" EntityType="Self.delivered_to_warehouse" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="desktop" EntityType="Self.desktop" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="keyboard" EntityType="Self.keyboard" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="laptop" EntityType="Self.laptop" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="monoblock" EntityType="Self.monoblock" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="mouse" EntityType="Self.mouse" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="order" EntityType="Self.order" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ordered" EntityType="Self.ordered" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="peripherals" EntityType="Self.peripherals" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="photo" EntityType="Self.photo" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="product" EntityType="Self.product" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="supply" EntityType="Self.supply" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="user" EntityType="Self.user" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK_computer_product" Association="Self.FK_computer_product">
             <End Role="product" EntitySet="product" />
             <End Role="computer" EntitySet="computer" />
@@ -195,6 +313,22 @@
             <End Role="supply" EntitySet="supply" />
             <End Role="delivered_to_warehouse" EntitySet="delivered_to_warehouse" />
           </AssociationSet>
+          <AssociationSet Name="FK_desktop_computer1" Association="Self.FK_desktop_computer1">
+            <End Role="computer" EntitySet="computer" />
+            <End Role="desktop" EntitySet="desktop" />
+          </AssociationSet>
+          <AssociationSet Name="FK_laptop_computer" Association="Self.FK_laptop_computer">
+            <End Role="computer" EntitySet="computer" />
+            <End Role="laptop" EntitySet="laptop" />
+          </AssociationSet>
+          <AssociationSet Name="FK_monoblock_computer" Association="Self.FK_monoblock_computer">
+            <End Role="computer" EntitySet="computer" />
+            <End Role="monoblock" EntitySet="monoblock" />
+          </AssociationSet>
+          <AssociationSet Name="FK_mouse_peripherals" Association="Self.FK_mouse_peripherals">
+            <End Role="peripherals" EntitySet="peripherals" />
+            <End Role="mouse" EntitySet="mouse" />
+          </AssociationSet>
           <AssociationSet Name="FK_order_customer" Association="Self.FK_order_customer">
             <End Role="customer" EntitySet="customer" />
             <End Role="order" EntitySet="order" />
@@ -206,6 +340,10 @@
           <AssociationSet Name="FK_ordered_product" Association="Self.FK_ordered_product">
             <End Role="product" EntitySet="product" />
             <End Role="ordered" EntitySet="ordered" />
+          </AssociationSet>
+          <AssociationSet Name="FK_peripherals_product" Association="Self.FK_peripherals_product">
+            <End Role="product" EntitySet="product" />
+            <End Role="peripherals" EntitySet="peripherals" />
           </AssociationSet>
           <AssociationSet Name="FK_photo_product" Association="Self.FK_photo_product">
             <End Role="product" EntitySet="product" />
@@ -221,9 +359,17 @@
           <Property Name="Type" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
           <Property Name="Processor" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
           <Property Name="Ram" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
-          <Property Name="HardDrive" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
           <Property Name="OpticalDrive" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
           <Property Name="GraphicsCard" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="Cores" Type="Int32" />
+          <Property Name="Frequency" Type="Int32" />
+          <Property Name="RamSize" Type="Int32" />
+          <Property Name="HardDriveType" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="HardDriveSize" Type="Int32" />
+          <Property Name="OperatingSystem" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="Interfaces" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Equipment" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Case" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="Customer">
           <Key>
@@ -235,6 +381,8 @@
           <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Address" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Order" Relationship="Self.FK_order_customer" FromRole="customer" ToRole="order" />
+          <Property Name="Login" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="Password" Type="String" Nullable="false" MaxLength="20" FixedLength="true" Unicode="true" />
         </EntityType>
         <EntityType Name="Order">
           <Key>
@@ -275,14 +423,6 @@
           <Property Name="Id" Type="Int32" Nullable="false" />
           <Property Name="Date" Type="DateTime" Nullable="false" Precision="0" />
           <NavigationProperty Name="DeliveredToWareHouse" Relationship="Self.FK_delivered_to_warehouse_supply" FromRole="supply" ToRole="delivered_to_warehouse" />
-        </EntityType>
-        <EntityType Name="User">
-          <Key>
-            <PropertyRef Name="Email" />
-          </Key>
-          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Login" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
         </EntityType>
         <EntityType Name="DeliveredToWareHouse">
           <Key>
@@ -374,7 +514,6 @@
           <EntitySet Name="Photo" EntityType="ComputerShopModel.Photo" />
           <EntitySet Name="Product" EntityType="ComputerShopModel.Product" />
           <EntitySet Name="Supply" EntityType="ComputerShopModel.Supply" />
-          <EntitySet Name="User" EntityType="ComputerShopModel.User" />
           <EntitySet Name="DeliveredToWareHouse" EntityType="ComputerShopModel.DeliveredToWareHouse" />
           <EntitySet Name="Ordered" EntityType="ComputerShopModel.Ordered" />
           <AssociationSet Name="FK_order_customer" Association="Self.FK_order_customer">
@@ -414,6 +553,33 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="Desktop" BaseType="ComputerShopModel.Computer">
+          <Property Name="PowerSupply" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Laptop" BaseType="ComputerShopModel.Computer">
+          <Property Name="Diagonal" Type="Int32" />
+          <Property Name="Resolution" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="ScreenTechnology" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="BatteryCapacity" Type="Int32" />
+        </EntityType>
+        <EntityType Name="Monoblock" BaseType="ComputerShopModel.Computer">
+          <Property Name="Diagonal" Type="Int32" />
+          <Property Name="Resolution" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="ScreenTechnology" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Mouse" BaseType="ComputerShopModel.Peripherals">
+          <Property Name="SensorType" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="SensorResolution" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Peripherals" BaseType="ComputerShopModel.Product">
+          <Property Name="Interface" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="Material" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="Color" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Keyboard" BaseType="ComputerShopModel.Peripherals">
+          <Property Name="KeyTechnology" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="KeyForm" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -423,6 +589,8 @@
           <EntitySetMapping Name="Customer">
             <EntityTypeMapping TypeName="ComputerShopModel.Customer">
               <MappingFragment StoreEntitySet="customer">
+                <ScalarProperty Name="Password" ColumnName="password" />
+                <ScalarProperty Name="Login" ColumnName="login" />
                 <ScalarProperty Name="Id" ColumnName="id" />
                 <ScalarProperty Name="Phone" ColumnName="phone" />
                 <ScalarProperty Name="Email" ColumnName="email" />
@@ -461,14 +629,68 @@
             </EntityTypeMapping>
             <EntityTypeMapping TypeName="IsTypeOf(ComputerShopModel.Computer)">
               <MappingFragment StoreEntitySet="computer">
+                <ScalarProperty Name="Case" ColumnName="pc_case" />
+                <ScalarProperty Name="Equipment" ColumnName="equipment" />
+                <ScalarProperty Name="Interfaces" ColumnName="interfaces" />
+                <ScalarProperty Name="OperatingSystem" ColumnName="operating_system" />
+                <ScalarProperty Name="HardDriveSize" ColumnName="hard_drive_size" />
+                <ScalarProperty Name="HardDriveType" ColumnName="hard_drive_type" />
+                <ScalarProperty Name="RamSize" ColumnName="ram_size" />
+                <ScalarProperty Name="Frequency" ColumnName="frequency" />
+                <ScalarProperty Name="Cores" ColumnName="cores" />
                 <ScalarProperty Name="GraphicsCard" ColumnName="graphics_card" />
                 <ScalarProperty Name="OpticalDrive" ColumnName="optical_drive" />
-                <ScalarProperty Name="HardDrive" ColumnName="hard_drive" />
                 <ScalarProperty Name="Ram" ColumnName="ram" />
                 <ScalarProperty Name="Processor" ColumnName="processor" />
                 <ScalarProperty Name="Type" ColumnName="type" />
                 <ScalarProperty Name="Producer" ColumnName="producer" />
                 <ScalarProperty Name="Id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+            <EntityTypeMapping TypeName="IsTypeOf(ComputerShopModel.Desktop)">
+              <MappingFragment StoreEntitySet="desktop">
+                <ScalarProperty Name="Id" ColumnName="id" />
+                <ScalarProperty Name="PowerSupply" ColumnName="power_supply" />
+              </MappingFragment>
+            </EntityTypeMapping>
+            <EntityTypeMapping TypeName="IsTypeOf(ComputerShopModel.Monoblock)">
+              <MappingFragment StoreEntitySet="monoblock">
+                <ScalarProperty Name="Id" ColumnName="id" />
+                <ScalarProperty Name="Diagonal" ColumnName="screen_diagonal" />
+                <ScalarProperty Name="Resolution" ColumnName="screen_resolution" />
+                <ScalarProperty Name="ScreenTechnology" ColumnName="screen_technology" />
+              </MappingFragment>
+            </EntityTypeMapping>
+            <EntityTypeMapping TypeName="IsTypeOf(ComputerShopModel.Laptop)">
+              <MappingFragment StoreEntitySet="laptop">
+                <ScalarProperty Name="Id" ColumnName="id" />
+                <ScalarProperty Name="Diagonal" ColumnName="screen_diagonal" />
+                <ScalarProperty Name="Resolution" ColumnName="screen_resolution" />
+                <ScalarProperty Name="ScreenTechnology" ColumnName="screen_technology" />
+                <ScalarProperty Name="BatteryCapacity" ColumnName="battery_capacity" />
+              </MappingFragment>
+            </EntityTypeMapping>
+            <EntityTypeMapping TypeName="IsTypeOf(ComputerShopModel.Peripherals)">
+              <MappingFragment StoreEntitySet="peripherals">
+                <ScalarProperty Name="Id" ColumnName="id" />
+                <ScalarProperty Name="Interface" ColumnName="interface" />
+                <ScalarProperty Name="Material" ColumnName="material" />
+                <ScalarProperty Name="Color" ColumnName="color" />
+              </MappingFragment>
+            </EntityTypeMapping>
+            <EntityTypeMapping TypeName="IsTypeOf(ComputerShopModel.Mouse)">
+              <MappingFragment StoreEntitySet="mouse">
+                
+                <ScalarProperty Name="Id" ColumnName="id" />
+                <ScalarProperty Name="SensorType" ColumnName="sensor_type" />
+                <ScalarProperty Name="SensorResolution" ColumnName="sensor_resolution" />
+              </MappingFragment>
+            </EntityTypeMapping>
+            <EntityTypeMapping TypeName="IsTypeOf(ComputerShopModel.Keyboard)">
+              <MappingFragment StoreEntitySet="keyboard">
+                <ScalarProperty Name="Id" ColumnName="id" />
+                <ScalarProperty Name="KeyTechnology" ColumnName="key_technology" />
+                <ScalarProperty Name="KeyForm" ColumnName="key_form" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -477,15 +699,6 @@
               <MappingFragment StoreEntitySet="supply">
                 <ScalarProperty Name="Id" ColumnName="id" />
                 <ScalarProperty Name="Date" ColumnName="date" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="User">
-            <EntityTypeMapping TypeName="ComputerShopModel.User">
-              <MappingFragment StoreEntitySet="user">
-                <ScalarProperty Name="Email" ColumnName="email" />
-                <ScalarProperty Name="Login" ColumnName="login" />
-                <ScalarProperty Name="Password" ColumnName="password" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

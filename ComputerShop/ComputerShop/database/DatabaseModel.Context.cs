@@ -30,7 +30,6 @@ namespace ComputerShop.database
         public virtual DbSet<Photo> Photo { get; set; }
         public virtual DbSet<Product> Product { get; set; }
         public virtual DbSet<Supply> Supply { get; set; }
-        public virtual DbSet<User> User { get; set; }
         public virtual DbSet<DeliveredToWareHouse> DeliveredToWareHouse { get; set; }
         public virtual DbSet<Ordered> Ordered { get; set; }
     }

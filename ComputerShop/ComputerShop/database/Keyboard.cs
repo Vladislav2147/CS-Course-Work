@@ -12,10 +12,9 @@ namespace ComputerShop.database
     using System;
     using System.Collections.Generic;
     
-    public partial class User
+    public partial class Keyboard : Peripherals
     {
-        public string Email { get; set; }
-        public string Login { get; set; }
-        public string Password { get; set; }
+        public string KeyTechnology { get; set; }
+        public string KeyForm { get; set; }
     }
 }
