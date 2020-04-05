@@ -25,9 +25,9 @@ namespace ComputerShop
 		public MainWindow()
 		{
 			InitializeComponent();
-			
-			//try
-			//{
+
+			try
+			{
 				using (ComputerShopContext computerShopContext = new ComputerShopContext())
 				{
 					ProductManager productManager = new ProductManager(computerShopContext);
@@ -78,12 +78,12 @@ namespace ComputerShop
 					productManager.SaveChanges();
 
 				}
-			//}
-			//catch(Exception e)
-			//{
-			//	Console.WriteLine(e.Message);
-			//}
-			
+			}
+			catch(Exception e)
+			{
+				Console.WriteLine(e.Message);
+			}
+
 		}
 	}
 }

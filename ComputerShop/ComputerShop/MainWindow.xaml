@@ -6,6 +6,7 @@
         xmlns:local="clr-namespace:ComputerShop"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="810" MinHeight="450" MinWidth="810" Background="GhostWhite" VerticalAlignment="Center">
+    <ScrollViewer>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="50*"></RowDefinition>
@@ -136,4 +137,6 @@
 
         </Grid>
     </Grid>
+    </ScrollViewer>
+    
 </Window>
