@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using ComputerShop.database;
+using ComputerShop.model.database;
 
-namespace ComputerShop.business
+namespace ComputerShop.model.business
 {
 	class ProductManager : IManager<Product>
 	{

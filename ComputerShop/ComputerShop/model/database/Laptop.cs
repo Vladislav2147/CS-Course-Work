@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace ComputerShop.database
+namespace ComputerShop.model.database
 {
     using System;
     using System.Collections.Generic;

@@ -7,17 +7,14 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace ComputerShop.database
+namespace ComputerShop.model.database
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class Photo
+    public partial class Mouse : Peripherals
     {
-        public int Id { get; set; }
-        public int ProdictId { get; set; }
-        public string Path { get; set; }
-    
-        public virtual Product Product { get; set; }
+        public string SensorType { get; set; }
+        public string SensorResolution { get; set; }
     }
 }

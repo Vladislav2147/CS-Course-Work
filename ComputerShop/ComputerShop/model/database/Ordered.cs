@@ -7,14 +7,19 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace ComputerShop.database
+namespace ComputerShop.model.database
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class Keyboard : Peripherals
+    public partial class Ordered
     {
-        public string KeyTechnology { get; set; }
-        public string KeyForm { get; set; }
+        public int OrderId { get; set; }
+        public int ProductId { get; set; }
+        public int Amount { get; set; }
+        public bool approved { get; set; }
+    
+        public virtual Product Product { get; set; }
+        public virtual Order Order { get; set; }
     }
 }

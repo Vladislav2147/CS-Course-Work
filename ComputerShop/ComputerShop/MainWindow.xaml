@@ -56,84 +56,31 @@
                 <ColumnDefinition />
             </Grid.ColumnDefinitions>
             <TextBlock Grid.Row="0" Grid.Column="0" Text="Список товаров" TextAlignment="Center" HorizontalAlignment="Left" VerticalAlignment="Center" FontWeight="Bold" FontSize="24" Margin="20,0,0,0" />
-            <StackPanel Grid.Row="1" Orientation="Vertical">
-                <Border Margin="20, 10, 20, 10" BorderBrush="Black" BorderThickness="1" >
-                    <Grid>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="150"/>
-                            <ColumnDefinition Width="*"/>
-                        </Grid.ColumnDefinitions>
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="30"/>
-                            <RowDefinition Height="150"/>
-                        </Grid.RowDefinitions>
-                        <Border BorderBrush="Black" BorderThickness="1" Grid.ColumnSpan="2" Margin="0,0,-0.4,0.4" >
-                            <TextBlock Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Text="Название товара" Margin="10,0,0,0" VerticalAlignment="Center" FontSize="16" FontWeight="Bold"/>
-                        </Border>
-                        <Border BorderBrush="Black" BorderThickness="1" Margin="0,30,0,0.4" Grid.RowSpan="2" >
-                            <Image Grid.Row="1" Grid.Column="0"  />
-                        </Border>
-                        <TextBlock Grid.Row="1" Grid.Column="1" Text="Описание товара" HorizontalAlignment="Left" Margin="10,0,0,0" FontSize="16" FontWeight="Bold"/>
-                    </Grid>
-                </Border>
-                <Border Margin="20, 10, 20, 10" BorderBrush="Black" BorderThickness="1" >
-                    <Grid>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="150"/>
-                            <ColumnDefinition Width="*"/>
-                        </Grid.ColumnDefinitions>
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="30"/>
-                            <RowDefinition Height="150"/>
-                        </Grid.RowDefinitions>
-                        <Border BorderBrush="Black" BorderThickness="1" Grid.ColumnSpan="2" Margin="0,0,-0.4,0.4" >
-                            <TextBlock Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Text="Название товара" Margin="10,0,0,0" VerticalAlignment="Center" FontSize="16" FontWeight="Bold"/>
-                        </Border>
-                        <Border BorderBrush="Black" BorderThickness="1" Margin="0,30,0,0.4" Grid.RowSpan="2" >
-                            <Image Grid.Row="1" Grid.Column="0"  />
-                        </Border>
-                        <TextBlock Grid.Row="1" Grid.Column="1" Text="Описание товара" HorizontalAlignment="Left" Margin="10,0,0,0" FontSize="16" FontWeight="Bold"/>
-                    </Grid>
-                </Border>
-                <Border Margin="20, 10, 20, 10" BorderBrush="Black" BorderThickness="1" >
-                    <Grid>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="150"/>
-                            <ColumnDefinition Width="*"/>
-                        </Grid.ColumnDefinitions>
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="30"/>
-                            <RowDefinition Height="150"/>
-                        </Grid.RowDefinitions>
-                        <Border BorderBrush="Black" BorderThickness="1" Grid.ColumnSpan="2" Margin="0,0,-0.4,0.4" >
-                            <TextBlock Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Text="Название товара" Margin="10,0,0,0" VerticalAlignment="Center" FontSize="16" FontWeight="Bold"/>
-                        </Border>
-                        <Border BorderBrush="Black" BorderThickness="1" Margin="0,30,0,0.4" Grid.RowSpan="2" >
-                            <Image Grid.Row="1" Grid.Column="0"  />
-                        </Border>
-                        <TextBlock Grid.Row="1" Grid.Column="1" Text="Описание товара" HorizontalAlignment="Left" Margin="10,0,0,0" FontSize="16" FontWeight="Bold"/>
-                    </Grid>
-                </Border>
-                <Border Margin="20, 10, 20, 10" BorderBrush="Black" BorderThickness="1" >
-                    <Grid>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="150"/>
-                            <ColumnDefinition Width="*"/>
-                        </Grid.ColumnDefinitions>
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="30"/>
-                            <RowDefinition Height="150"/>
-                        </Grid.RowDefinitions>
-                        <Border BorderBrush="Black" BorderThickness="1" Grid.ColumnSpan="2" Margin="0,0,-0.4,0.4" >
-                            <TextBlock Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Text="Название товара" Margin="10,0,0,0" VerticalAlignment="Center" FontSize="16" FontWeight="Bold"/>
-                        </Border>
-                        <Border BorderBrush="Black" BorderThickness="1" Margin="0,30,0,0.4" Grid.RowSpan="2" >
-                            <Image Grid.Row="1" Grid.Column="0"  />
-                        </Border>
-                        <TextBlock Grid.Row="1" Grid.Column="1" Text="Описание товара" HorizontalAlignment="Left" Margin="10,0,0,0" FontSize="16" FontWeight="Bold"/>
-                    </Grid>
-                </Border>
-            </StackPanel>
+            <ListBox Grid.Row="1">
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <Border Margin="20, 10, 20, 10" BorderBrush="Black" BorderThickness="1" >
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="150"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="30"/>
+                                        <RowDefinition Height="150"/>
+                                    </Grid.RowDefinitions>
+                                    <Border BorderBrush="Black" BorderThickness="1" Grid.ColumnSpan="2" Margin="0,0,-0.4,0.4" >
+                                        <TextBlock Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Text="Название товара" Margin="10,0,0,0" VerticalAlignment="Center" FontSize="16" FontWeight="Bold"/>
+                                    </Border>
+                                    <Border BorderBrush="Black" BorderThickness="1" Margin="0,30,0,0.4" Grid.RowSpan="2" >
+                                        <Image Grid.Row="1" Grid.Column="0"  />
+                                    </Border>
+                                    <TextBlock Grid.Row="1" Grid.Column="1" Text="Описание товара" HorizontalAlignment="Left" Margin="10,0,0,0" FontSize="16" FontWeight="Bold"/>
+                                </Grid>
+                            </Border>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
 
         </Grid>
     </Grid>

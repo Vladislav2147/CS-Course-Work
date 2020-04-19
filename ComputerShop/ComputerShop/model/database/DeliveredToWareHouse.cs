@@ -7,13 +7,18 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace ComputerShop.database
+namespace ComputerShop.model.database
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class Desktop : Computer
+    public partial class DeliveredToWareHouse
     {
-        public string PowerSupply { get; set; }
+        public int SupplyId { get; set; }
+        public int ProductId { get; set; }
+        public int Amount { get; set; }
+    
+        public virtual Product Product { get; set; }
+        public virtual Supply Supply { get; set; }
     }
 }

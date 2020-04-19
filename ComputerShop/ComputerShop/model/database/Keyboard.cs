@@ -7,25 +7,14 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace ComputerShop.database
+namespace ComputerShop.model.database
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class Order
+    public partial class Keyboard : Peripherals
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Order()
-        {
-            this.Ordered = new HashSet<Ordered>();
-        }
-    
-        public int CustomerId { get; set; }
-        public System.DateTime Date { get; set; }
-        public int Id { get; set; }
-    
-        public virtual Customer Customer { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Ordered> Ordered { get; set; }
+        public string KeyTechnology { get; set; }
+        public string KeyForm { get; set; }
     }
 }

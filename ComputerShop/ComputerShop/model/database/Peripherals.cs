@@ -7,23 +7,15 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace ComputerShop.database
+namespace ComputerShop.model.database
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class Supply
+    public partial class Peripherals : Product
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Supply()
-        {
-            this.DeliveredToWareHouse = new HashSet<DeliveredToWareHouse>();
-        }
-    
-        public int Id { get; set; }
-        public System.DateTime Date { get; set; }
-    
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<DeliveredToWareHouse> DeliveredToWareHouse { get; set; }
+        public string Interface { get; set; }
+        public string Material { get; set; }
+        public string Color { get; set; }
     }
 }

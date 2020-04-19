@@ -7,32 +7,25 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace ComputerShop.database
+namespace ComputerShop.model.database
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class Product
+    public partial class Order
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Product()
+        public Order()
         {
-            this.Photo = new HashSet<Photo>();
-            this.delivered_to_warehouse = new HashSet<DeliveredToWareHouse>();
-            this.ordered = new HashSet<Ordered>();
+            this.Ordered = new HashSet<Ordered>();
         }
     
+        public int CustomerId { get; set; }
+        public System.DateTime Date { get; set; }
         public int Id { get; set; }
-        public string Name { get; set; }
-        public decimal Price { get; set; }
-        public int Amount { get; set; }
-        public Nullable<int> Year { get; set; }
     
+        public virtual Customer Customer { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Photo> Photo { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<DeliveredToWareHouse> delivered_to_warehouse { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Ordered> ordered { get; set; }
+        public virtual ICollection<Ordered> Ordered { get; set; }
     }
 }

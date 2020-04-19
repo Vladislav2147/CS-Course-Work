@@ -7,15 +7,23 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace ComputerShop.database
+namespace ComputerShop.model.database
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class Monoblock : Computer
+    public partial class Supply
     {
-        public Nullable<int> Diagonal { get; set; }
-        public string Resolution { get; set; }
-        public string ScreenTechnology { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Supply()
+        {
+            this.DeliveredToWareHouse = new HashSet<DeliveredToWareHouse>();
+        }
+    
+        public int Id { get; set; }
+        public System.DateTime Date { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<DeliveredToWareHouse> DeliveredToWareHouse { get; set; }
     }
 }

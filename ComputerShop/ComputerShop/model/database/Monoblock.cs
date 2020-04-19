@@ -7,14 +7,15 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace ComputerShop.database
+namespace ComputerShop.model.database
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class Mouse : Peripherals
+    public partial class Monoblock : Computer
     {
-        public string SensorType { get; set; }
-        public string SensorResolution { get; set; }
+        public Nullable<int> Diagonal { get; set; }
+        public string Resolution { get; set; }
+        public string ScreenTechnology { get; set; }
     }
 }

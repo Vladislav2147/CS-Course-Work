@@ -12,8 +12,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using ComputerShop.database;
-using ComputerShop.business;
+using ComputerShop.model.database;
+using ComputerShop.model.business;
 
 namespace ComputerShop
 {

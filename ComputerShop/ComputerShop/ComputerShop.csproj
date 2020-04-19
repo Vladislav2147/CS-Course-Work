@@ -145,63 +145,63 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="business\IManager.cs" />
-    <Compile Include="business\ProductManager.cs" />
-    <Compile Include="database\Computer.cs">
+    <Compile Include="model\business\IManager.cs" />
+    <Compile Include="model\business\ProductManager.cs" />
+    <Compile Include="model\database\Computer.cs">
       <DependentUpon>DatabaseModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="database\Customer.cs">
+    <Compile Include="model\database\Customer.cs">
       <DependentUpon>DatabaseModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="database\DatabaseModel.Context.cs">
+    <Compile Include="model\database\DatabaseModel.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>DatabaseModel.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="database\DatabaseModel.cs">
+    <Compile Include="model\database\DatabaseModel.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>DatabaseModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="database\DatabaseModel.Designer.cs">
+    <Compile Include="model\database\DatabaseModel.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>DatabaseModel.edmx</DependentUpon>
     </Compile>
-    <Compile Include="database\DeliveredToWareHouse.cs">
+    <Compile Include="model\database\DeliveredToWareHouse.cs">
       <DependentUpon>DatabaseModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="database\Desktop.cs">
+    <Compile Include="model\database\Desktop.cs">
       <DependentUpon>DatabaseModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="database\Keyboard.cs">
+    <Compile Include="model\database\Keyboard.cs">
       <DependentUpon>DatabaseModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="database\Laptop.cs">
+    <Compile Include="model\database\Laptop.cs">
       <DependentUpon>DatabaseModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="database\Monoblock.cs">
+    <Compile Include="model\database\Monoblock.cs">
       <DependentUpon>DatabaseModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="database\Mouse.cs">
+    <Compile Include="model\database\Mouse.cs">
       <DependentUpon>DatabaseModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="database\Order.cs">
+    <Compile Include="model\database\Order.cs">
       <DependentUpon>DatabaseModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="database\Ordered.cs">
+    <Compile Include="model\database\Ordered.cs">
       <DependentUpon>DatabaseModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="database\Peripherals.cs">
+    <Compile Include="model\database\Peripherals.cs">
       <DependentUpon>DatabaseModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="database\Photo.cs">
+    <Compile Include="model\database\Photo.cs">
       <DependentUpon>DatabaseModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="database\Product.cs">
+    <Compile Include="model\database\Product.cs">
       <DependentUpon>DatabaseModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="database\Supply.cs">
+    <Compile Include="model\database\Supply.cs">
       <DependentUpon>DatabaseModel.tt</DependentUpon>
     </Compile>
     <Compile Include="MainWindow.xaml.cs">
@@ -227,11 +227,11 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EntityDeploy Include="database\DatabaseModel.edmx">
+    <EntityDeploy Include="model\database\DatabaseModel.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>DatabaseModel.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <None Include="database\DatabaseModel.edmx.diagram">
+    <None Include="model\database\DatabaseModel.edmx.diagram">
       <DependentUpon>DatabaseModel.edmx</DependentUpon>
     </None>
     <None Include="packages.config" />
@@ -244,12 +244,12 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="database\DatabaseModel.Context.tt">
+    <Content Include="model\database\DatabaseModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>DatabaseModel.Context.cs</LastGenOutput>
       <DependentUpon>DatabaseModel.edmx</DependentUpon>
     </Content>
-    <Content Include="database\DatabaseModel.tt">
+    <Content Include="model\database\DatabaseModel.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>DatabaseModel.edmx</DependentUpon>
       <LastGenOutput>DatabaseModel.cs</LastGenOutput>
