@@ -14,6 +14,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using ComputerShop.model.database;
 using ComputerShop.model.business;
+using ComputerShop.view;
 
 namespace ComputerShop
 {
@@ -22,68 +23,15 @@ namespace ComputerShop
 	/// </summary>
 	public partial class MainWindow : Window
 	{
+		public ComputerShopContext ComputerShopContext;
+		public ProductManager ProductManager { get; set; }
 		public MainWindow()
 		{
 			InitializeComponent();
-
-			try
-			{
-				using (ComputerShopContext computerShopContext = new ComputerShopContext())
-				{
-					ProductManager productManager = new ProductManager(computerShopContext);
-
-					Computer computer1 = new Computer()
-					{
-						Id = 3,
-						Name = "intel computer",
-						Price = 1000,
-						Amount = 25,
-						Producer = "intel",
-						Type = "desktop"
-					};
-					Computer computer2 = new Computer()
-					{
-						Id = 4,
-						Name = "amd computer",
-						Price = 900,
-						Amount = 30,
-						Producer = "amd",
-						Type = "desktop"
-					};
-
-					productManager.DeleteById(3);
-					productManager.DeleteById(4);
-					productManager.SaveChanges();
-
-					productManager.AddToDb(computer1);
-					productManager.AddToDb(computer2);
-					productManager.SaveChanges();
-
-					foreach (Product product in productManager.FindByPredicate(product => true))
-					{
-						Console.WriteLine($"{product.Id}\t{product.Name}\t{product.Price}");
-					}
-
-					Console.WriteLine("\nproducts with price between 600 and 1200:\n");
-					foreach (Product product in productManager.FindByPredicate(product => product.Price < 1200
-																						&& product.Price > 600))
-					{
-						Console.WriteLine($"{product.Id}\t{product.Name}\t{product.Price}");
-					}
-
-					Computer computer = productManager.GetById(3) as Computer;
-					computer.Amount -= 1;
-
-					productManager.ChangeItem(computer);
-					productManager.SaveChanges();
-
-				}
-			}
-			catch(Exception e)
-			{
-				Console.WriteLine(e.Message);
-			}
-
+			ComputerShopContext = new ComputerShopContext();
+			ProductManager = new ProductManager(ComputerShopContext);
+			
+			MainContent.Content = new MainList(this);
 		}
 	}
 }

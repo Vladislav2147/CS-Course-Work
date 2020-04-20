@@ -1,7 +1,7 @@
 ﻿ComputerShop
 
 
-exe
+winexe
 C#
 .cs
 F:\course work\ComputerShop\ComputerShop\obj\Debug\
@@ -10,11 +10,11 @@ none
 false
 DEBUG;TRACE
 F:\course work\ComputerShop\ComputerShop\App.xaml
-11151548125
+2-1765310314
 21273912965
-251987180300
+27-2100169468
 145-222315373
-MainWindow.xaml;
+MainWindow.xaml;view\MainList.xaml;
 
-False
+True
 

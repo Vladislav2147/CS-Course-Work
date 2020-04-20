@@ -24,11 +24,12 @@
     <Property Name="Id" Type="Int32" Nullable="false" />
     <Property Name="Phone" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
     <Property Name="Email" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
-    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="Address" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
     <NavigationProperty Name="Order" Relationship="Self.FK_order_customer" FromRole="customer" ToRole="order" />
     <Property Name="Login" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="true" />
     <Property Name="Password" Type="String" Nullable="false" MaxLength="20" FixedLength="true" Unicode="true" />
+    <Property Name="role" Type="String" Nullable="false" MaxLength="6" FixedLength="true" Unicode="true" />
   </EntityType>
   <EntityType Name="Order">
     <Key>
@@ -40,15 +41,6 @@
     <Property Name="Id" Type="Int32" Nullable="false" />
     <NavigationProperty Name="Ordered" Relationship="ComputerShopModel.FK_ordered_order1" FromRole="order" ToRole="Ordered" />
   </EntityType>
-  <EntityType Name="Photo">
-    <Key>
-      <PropertyRef Name="Id" />
-    </Key>
-    <Property Name="Id" Type="Int32" Nullable="false" />
-    <Property Name="ProdictId" Type="Int32" Nullable="false" />
-    <Property Name="Path" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-    <NavigationProperty Name="Product" Relationship="Self.FK_photo_product" FromRole="photo" ToRole="product" />
-  </EntityType>
   <EntityType Name="Product">
     <Key>
       <PropertyRef Name="Id" />
@@ -58,41 +50,41 @@
     <Property Name="Price" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
     <Property Name="Amount" Type="Int32" Nullable="false" />
     <Property Name="Year" Type="Int32" />
-    <NavigationProperty Name="Photo" Relationship="Self.FK_photo_product" FromRole="product" ToRole="photo" />
     <NavigationProperty Name="delivered_to_warehouse" Relationship="Self.FK_delivered_to_warehouse_product" FromRole="product" ToRole="delivered_to_warehouse" />
     <NavigationProperty Name="ordered" Relationship="Self.FK_ordered_product" FromRole="product" ToRole="ordered" />
+    <Property Name="photo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
   </EntityType>
   <EntityType Name="Supply">
     <Key>
       <PropertyRef Name="Id" />
     </Key>
     <Property Name="Id" Type="Int32" Nullable="false" />
-    <Property Name="Date" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="Date" Type="DateTime" Nullable="false" Precision="3" />
     <NavigationProperty Name="DeliveredToWareHouse" Relationship="Self.FK_delivered_to_warehouse_supply" FromRole="supply" ToRole="delivered_to_warehouse" />
   </EntityType>
   <EntityType Name="DeliveredToWareHouse">
     <Key>
       <PropertyRef Name="SupplyId" />
       <PropertyRef Name="ProductId" />
-      <PropertyRef Name="Amount" />
     </Key>
     <Property Name="SupplyId" Type="Int32" Nullable="false" />
     <Property Name="ProductId" Type="Int32" Nullable="false" />
     <Property Name="Amount" Type="Int32" Nullable="false" />
     <NavigationProperty Name="Product" Relationship="Self.FK_delivered_to_warehouse_product" FromRole="delivered_to_warehouse" ToRole="product" />
     <NavigationProperty Name="Supply" Relationship="Self.FK_delivered_to_warehouse_supply" FromRole="delivered_to_warehouse" ToRole="supply" />
+    <Property Name="price" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
   </EntityType>
   <EntityType Name="Ordered">
     <Key>
       <PropertyRef Name="OrderId" />
       <PropertyRef Name="ProductId" />
-      <PropertyRef Name="Amount" />
     </Key>
     <Property Name="OrderId" Type="Int32" Nullable="false" />
     <Property Name="ProductId" Type="Int32" Nullable="false" />
     <Property Name="Amount" Type="Int32" Nullable="false" />
     <NavigationProperty Name="Product" Relationship="Self.FK_ordered_product" FromRole="ordered" ToRole="product" />
     <NavigationProperty Name="Order" Relationship="ComputerShopModel.FK_ordered_order1" FromRole="Ordered" ToRole="order" />
+    <Property Name="approved" Type="Boolean" Nullable="false" />
   </EntityType>
   <Association Name="FK_order_customer">
     <End Role="customer" Type="ComputerShopModel.Customer" Multiplicity="1" />
@@ -103,18 +95,6 @@
       </Principal>
       <Dependent Role="order">
         <PropertyRef Name="CustomerId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_photo_product">
-    <End Role="product" Type="ComputerShopModel.Product" Multiplicity="1" />
-    <End Role="photo" Type="ComputerShopModel.Photo" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="product">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="photo">
-        <PropertyRef Name="ProdictId" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -157,7 +137,6 @@
   <EntityContainer Name="ComputerShopContext" annotation:LazyLoadingEnabled="true">
     <EntitySet Name="Customer" EntityType="ComputerShopModel.Customer" />
     <EntitySet Name="Order" EntityType="ComputerShopModel.Order" />
-    <EntitySet Name="Photo" EntityType="ComputerShopModel.Photo" />
     <EntitySet Name="Product" EntityType="ComputerShopModel.Product" />
     <EntitySet Name="Supply" EntityType="ComputerShopModel.Supply" />
     <EntitySet Name="DeliveredToWareHouse" EntityType="ComputerShopModel.DeliveredToWareHouse" />
@@ -165,10 +144,6 @@
     <AssociationSet Name="FK_order_customer" Association="Self.FK_order_customer">
       <End Role="customer" EntitySet="Customer" />
       <End Role="order" EntitySet="Order" />
-    </AssociationSet>
-    <AssociationSet Name="FK_photo_product" Association="Self.FK_photo_product">
-      <End Role="product" EntitySet="Product" />
-      <End Role="photo" EntitySet="Photo" />
     </AssociationSet>
     <AssociationSet Name="FK_delivered_to_warehouse_product" Association="Self.FK_delivered_to_warehouse_product">
       <End Role="product" EntitySet="Product" />
@@ -186,6 +161,7 @@
       <End Role="order" EntitySet="Order" />
       <End Role="Ordered" EntitySet="Ordered" />
     </AssociationSet>
+    <EntitySet Name="sysdiagrams" EntityType="ComputerShopModel.sysdiagrams" />
   </EntityContainer>
   <Association Name="FK_ordered_order1">
     <End Type="ComputerShopModel.Order" Role="order" Multiplicity="1" />
@@ -225,5 +201,15 @@
   <EntityType Name="Keyboard" BaseType="ComputerShopModel.Peripherals">
     <Property Name="KeyTechnology" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
     <Property Name="KeyForm" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
   </EntityType>
 </Schema>

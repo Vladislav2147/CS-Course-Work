@@ -51,7 +51,6 @@ F:\course work\ComputerShop\ComputerShop\bin\Debug\System.Numerics.Vectors.xml
 F:\course work\ComputerShop\ComputerShop\bin\Debug\System.Runtime.CompilerServices.Unsafe.xml
 F:\course work\ComputerShop\ComputerShop\bin\Debug\System.Threading.Tasks.Extensions.xml
 F:\course work\ComputerShop\ComputerShop\bin\Debug\ru\EntityFramework.resources.dll
-F:\course work\ComputerShop\ComputerShop\obj\Debug\ComputerShop.csprojAssemblyReference.cache
 F:\course work\ComputerShop\ComputerShop\obj\Debug\MainWindow.g.cs
 F:\course work\ComputerShop\ComputerShop\obj\Debug\App.g.cs
 F:\course work\ComputerShop\ComputerShop\obj\Debug\ComputerShop_Content.g.cs
@@ -64,3 +63,6 @@ F:\course work\ComputerShop\ComputerShop\obj\Debug\ComputerShop.csproj.GenerateR
 F:\course work\ComputerShop\ComputerShop\obj\Debug\ComputerShop.csproj.CopyComplete
 F:\course work\ComputerShop\ComputerShop\obj\Debug\ComputerShop.exe
 F:\course work\ComputerShop\ComputerShop\obj\Debug\ComputerShop.pdb
+F:\course work\ComputerShop\ComputerShop\obj\Debug\ComputerShop.csprojAssemblyReference.cache
+F:\course work\ComputerShop\ComputerShop\obj\Debug\view\MainList.g.cs
+F:\course work\ComputerShop\ComputerShop\obj\Debug\view\MainList.baml

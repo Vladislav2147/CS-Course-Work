@@ -7,7 +7,7 @@ using ComputerShop.model.database;
 
 namespace ComputerShop.model.business
 {
-	class ProductManager : IManager<Product>
+	public class ProductManager : IManager<Product>
 	{
 		public ComputerShopContext ComputerShopContext { get; set; }
 
