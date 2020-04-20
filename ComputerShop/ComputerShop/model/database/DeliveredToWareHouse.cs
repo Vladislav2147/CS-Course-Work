@@ -17,7 +17,7 @@ namespace ComputerShop.model.database
         public int SupplyId { get; set; }
         public int ProductId { get; set; }
         public int Amount { get; set; }
-        public decimal price { get; set; }
+        public decimal Price { get; set; }
     
         public virtual Product Product { get; set; }
         public virtual Supply Supply { get; set; }

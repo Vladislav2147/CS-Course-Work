@@ -17,7 +17,7 @@ namespace ComputerShop.model.database
         public int OrderId { get; set; }
         public int ProductId { get; set; }
         public int Amount { get; set; }
-        public bool approved { get; set; }
+        public bool Approved { get; set; }
     
         public virtual Product Product { get; set; }
         public virtual Order Order { get; set; }

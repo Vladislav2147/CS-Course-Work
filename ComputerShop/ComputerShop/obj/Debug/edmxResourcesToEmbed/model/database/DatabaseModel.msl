@@ -4,7 +4,7 @@
     <EntitySetMapping Name="Customer">
       <EntityTypeMapping TypeName="ComputerShopModel.Customer">
         <MappingFragment StoreEntitySet="customer">
-          <ScalarProperty Name="role" ColumnName="role" />
+          <ScalarProperty Name="Role" ColumnName="role" />
           <ScalarProperty Name="Password" ColumnName="password" />
           <ScalarProperty Name="Login" ColumnName="login" />
           <ScalarProperty Name="Id" ColumnName="id" />
@@ -27,7 +27,7 @@
     <EntitySetMapping Name="Product">
       <EntityTypeMapping TypeName="IsTypeOf(ComputerShopModel.Product)">
         <MappingFragment StoreEntitySet="product">
-          <ScalarProperty Name="photo" ColumnName="photo" />
+          <ScalarProperty Name="Photo" ColumnName="photo" />
           <ScalarProperty Name="Id" ColumnName="id" />
           <ScalarProperty Name="Year" ColumnName="year" />
           <ScalarProperty Name="Amount" ColumnName="amount" />
@@ -112,7 +112,7 @@
     <EntitySetMapping Name="DeliveredToWareHouse">
       <EntityTypeMapping TypeName="ComputerShopModel.DeliveredToWareHouse">
         <MappingFragment StoreEntitySet="delivered_to_warehouse">
-          <ScalarProperty Name="price" ColumnName="price" />
+          <ScalarProperty Name="Price" ColumnName="price" />
           <ScalarProperty Name="SupplyId" ColumnName="supply_id" />
           <ScalarProperty Name="ProductId" ColumnName="product_id" />
           <ScalarProperty Name="Amount" ColumnName="amount" />
@@ -122,7 +122,7 @@
     <EntitySetMapping Name="Ordered">
       <EntityTypeMapping TypeName="ComputerShopModel.Ordered">
         <MappingFragment StoreEntitySet="ordered">
-          <ScalarProperty Name="approved" ColumnName="approved" />
+          <ScalarProperty Name="Approved" ColumnName="approved" />
           <ScalarProperty Name="OrderId" ColumnName="order_id" />
           <ScalarProperty Name="ProductId" ColumnName="product_id" />
           <ScalarProperty Name="Amount" ColumnName="amount" />

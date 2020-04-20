@@ -26,7 +26,7 @@ namespace ComputerShop.model.database
         public decimal Price { get; set; }
         public int Amount { get; set; }
         public Nullable<int> Year { get; set; }
-        public string photo { get; set; }
+        public string Photo { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<DeliveredToWareHouse> delivered_to_warehouse { get; set; }

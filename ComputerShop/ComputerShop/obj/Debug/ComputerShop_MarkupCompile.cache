@@ -10,11 +10,11 @@ none
 false
 DEBUG;TRACE
 F:\course work\ComputerShop\ComputerShop\App.xaml
-2-1765310314
+5-1998527141
 21273912965
-26-562863791
+34-1480228107
 145-222315373
-MainWindow.xaml;view\MainList.xaml;
+MainWindow.xaml;view\login\LoginWindow.xaml;view\login\SignIn.xaml;view\login\SignUp.xaml;view\MainList.xaml;
 
 False
 
