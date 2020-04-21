@@ -17,8 +17,8 @@ namespace ComputerShop.model.database
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Product()
         {
-            this.delivered_to_warehouse = new HashSet<DeliveredToWareHouse>();
-            this.ordered = new HashSet<Ordered>();
+            this.DeliveredToWareHouse = new HashSet<DeliveredToWareHouse>();
+            this.Ordered = new HashSet<Ordered>();
         }
     
         public int Id { get; set; }
@@ -29,8 +29,8 @@ namespace ComputerShop.model.database
         public string Photo { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<DeliveredToWareHouse> delivered_to_warehouse { get; set; }
+        public virtual ICollection<DeliveredToWareHouse> DeliveredToWareHouse { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Ordered> ordered { get; set; }
+        public virtual ICollection<Ordered> Ordered { get; set; }
     }
 }

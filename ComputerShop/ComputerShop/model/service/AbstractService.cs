@@ -26,14 +26,14 @@ namespace ComputerShop.model.service
 			ComputerShopContext.GetEntity<T>().Add(item);
 		}
 
-		public void DeleteById(int id)
+		public void Remove(T item)
 		{
-			ComputerShopContext.GetEntity<T>().Remove(ComputerShopContext.GetEntity<T>().Find(id));
+			ComputerShopContext.GetEntity<T>().Remove(item);
 		}
 
 		public void ChangeItem(T newItem)
 		{
-			DeleteById(newItem.Id);
+			Remove(GetById(newItem.Id));
 			ComputerShopContext.SaveChanges();
 			Add(newItem);
 		}

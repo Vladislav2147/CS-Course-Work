@@ -36,13 +36,13 @@
   </EntityType>
   <EntityType Name="delivered_to_warehouse">
     <Key>
-      <PropertyRef Name="supply_id" />
-      <PropertyRef Name="product_id" />
+      <PropertyRef Name="id" />
     </Key>
     <Property Name="supply_id" Type="int" Nullable="false" />
     <Property Name="product_id" Type="int" Nullable="false" />
     <Property Name="amount" Type="int" Nullable="false" />
     <Property Name="price" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
   </EntityType>
   <EntityType Name="desktop">
     <Key>
@@ -96,13 +96,13 @@
   </EntityType>
   <EntityType Name="ordered">
     <Key>
-      <PropertyRef Name="order_id" />
-      <PropertyRef Name="product_id" />
+      <PropertyRef Name="id" />
     </Key>
     <Property Name="order_id" Type="int" Nullable="false" />
     <Property Name="product_id" Type="int" Nullable="false" />
     <Property Name="amount" Type="int" Nullable="false" />
     <Property Name="approved" Type="bit" Nullable="false" />
+    <Property Name="id" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="peripherals">
     <Key>

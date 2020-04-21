@@ -137,16 +137,17 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="model\business\CustomerService.cs" />
-    <Compile Include="model\business\Encryptor.cs" />
+    <Compile Include="model\service\Encryptor.cs" />
     <Compile Include="model\database\ComputerShopContextPartial.cs" />
     <Compile Include="model\database\CustomerPartial.cs" />
-    <Compile Include="model\database\DeliveredToWarehousePartial.cs" />
+    <Compile Include="model\database\DeliveredToWareHousePartial.cs" />
     <Compile Include="model\database\IEntity.cs" />
     <Compile Include="model\database\OrderedPartial.cs" />
     <Compile Include="model\database\OrderPartial.cs" />
     <Compile Include="model\database\ProductPartial.cs" />
     <Compile Include="model\database\SupplyPartial.cs" />
+    <Compile Include="model\service\AbstractService.cs" />
+    <Compile Include="model\service\implementations\ProductService.cs" />
     <Compile Include="model\validation\EmailValidationAttribute.cs" />
     <Compile Include="viewmodel\login\SignUpViewModel.cs" />
     <Compile Include="viewmodel\RelayCommand.cs" />
@@ -176,8 +177,6 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>ComputerShopDataSet.xsd</DependentUpon>
     </Compile>
-    <Compile Include="model\business\IService.cs" />
-    <Compile Include="model\business\ProductService.cs" />
     <Compile Include="model\database\Computer.cs">
       <DependentUpon>DatabaseModel.tt</DependentUpon>
     </Compile>
@@ -316,6 +315,8 @@
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="model\business\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

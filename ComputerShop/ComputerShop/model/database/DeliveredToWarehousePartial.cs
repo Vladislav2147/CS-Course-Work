@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ComputerShop.model.database
 {
-	public partial class DeliveredToWarehouse : IEntity
+	public partial class DeliveredToWareHouse : IEntity
 	{
 	}
 }

@@ -1,5 +1,6 @@
 ﻿using ComputerShop.model.business;
 using ComputerShop.model.database;
+using ComputerShop.model.service.implementations;
 using ComputerShop.viewmodel.login;
 using System;
 using System.Collections.Generic;
@@ -32,7 +33,8 @@ namespace ComputerShop.view.login
 
 			using(ComputerShopContext context = new ComputerShopContext())
 			{
-				Console.WriteLine(context.GetEntity<Customer>().Cast<Customer>().FirstOrDefault().Email);
+				ProductService service = new ProductService(context);
+				Console.WriteLine((service.GetById(3000) as Mouse).SensorResolution);
 			}
 			this.Top = (screenHeight - this.MaxHeight) / 2;
 			this.Left = (screenWidth - this.MaxWidth) / 2;

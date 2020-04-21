@@ -112,6 +112,7 @@
     <EntitySetMapping Name="DeliveredToWareHouse">
       <EntityTypeMapping TypeName="ComputerShopModel.DeliveredToWareHouse">
         <MappingFragment StoreEntitySet="delivered_to_warehouse">
+          <ScalarProperty Name="Id" ColumnName="id" />
           <ScalarProperty Name="Price" ColumnName="price" />
           <ScalarProperty Name="SupplyId" ColumnName="supply_id" />
           <ScalarProperty Name="ProductId" ColumnName="product_id" />
@@ -122,6 +123,7 @@
     <EntitySetMapping Name="Ordered">
       <EntityTypeMapping TypeName="ComputerShopModel.Ordered">
         <MappingFragment StoreEntitySet="ordered">
+          <ScalarProperty Name="Id" ColumnName="id" />
           <ScalarProperty Name="Approved" ColumnName="approved" />
           <ScalarProperty Name="OrderId" ColumnName="order_id" />
           <ScalarProperty Name="ProductId" ColumnName="product_id" />
