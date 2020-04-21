@@ -5,8 +5,60 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:ComputerShop.view.login"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
+              d:DesignHeight="360" d:DesignWidth="300">
+    <UserControl.Resources>
+        <Style TargetType="TextBlock" x:Key="TextBlockStyle">
+            <Setter Property="HorizontalAlignment" Value="Right"></Setter>
+            <Setter Property="Margin" Value="10,10,25,10"></Setter>
+        </Style>
+        <Style TargetType="TextBox" x:Key="TextBoxStyle">
+            <Setter Property="Margin" Value="10,10,10,10"></Setter>
+        </Style>
+    </UserControl.Resources>
     <Grid>
-            
+        <Grid.RowDefinitions>
+            <RowDefinition Height="0.5*"></RowDefinition>
+            <RowDefinition Height="1.5*"></RowDefinition>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+        <TextBlock Grid.Row="0" Text="Регистрация" FontWeight="Bold" FontSize="36" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center"></TextBlock>
+        <StackPanel Grid.Row="1" Orientation="Vertical">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <TextBlock Grid.Column="0" Text="Email" Style="{StaticResource ResourceKey=TextBlockStyle}"></TextBlock>
+                <TextBox Grid.Column="1" Text="{Binding Email}"  Style="{StaticResource ResourceKey=TextBoxStyle}"></TextBox>
+            </Grid>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <TextBlock Grid.Column="0" Text="Логин" Style="{StaticResource ResourceKey=TextBlockStyle}"></TextBlock>
+                <TextBox Grid.Column="1" Text="{Binding Login}"  Style="{StaticResource ResourceKey=TextBoxStyle}"></TextBox>
+            </Grid>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <TextBlock Grid.Column="0" Text="Пароль" Style="{StaticResource ResourceKey=TextBlockStyle}"></TextBlock>
+                <TextBox Grid.Column="1" Text="{Binding Password}" Style="{StaticResource ResourceKey=TextBoxStyle}"></TextBox>
+            </Grid>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <TextBlock Grid.Column="0" Text="Повторите пароль" Style="{StaticResource ResourceKey=TextBlockStyle}"></TextBlock>
+                <TextBox Grid.Column="1" Text="{Binding ConfirmPassword}" Style="{StaticResource ResourceKey=TextBoxStyle}"></TextBox>
+            </Grid>
+        </StackPanel>
+        <StackPanel Orientation="Horizontal" Grid.Row="2" HorizontalAlignment="Right" VerticalAlignment="Center" FlowDirection="RightToLeft">
+            <Button x:Name="RegistrateButton" Command="{Binding Registrate}" Content="Зарегистрироваться" Margin="10,10,10,10" Padding="5,5,5,5"></Button>
+            <Button x:Name="BackButton" Command="{Binding Back}" Content="Назад" Margin="10,10,10,10" Padding="5,5,5,5"></Button>
+        </StackPanel>
     </Grid>
 </UserControl>

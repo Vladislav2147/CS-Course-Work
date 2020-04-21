@@ -71,3 +71,4 @@ F:\course work\ComputerShop\ComputerShop\obj\Debug\ComputerShop.csproj.GenerateR
 F:\course work\ComputerShop\ComputerShop\obj\Debug\ComputerShop.csproj.CopyComplete
 F:\course work\ComputerShop\ComputerShop\obj\Debug\ComputerShop.exe
 F:\course work\ComputerShop\ComputerShop\obj\Debug\ComputerShop.pdb
+F:\course work\ComputerShop\ComputerShop\obj\Debug\ComputerShop.csprojAssemblyReference.cache

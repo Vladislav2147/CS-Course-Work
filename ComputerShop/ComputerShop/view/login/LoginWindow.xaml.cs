@@ -1,4 +1,5 @@
-﻿using ComputerShop.viewmodel.login;
+﻿using ComputerShop.model.business;
+using ComputerShop.viewmodel.login;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -26,6 +27,7 @@ namespace ComputerShop.view.login
 			double screenWidth = SystemParameters.FullPrimaryScreenWidth;
 			
 			InitializeComponent();
+
 
 			this.Top = (screenHeight - this.MaxHeight) / 2;
 			this.Left = (screenWidth - this.MaxWidth) / 2;

@@ -137,10 +137,11 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="model\business\Encryptor.cs" />
     <Compile Include="model\database\Customer1.cs" />
     <Compile Include="model\validation\EmailValidationAttribute.cs" />
+    <Compile Include="viewmodel\login\SignUpViewModel.cs" />
     <Compile Include="viewmodel\RelayCommand.cs" />
-    <Compile Include="viewmodel\login\LoginViewModel.cs" />
     <Compile Include="viewmodel\login\SignInViewModel.cs" />
     <Compile Include="view\login\LoginWindow.xaml.cs">
       <DependentUpon>LoginWindow.xaml</DependentUpon>
