@@ -7,10 +7,10 @@ using System.Threading.Tasks;
 
 namespace ComputerShop.model.business
 {
-	interface IManager<T>
+	interface IService<T>
 	{
 		ComputerShopContext ComputerShopContext { get; set; }
-		void AddToDb(T item);
+		void Add(T item);
 		void DeleteById(int id);
 		void ChangeItem(T newItem);
 		T GetById(int id);

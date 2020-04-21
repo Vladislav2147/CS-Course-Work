@@ -1,4 +1,5 @@
 ﻿using ComputerShop.model.business;
+using ComputerShop.model.database;
 using ComputerShop.viewmodel.login;
 using System;
 using System.Collections.Generic;
@@ -13,6 +14,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using Mouse = ComputerShop.model.database.Mouse;
 
 namespace ComputerShop.view.login
 {
@@ -28,7 +30,10 @@ namespace ComputerShop.view.login
 			
 			InitializeComponent();
 
-
+			using(ComputerShopContext context = new ComputerShopContext())
+			{
+				Console.WriteLine(context.GetEntity<Customer>().Cast<Customer>().FirstOrDefault().Email);
+			}
 			this.Top = (screenHeight - this.MaxHeight) / 2;
 			this.Left = (screenWidth - this.MaxWidth) / 2;
             this.Loaded += Login_Loaded;

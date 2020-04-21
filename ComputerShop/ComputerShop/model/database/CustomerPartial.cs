@@ -10,12 +10,12 @@ namespace ComputerShop.model.database
 {
 	
 	[MetadataType(typeof(CustomerMetadata))]
-	public partial class Customer
+	public partial class Customer: IEntity
 	{
 	}
 	class CustomerMetadata
 	{
-		[StringLength(maximumLength: 50, MinimumLength = 6, ErrorMessage = "Логин должен быть не менее 6 символов и не более 50 символов в длину")]
+		[StringLength(maximumLength: 50, MinimumLength = 5, ErrorMessage = "Логин должен быть не менее 6 символов и не более 50 символов в длину")]
 		[Required(ErrorMessage = "Логин не может быть пустым")]
 		public string Login { get; set; }
 		[Required(ErrorMessage = "Email не может быть пустым")]

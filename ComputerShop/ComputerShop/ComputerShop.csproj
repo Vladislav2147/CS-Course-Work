@@ -5,7 +5,7 @@
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{1D1CEA2C-5807-46BA-AE23-64E596A063DA}</ProjectGuid>
-    <OutputType>WinExe</OutputType>
+    <OutputType>Exe</OutputType>
     <RootNamespace>ComputerShop</RootNamespace>
     <AssemblyName>ComputerShop</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
@@ -137,8 +137,16 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="model\business\CustomerService.cs" />
     <Compile Include="model\business\Encryptor.cs" />
-    <Compile Include="model\database\Customer1.cs" />
+    <Compile Include="model\database\ComputerShopContextPartial.cs" />
+    <Compile Include="model\database\CustomerPartial.cs" />
+    <Compile Include="model\database\DeliveredToWarehousePartial.cs" />
+    <Compile Include="model\database\IEntity.cs" />
+    <Compile Include="model\database\OrderedPartial.cs" />
+    <Compile Include="model\database\OrderPartial.cs" />
+    <Compile Include="model\database\ProductPartial.cs" />
+    <Compile Include="model\database\SupplyPartial.cs" />
     <Compile Include="model\validation\EmailValidationAttribute.cs" />
     <Compile Include="viewmodel\login\SignUpViewModel.cs" />
     <Compile Include="viewmodel\RelayCommand.cs" />
@@ -168,8 +176,8 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>ComputerShopDataSet.xsd</DependentUpon>
     </Compile>
-    <Compile Include="model\business\IManager.cs" />
-    <Compile Include="model\business\ProductManager.cs" />
+    <Compile Include="model\business\IService.cs" />
+    <Compile Include="model\business\ProductService.cs" />
     <Compile Include="model\database\Computer.cs">
       <DependentUpon>DatabaseModel.tt</DependentUpon>
     </Compile>

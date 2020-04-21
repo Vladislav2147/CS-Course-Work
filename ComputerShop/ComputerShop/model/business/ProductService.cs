@@ -7,16 +7,20 @@ using ComputerShop.model.database;
 
 namespace ComputerShop.model.business
 {
-	public class ProductManager : IManager<Product>
+	public class ProductService : IService<Product>
 	{
 		public ComputerShopContext ComputerShopContext { get; set; }
 
-		public ProductManager(ComputerShopContext computerShopContext)
+		public ProductService(ComputerShopContext computerShopContext)
 		{
 			ComputerShopContext = computerShopContext;
 		}
+		public ProductService()
+		{
+			ComputerShopContext = new ComputerShopContext();
+		}
 
-		public void AddToDb(Product item)
+		public void Add(Product item)
 		{
 			ComputerShopContext.Product.Add(item);
 		}
@@ -30,7 +34,7 @@ namespace ComputerShop.model.business
 		{
 			DeleteById(newItem.Id);
 			ComputerShopContext.SaveChanges();
-			AddToDb(newItem);
+			Add(newItem);
 		}
 
 		public IEnumerable<Product> FindByPredicate(Predicate<Product> predicate)

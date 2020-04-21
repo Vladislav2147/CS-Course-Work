@@ -24,12 +24,12 @@ namespace ComputerShop
 	public partial class MainWindow : Window
 	{
 		public ComputerShopContext ComputerShopContext;
-		public ProductManager ProductManager { get; set; }
+		public ProductService ProductManager { get; set; }
 		public MainWindow()
 		{
 			InitializeComponent();
 			ComputerShopContext = new ComputerShopContext();
-			ProductManager = new ProductManager(ComputerShopContext);
+			ProductManager = new ProductService(ComputerShopContext);
 			
 			MainContent.Content = new MainList(this);
 		}
