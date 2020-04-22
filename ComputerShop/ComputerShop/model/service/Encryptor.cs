@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Linq;
 using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
@@ -11,20 +12,30 @@ namespace ComputerShop.model.business
 	{
 		private static SHA1 sha = new SHA1CryptoServiceProvider();
 
-		public static string GetHash(string password)
+		public static byte[] GetHash(string password)
 		{
 			var utf8 = new UTF8Encoding();
 			byte[] bytePassword = utf8.GetBytes(password);
 			byte[] hashData = sha.ComputeHash(bytePassword);
-			return utf8.GetString(hashData);
+			return hashData;
 		}
-		public static bool EqualsToHash(this string password, string hash)
+		public static bool EqualsToHash(this string password, byte[] hash)
 		{
 			var utf8 = new UTF8Encoding();
 			byte[] data = utf8.GetBytes(password);
 			byte[] hashData = sha.ComputeHash(data);
-			string passwordHash = utf8.GetString(hashData);
-			return passwordHash.Equals(hash);
+
+			if(hashData.Length == hash.Length)
+			{
+				for(int i = 0; i < hash.Length; i++)
+				{
+					if(hashData[i] != hash[i])
+					{
+						return false;
+					}
+				}
+			}
+			return true;
 		}
 	}
 }

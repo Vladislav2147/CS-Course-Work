@@ -101,6 +101,7 @@
     </Reference>
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Data.Linq" />
     <Reference Include="System.Diagnostics.DiagnosticSource, Version=4.0.5.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Diagnostics.DiagnosticSource.4.7.0\lib\net46\System.Diagnostics.DiagnosticSource.dll</HintPath>
     </Reference>
@@ -147,7 +148,12 @@
     <Compile Include="model\database\ProductPartial.cs" />
     <Compile Include="model\database\SupplyPartial.cs" />
     <Compile Include="model\service\AbstractService.cs" />
+    <Compile Include="model\service\implementations\CustomerService.cs" />
+    <Compile Include="model\service\implementations\DeliveredToWareHouseService.cs" />
+    <Compile Include="model\service\implementations\OrderedService.cs" />
+    <Compile Include="model\service\implementations\OrderService.cs" />
     <Compile Include="model\service\implementations\ProductService.cs" />
+    <Compile Include="model\service\implementations\SupplyService.cs" />
     <Compile Include="model\validation\EmailValidationAttribute.cs" />
     <Compile Include="viewmodel\login\SignUpViewModel.cs" />
     <Compile Include="viewmodel\RelayCommand.cs" />
@@ -315,8 +321,6 @@
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="model\business\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

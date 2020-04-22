@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace ComputerShop.model.service
 {
-	class AbstractService<T> where T: IEntity, new()
+	public abstract class AbstractService<T> where T: IEntity, new()
 	{
 		public ComputerShopContext ComputerShopContext { get; set; }
 
@@ -21,17 +21,17 @@ namespace ComputerShop.model.service
 			ComputerShopContext = new ComputerShopContext();
 		}
 
-		public void Add(T item)
+		public virtual void Add(T item)
 		{
 			ComputerShopContext.GetEntity<T>().Add(item);
 		}
 
-		public void Remove(T item)
+		public virtual void Remove(T item)
 		{
 			ComputerShopContext.GetEntity<T>().Remove(item);
 		}
 
-		public void ChangeItem(T newItem)
+		public virtual void ChangeItem(T newItem)
 		{
 			Remove(GetById(newItem.Id));
 			ComputerShopContext.SaveChanges();

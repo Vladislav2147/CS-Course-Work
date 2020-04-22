@@ -31,11 +31,6 @@ namespace ComputerShop.view.login
 			
 			InitializeComponent();
 
-			using(ComputerShopContext context = new ComputerShopContext())
-			{
-				ProductService service = new ProductService(context);
-				Console.WriteLine((service.GetById(3000) as Mouse).SensorResolution);
-			}
 			this.Top = (screenHeight - this.MaxHeight) / 2;
 			this.Left = (screenWidth - this.MaxWidth) / 2;
             this.Loaded += Login_Loaded;
@@ -44,7 +39,6 @@ namespace ComputerShop.view.login
 
         private void Login_Loaded(object sender, RoutedEventArgs e)
         {
-            //загрузка стартовой View
             SignIn view = new SignIn();
 
             SignInViewModel vm = new SignInViewModel();

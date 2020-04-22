@@ -36,7 +36,7 @@
           <Property Name="name" Type="nvarchar" MaxLength="50" />
           <Property Name="address" Type="nvarchar" MaxLength="50" />
           <Property Name="login" Type="nvarchar" MaxLength="30" Nullable="false" />
-          <Property Name="password" Type="nchar" MaxLength="20" Nullable="false" />
+          <Property Name="password" Type="varbinary" MaxLength="255" Nullable="false" />
           <Property Name="role" Type="nchar" MaxLength="6" Nullable="false" />
         </EntityType>
         <EntityType Name="delivered_to_warehouse">
@@ -410,7 +410,7 @@
           <Property Name="Address" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Order" Relationship="Self.FK_order_customer" FromRole="customer" ToRole="order" />
           <Property Name="Login" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="true" />
-          <Property Name="Password" Type="String" Nullable="false" MaxLength="20" FixedLength="true" Unicode="true" />
+          <Property Name="Password" Type="Binary" Nullable="false" />
           <Property Name="Role" Type="String" Nullable="false" MaxLength="6" FixedLength="true" Unicode="true" />
         </EntityType>
         <EntityType Name="Order">

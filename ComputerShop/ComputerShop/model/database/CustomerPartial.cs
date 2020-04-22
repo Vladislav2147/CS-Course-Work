@@ -21,7 +21,5 @@ namespace ComputerShop.model.database
 		[Required(ErrorMessage = "Email не может быть пустым")]
 		[EmailValidation("Введите корректный email")]
 		public string Email { get; set; }
-		[Required(ErrorMessage = "Пароль не может быть пустым")]
-		public string Password { get; set; }
 	}
 }
