@@ -12,7 +12,7 @@
             <RowDefinition Height="*"></RowDefinition>
         </Grid.RowDefinitions>
         <TextBlock Grid.Row="0" Text="Каталог" FontSize="36" ></TextBlock>
-        <ListBox Grid.Row="1" x:Name="ProductList">
+        <ListBox Grid.Row="1" x:Name="ProductList" ScrollViewer.VerticalScrollBarVisibility="Auto" BorderThickness="0" Background="{x:Null}" BorderBrush="{x:Null}">
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <Grid>

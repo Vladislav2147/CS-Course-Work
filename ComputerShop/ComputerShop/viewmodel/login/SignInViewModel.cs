@@ -46,8 +46,7 @@ namespace ComputerShop.viewmodel.login
 				{
 					if (Password != null && CustomerService.HashEquals(Password, customer.Password))
 					{
-						//передать роль параметром
-						MainWindow mainWindow = new MainWindow();
+						MainWindow mainWindow = new MainWindow(customer);
 						mainWindow.Show();
 						CodeBehind.Close();
 					}

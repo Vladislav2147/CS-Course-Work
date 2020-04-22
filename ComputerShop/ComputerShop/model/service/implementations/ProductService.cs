@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace ComputerShop.model.service.implementations
 {
-	class ProductService : AbstractService<Product>
+	public class ProductService : AbstractService<Product>
 	{
 		public ProductService() : base() { }
 		public ProductService(ComputerShopContext context) : base(context) { } 

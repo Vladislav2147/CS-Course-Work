@@ -27,7 +27,7 @@ namespace ComputerShop.model.database
         public string Address { get; set; }
         public string Login { get; set; }
         public byte[] Password { get; set; }
-        public string Role { get; set; }
+        public ComputerShop.model.enums.Role Role { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Order> Order { get; set; }

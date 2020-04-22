@@ -5,7 +5,7 @@
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{1D1CEA2C-5807-46BA-AE23-64E596A063DA}</ProjectGuid>
-    <OutputType>Exe</OutputType>
+    <OutputType>WinExe</OutputType>
     <RootNamespace>ComputerShop</RootNamespace>
     <AssemblyName>ComputerShop</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
@@ -138,6 +138,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="model\enums\Role.cs" />
     <Compile Include="model\service\Encryptor.cs" />
     <Compile Include="model\database\ComputerShopContextPartial.cs" />
     <Compile Include="model\database\CustomerPartial.cs" />
@@ -167,10 +168,17 @@
     <Compile Include="view\login\SignUp.xaml.cs">
       <DependentUpon>SignUp.xaml</DependentUpon>
     </Compile>
-    <Compile Include="view\MainList.xaml.cs">
+    <Compile Include="view\main\Filters.xaml.cs">
+      <DependentUpon>Filters.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="view\main\MainList.xaml.cs">
       <DependentUpon>MainList.xaml</DependentUpon>
     </Compile>
-    <Page Include="MainWindow.xaml">
+    <Page Include="view\main\Filters.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="view\main\MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -237,7 +245,7 @@
     <Compile Include="model\database\Supply.cs">
       <DependentUpon>DatabaseModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="MainWindow.xaml.cs">
+    <Compile Include="view\main\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
@@ -253,7 +261,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="view\MainList.xaml">
+    <Page Include="view\main\MainList.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -321,6 +329,8 @@
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="viewmodel\main\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

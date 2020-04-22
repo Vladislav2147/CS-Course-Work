@@ -20,7 +20,10 @@ namespace ComputerShop.model.service
 		{
 			ComputerShopContext = new ComputerShopContext();
 		}
-
+		public virtual List<T> GetAll()
+		{
+			return ComputerShopContext.GetEntity<T>().Cast<T>().ToList();
+		}
 		public virtual void Add(T item)
 		{
 			ComputerShopContext.GetEntity<T>().Add(item);

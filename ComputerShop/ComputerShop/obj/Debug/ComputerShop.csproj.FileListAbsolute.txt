@@ -1,7 +1,5 @@
-F:\course work\ComputerShop\ComputerShop\obj\Debug\MainWindow.g.cs
 F:\course work\ComputerShop\ComputerShop\obj\Debug\view\login\LoginWindow.g.cs
 F:\course work\ComputerShop\ComputerShop\obj\Debug\view\login\SignIn.g.cs
-F:\course work\ComputerShop\ComputerShop\obj\Debug\view\MainList.g.cs
 F:\course work\ComputerShop\ComputerShop\obj\Debug\App.g.cs
 F:\course work\ComputerShop\ComputerShop\obj\Debug\ComputerShop_Content.g.cs
 F:\course work\ComputerShop\ComputerShop\obj\Debug\ComputerShop_MarkupCompile.cache
@@ -60,10 +58,8 @@ F:\course work\ComputerShop\ComputerShop\bin\Debug\System.Numerics.Vectors.xml
 F:\course work\ComputerShop\ComputerShop\bin\Debug\System.Runtime.CompilerServices.Unsafe.xml
 F:\course work\ComputerShop\ComputerShop\bin\Debug\System.Threading.Tasks.Extensions.xml
 F:\course work\ComputerShop\ComputerShop\bin\Debug\ru\EntityFramework.resources.dll
-F:\course work\ComputerShop\ComputerShop\obj\Debug\MainWindow.baml
 F:\course work\ComputerShop\ComputerShop\obj\Debug\view\login\LoginWindow.baml
 F:\course work\ComputerShop\ComputerShop\obj\Debug\view\login\SignIn.baml
-F:\course work\ComputerShop\ComputerShop\obj\Debug\view\MainList.baml
 F:\course work\ComputerShop\ComputerShop\obj\Debug\view\login\SignUp.baml
 F:\course work\ComputerShop\ComputerShop\obj\Debug\ComputerShop.g.resources
 F:\course work\ComputerShop\ComputerShop\obj\Debug\ComputerShop.Properties.Resources.resources
@@ -72,3 +68,9 @@ F:\course work\ComputerShop\ComputerShop\obj\Debug\ComputerShop.csproj.CopyCompl
 F:\course work\ComputerShop\ComputerShop\obj\Debug\ComputerShop.exe
 F:\course work\ComputerShop\ComputerShop\obj\Debug\ComputerShop.pdb
 F:\course work\ComputerShop\ComputerShop\obj\Debug\ComputerShop.csprojAssemblyReference.cache
+F:\course work\ComputerShop\ComputerShop\obj\Debug\view\main\MainWindow.g.cs
+F:\course work\ComputerShop\ComputerShop\obj\Debug\view\main\MainList.g.cs
+F:\course work\ComputerShop\ComputerShop\obj\Debug\view\main\MainWindow.baml
+F:\course work\ComputerShop\ComputerShop\obj\Debug\view\main\MainList.baml
+F:\course work\ComputerShop\ComputerShop\obj\Debug\view\main\Filters.g.cs
+F:\course work\ComputerShop\ComputerShop\obj\Debug\view\main\Filters.baml

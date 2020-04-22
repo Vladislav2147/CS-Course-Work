@@ -28,8 +28,8 @@
     <Property Name="Address" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
     <NavigationProperty Name="Order" Relationship="Self.FK_order_customer" FromRole="customer" ToRole="order" />
     <Property Name="Login" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="true" />
-    <Property Name="Password" Type="Binary" Nullable="false" />
-    <Property Name="Role" Type="String" Nullable="false" MaxLength="6" FixedLength="true" Unicode="true" />
+    <Property Name="Password" Type="Binary" Nullable="false" MaxLength="255" FixedLength="false" />
+    <Property Name="Role" Type="ComputerShopModel.Role" Nullable="false" />
   </EntityType>
   <EntityType Name="Order">
     <Key>
@@ -212,4 +212,5 @@
     <Property Name="version" Type="Int32" />
     <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
   </EntityType>
+  <EnumType Name="Role" a:ExternalTypeName="ComputerShop.model.enums.Role" xmlns:a="http://schemas.microsoft.com/ado/2006/04/codegeneration" />
 </Schema>

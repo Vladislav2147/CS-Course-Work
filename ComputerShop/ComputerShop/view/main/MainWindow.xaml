@@ -6,7 +6,6 @@
         xmlns:local="clr-namespace:ComputerShop"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="810" MinHeight="450" MinWidth="810" Background="GhostWhite" VerticalAlignment="Center">
-    <ScrollViewer>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="50*"></RowDefinition>
@@ -23,8 +22,6 @@
             <ColumnDefinition></ColumnDefinition>
         </Grid.ColumnDefinitions>
         <Rectangle Grid.Row="0" Grid.ColumnSpan="6" Fill="#FF7676FF" />
-        <Rectangle Grid.Row="1" Grid.RowSpan="3" Fill="#FFE4E4E4" />
-        <Rectangle Grid.Row="1" Grid.Column="5" Grid.RowSpan="3" Fill="#FFE4E4E4" />
         <Grid Grid.Column="3" Grid.ColumnSpan="3" Grid.Row="0">
             <Grid.RowDefinitions>
                 <RowDefinition Height="3*"/>
@@ -39,18 +36,20 @@
                 <ColumnDefinition Width="3*"></ColumnDefinition>
                 <ColumnDefinition Width="7*"></ColumnDefinition>
             </Grid.ColumnDefinitions>
-            <Button Grid.Column="0" Grid.Row="1" Content="Корзина" />
+            
+            <Button Grid.Column="0" Grid.Row="1" x:Name="Cart" Content="Корзина" />
             <TextBox Grid.Row="1" Grid.Column="2" Grid.ColumnSpan="3" MaxHeight="30"  MaxLines="1" VerticalContentAlignment="Center" Padding="5,0" />
             <Button  Grid.Column="5" Grid.Row="1" Content="Поиск" MaxHeight="30" MinWidth="80" Margin="5,0,0,0" HorizontalAlignment="Left"   />
         </Grid>
+        
         <TextBlock Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3" Text="Computer shop" FontFamily="Imprint MT Shadow" FontWeight="Bold" FontSize="36" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center" />
-        <TextBlock Grid.Row="1" Grid.Column="0" Text="Панель разделов" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="Bold" FontSize="14" Margin="0,27.2,0,76.2"/>
-        <TextBlock Grid.Row="1" Grid.Column="5" Text="Панель фильтров" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="Bold" FontSize="14" Margin="0,27.2,0,76.2"/>
-
-        <Grid Grid.Row="1" Grid.RowSpan="3" Grid.Column="1" Grid.ColumnSpan="4">
-                <ContentPresenter x:Name="MainContent"></ContentPresenter>
-        </Grid>
+        <Rectangle Grid.Row="1" Grid.RowSpan="3" Fill="#FFE4E4E4" />
+        <Border Grid.Row="1" Grid.Column="0" Grid.RowSpan="3" BorderBrush="Black" BorderThickness="0,0,1,0"></Border>
+        <TextBlock Grid.Row="1" Grid.Column="0" Grid.RowSpan="3" Text="Панель разделов" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="Bold" FontSize="14" Margin="0,27,0,76"/>
+        <DockPanel Grid.Row="1" Grid.Column="1" Grid.RowSpan="3" Grid.ColumnSpan="5" LastChildFill="True">
+            <ContentPresenter DockPanel.Dock="Left" x:Name="Filters"></ContentPresenter>
+            <ContentPresenter DockPanel.Dock="Right" x:Name="MainContent"></ContentPresenter>
+        </DockPanel>
+        
     </Grid>
-    </ScrollViewer>
-    
 </Window>

@@ -23,7 +23,7 @@ namespace ComputerShop.model.service.implementations
 		}
 		public void RegistrateCustomer(Customer customer)
 		{
-			customer.Role = "USER";
+			customer.Role = enums.Role.User;
 			Add(customer);
 		}
 	}

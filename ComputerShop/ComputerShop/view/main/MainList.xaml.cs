@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ComputerShop.model.database;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,24 +13,22 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using ComputerShop.model.database;
-using ComputerShop.model.business;
-using ComputerShop.view;
 
-namespace ComputerShop
+namespace ComputerShop.view
 {
 	/// <summary>
-	/// Логика взаимодействия для MainWindow.xaml
+	/// Логика взаимодействия для MainList.xaml
 	/// </summary>
-	public partial class MainWindow : Window
+	public partial class MainList : UserControl
 	{
-		public ComputerShopContext ComputerShopContext;
-		public MainWindow()
+		public MainWindow Owner { get; set; }
+		public MainList(MainWindow owner)
 		{
 			InitializeComponent();
-			ComputerShopContext = new ComputerShopContext();
-			
-			MainContent.Content = new MainList(this);
+			Owner = owner;
+			List<Product> products = Owner.ProductService.GetAll();
+			this.ProductList.ItemsSource = products;
 		}
+
 	}
 }
