@@ -36,6 +36,32 @@ namespace ComputerShop
 			InitializeComponent();
 			ProductService = new ProductService();			
 			MainContent.Content = new UserMainList(this);
+			//OpenFileDialog openFileDialog = new OpenFileDialog();
+			//if (openFileDialog.ShowDialog() == true)
+			//{
+			//	System.Drawing.Image image = System.Drawing.Image.FromFile(openFileDialog.FileName);
+			//	using (MemoryStream ms = new MemoryStream())
+			//	{
+			//		image.Save(ms, image.RawFormat);
+			//		var products = ProductService.FindByPredicate(prod => prod.Photo == null);
+			//		foreach(Product product in products)
+			//		{
+			//			product.Photo = ms.ToArray();
+			//			ProductService.ChangeItem(product);
+			//		}
+			//		ProductService.SaveChanges();
+
+			//	}
+
+			//}
+			//Computer pc = new Computer()
+			//{
+			//	Id = 8801,
+			//	Name = "ppc",
+			//	Price = 9000
+			//};
+			//ProductService.Add(pc);
+			//ProductService.SaveChanges();
 		}
 		public MainWindow(Customer customer) : this()
 		{

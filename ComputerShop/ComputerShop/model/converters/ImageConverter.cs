@@ -5,7 +5,9 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Controls;
 using System.Windows.Data;
+using System.Windows.Media;
 using System.Windows.Media.Imaging;
 
 namespace ComputerShop.model.converters
@@ -23,7 +25,11 @@ namespace ComputerShop.model.converters
 					return decoder.Frames[0];
 				}
 			}
-			return null; 
+			else
+			{
+				return "/pictures/none.png";
+			}
+			
 		}
 
 		public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)

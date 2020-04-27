@@ -53,7 +53,7 @@
     <Property Name="Year" Type="Int32" />
     <NavigationProperty Name="DeliveredToWareHouse" Relationship="Self.FK_delivered_to_warehouse_product" FromRole="product" ToRole="delivered_to_warehouse" />
     <NavigationProperty Name="Ordered" Relationship="Self.FK_ordered_product" FromRole="product" ToRole="ordered" />
-    <Property Name="Photo" Type="Binary" />
+    <Property Name="Photo" Type="Binary" MaxLength="Max" Nullable="true" FixedLength="false" />
   </EntityType>
   <EntityType Name="Supply">
     <Key>
