@@ -5,13 +5,13 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ComputerShop"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="810" MinHeight="450" MinWidth="810" Background="GhostWhite" VerticalAlignment="Center">
+        Title="MainWindow" Height="450" Width="810" MinHeight="450" MinWidth="810" Background="#FFE6E6E6" VerticalAlignment="Center">
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="50*"></RowDefinition>
-            <RowDefinition Height="117*"></RowDefinition>
-            <RowDefinition Height="117*"></RowDefinition>
-            <RowDefinition Height="117*"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="2*"></RowDefinition>
+            <RowDefinition Height="2*"></RowDefinition>
+            <RowDefinition Height="2*"></RowDefinition>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition></ColumnDefinition>
@@ -45,11 +45,12 @@
         <TextBlock Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3" Text="Computer shop" FontFamily="Imprint MT Shadow" FontWeight="Bold" FontSize="36" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center" />
         <Rectangle Grid.Row="1" Grid.RowSpan="3" Fill="#FFE4E4E4" />
         <Border Grid.Row="1" Grid.Column="0" Grid.RowSpan="3" BorderBrush="Black" BorderThickness="0,0,1,0"></Border>
-        <TextBlock Grid.Row="1" Grid.Column="0" Grid.RowSpan="3" Text="Панель разделов" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="Bold" FontSize="14" Margin="0,27,0,76"/>
-        <DockPanel Grid.Row="1" Grid.Column="1" Grid.RowSpan="3" Grid.ColumnSpan="5" LastChildFill="True">
-            <ContentPresenter DockPanel.Dock="Left" x:Name="Filters"></ContentPresenter>
-            <ContentPresenter DockPanel.Dock="Right" x:Name="MainContent"></ContentPresenter>
-        </DockPanel>
+        <TextBlock x:Name="Catalog" Grid.Row="1" Grid.Column="0" Grid.RowSpan="3" Text="Панель разделов" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="Bold" FontSize="14" Margin="0,27,0,76"/>
+        <Border BorderBrush="Black" BorderThickness="0,0,1,0" Grid.Row="1" Grid.Column="1" Grid.RowSpan="3"></Border>
+        <TextBlock Grid.Row="1" Grid.Column="1" Grid.RowSpan="3" Text="Панель фильтров" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="Bold" FontSize="14" Margin="0,27,0,76"/>
+
+        <ContentPresenter Grid.Row="1" Grid.Column="2" Grid.RowSpan="3" Grid.ColumnSpan="4" DockPanel.Dock="Left" x:Name="MainContent"></ContentPresenter>
+        
         
     </Grid>
 </Window>

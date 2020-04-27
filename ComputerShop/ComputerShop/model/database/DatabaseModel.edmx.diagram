@@ -32,7 +32,7 @@
         <InheritanceConnector EntityType="ComputerShopModel.Mouse" />
         <EntityTypeShape EntityType="ComputerShopModel.Keyboard" Width="1.5" PointX="0.625" PointY="2.5" />
         <InheritanceConnector EntityType="ComputerShopModel.Keyboard" />
-        <EntityTypeShape EntityType="ComputerShopModel.sysdiagrams" Width="1.5" PointX="6.375" PointY="8.75" />
+        <EntityTypeShape EntityType="ComputerShopModel.sysdiagrams" Width="1.5" PointX="5.25" PointY="10.375" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

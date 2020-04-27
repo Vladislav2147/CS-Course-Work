@@ -1,7 +1,7 @@
 ﻿ComputerShop
 
 
-winexe
+exe
 C#
 .cs
 F:\course work\ComputerShop\ComputerShop\obj\Debug\
@@ -10,11 +10,11 @@ none
 false
 DEBUG;TRACE
 F:\course work\ComputerShop\ComputerShop\App.xaml
-6255271534
+6-322695250
 21273912965
-49587972417
-146-1900746429
-view\main\Filters.xaml;view\main\MainWindow.xaml;view\login\LoginWindow.xaml;view\login\SignIn.xaml;view\login\SignUp.xaml;view\main\MainList.xaml;
+51282529530
+1481002239977
+view\main\AdminMainList.xaml;view\main\MainWindow.xaml;view\login\LoginWindow.xaml;view\login\SignIn.xaml;view\login\SignUp.xaml;view\main\UserMainList.xaml;
 
 False
 

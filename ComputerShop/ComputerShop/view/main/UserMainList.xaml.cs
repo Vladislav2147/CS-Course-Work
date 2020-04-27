@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ComputerShop.model.database;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -13,16 +14,21 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace ComputerShop.view.main
+namespace ComputerShop.view
 {
 	/// <summary>
-	/// Логика взаимодействия для Filters.xaml
+	/// Логика взаимодействия для MainList.xaml
 	/// </summary>
-	public partial class Filters : UserControl
+	public partial class UserMainList : UserControl
 	{
-		public Filters()
+		public MainWindow Owner { get; set; }
+		public UserMainList(MainWindow owner)
 		{
 			InitializeComponent();
+			Owner = owner;
+
+			this.ProductList.ItemsSource = Owner.ProductService.GetAll();
 		}
+
 	}
 }

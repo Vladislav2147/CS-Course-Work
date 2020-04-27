@@ -105,6 +105,7 @@
     <Reference Include="System.Diagnostics.DiagnosticSource, Version=4.0.5.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Diagnostics.DiagnosticSource.4.7.0\lib\net46\System.Diagnostics.DiagnosticSource.dll</HintPath>
     </Reference>
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Memory, Version=4.0.1.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Memory.4.5.3\lib\netstandard2.0\System.Memory.dll</HintPath>
     </Reference>
@@ -120,6 +121,7 @@
     <Reference Include="System.Threading.Tasks.Extensions, Version=4.2.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Threading.Tasks.Extensions.4.5.2\lib\netstandard2.0\System.Threading.Tasks.Extensions.dll</HintPath>
     </Reference>
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -138,6 +140,8 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="model\converters\ImageConverter.cs" />
+    <Compile Include="model\converters\SizeConverter.cs" />
     <Compile Include="model\enums\Role.cs" />
     <Compile Include="model\service\Encryptor.cs" />
     <Compile Include="model\database\ComputerShopContextPartial.cs" />
@@ -168,13 +172,13 @@
     <Compile Include="view\login\SignUp.xaml.cs">
       <DependentUpon>SignUp.xaml</DependentUpon>
     </Compile>
-    <Compile Include="view\main\Filters.xaml.cs">
-      <DependentUpon>Filters.xaml</DependentUpon>
+    <Compile Include="view\main\AdminMainList.xaml.cs">
+      <DependentUpon>AdminMainList.xaml</DependentUpon>
     </Compile>
-    <Compile Include="view\main\MainList.xaml.cs">
-      <DependentUpon>MainList.xaml</DependentUpon>
+    <Compile Include="view\main\UserMainList.xaml.cs">
+      <DependentUpon>UserMainList.xaml</DependentUpon>
     </Compile>
-    <Page Include="view\main\Filters.xaml">
+    <Page Include="view\main\AdminMainList.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -261,7 +265,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="view\main\MainList.xaml">
+    <Page Include="view\main\UserMainList.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

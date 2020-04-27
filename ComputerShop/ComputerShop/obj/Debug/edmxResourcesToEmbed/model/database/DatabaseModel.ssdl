@@ -93,6 +93,7 @@
     <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="customer_id" Type="int" Nullable="false" />
     <Property Name="date" Type="datetime" Nullable="false" />
+    <Property Name="approved" Type="bit" />
   </EntityType>
   <EntityType Name="ordered">
     <Key>
@@ -101,7 +102,6 @@
     <Property Name="order_id" Type="int" Nullable="false" />
     <Property Name="product_id" Type="int" Nullable="false" />
     <Property Name="amount" Type="int" Nullable="false" />
-    <Property Name="approved" Type="bit" Nullable="false" />
     <Property Name="id" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="peripherals">
@@ -122,7 +122,7 @@
     <Property Name="price" Type="money" Nullable="false" />
     <Property Name="amount" Type="int" Nullable="false" />
     <Property Name="year" Type="int" />
-    <Property Name="photo" Type="nvarchar" MaxLength="50" />
+    <Property Name="photo" Type="varbinary(max)" />
   </EntityType>
   <EntityType Name="supply">
     <Key>

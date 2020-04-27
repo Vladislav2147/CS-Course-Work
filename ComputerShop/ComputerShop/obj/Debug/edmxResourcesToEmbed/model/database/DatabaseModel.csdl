@@ -40,6 +40,7 @@
     <NavigationProperty Name="Customer" Relationship="Self.FK_order_customer" FromRole="order" ToRole="customer" />
     <Property Name="Id" Type="Int32" Nullable="false" />
     <NavigationProperty Name="Ordered" Relationship="ComputerShopModel.FK_ordered_order1" FromRole="order" ToRole="Ordered" />
+    <Property Name="Approved" Type="Boolean" />
   </EntityType>
   <EntityType Name="Product">
     <Key>
@@ -52,7 +53,7 @@
     <Property Name="Year" Type="Int32" />
     <NavigationProperty Name="DeliveredToWareHouse" Relationship="Self.FK_delivered_to_warehouse_product" FromRole="product" ToRole="delivered_to_warehouse" />
     <NavigationProperty Name="Ordered" Relationship="Self.FK_ordered_product" FromRole="product" ToRole="ordered" />
-    <Property Name="Photo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Photo" Type="Binary" />
   </EntityType>
   <EntityType Name="Supply">
     <Key>
@@ -83,7 +84,6 @@
     <Property Name="Amount" Type="Int32" Nullable="false" />
     <NavigationProperty Name="Product" Relationship="Self.FK_ordered_product" FromRole="ordered" ToRole="product" />
     <NavigationProperty Name="Order" Relationship="ComputerShopModel.FK_ordered_order1" FromRole="Ordered" ToRole="order" />
-    <Property Name="Approved" Type="Boolean" Nullable="false" />
     <Property Name="Id" Type="Int32" Nullable="false" />
   </EntityType>
   <Association Name="FK_order_customer">

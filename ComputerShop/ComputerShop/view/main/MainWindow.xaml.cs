@@ -19,6 +19,9 @@ using ComputerShop.model.enums;
 using ComputerShop.model.service.implementations;
 using ComputerShop.view.main;
 
+using System.IO;
+using Microsoft.Win32;
+
 namespace ComputerShop
 {
 	/// <summary>
@@ -32,8 +35,7 @@ namespace ComputerShop
 		{
 			InitializeComponent();
 			ProductService = new ProductService();			
-			MainContent.Content = new MainList(this);
-			Filters.Content = new Filters();
+			MainContent.Content = new UserMainList(this);
 		}
 		public MainWindow(Customer customer) : this()
 		{
@@ -43,5 +45,6 @@ namespace ComputerShop
 				this.Cart.Visibility = Visibility.Collapsed;
 			}
 		}
+		
 	}
 }

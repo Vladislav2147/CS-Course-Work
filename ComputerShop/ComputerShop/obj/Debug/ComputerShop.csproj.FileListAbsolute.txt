@@ -67,10 +67,11 @@ F:\course work\ComputerShop\ComputerShop\obj\Debug\ComputerShop.csproj.GenerateR
 F:\course work\ComputerShop\ComputerShop\obj\Debug\ComputerShop.csproj.CopyComplete
 F:\course work\ComputerShop\ComputerShop\obj\Debug\ComputerShop.exe
 F:\course work\ComputerShop\ComputerShop\obj\Debug\ComputerShop.pdb
-F:\course work\ComputerShop\ComputerShop\obj\Debug\ComputerShop.csprojAssemblyReference.cache
 F:\course work\ComputerShop\ComputerShop\obj\Debug\view\main\MainWindow.g.cs
-F:\course work\ComputerShop\ComputerShop\obj\Debug\view\main\MainList.g.cs
 F:\course work\ComputerShop\ComputerShop\obj\Debug\view\main\MainWindow.baml
-F:\course work\ComputerShop\ComputerShop\obj\Debug\view\main\MainList.baml
-F:\course work\ComputerShop\ComputerShop\obj\Debug\view\main\Filters.g.cs
-F:\course work\ComputerShop\ComputerShop\obj\Debug\view\main\Filters.baml
+F:\course work\ComputerShop\ComputerShop\obj\Debug\view\main\UserMainList.g.cs
+F:\course work\ComputerShop\ComputerShop\obj\Debug\view\main\UserMainList.baml
+F:\course work\ComputerShop\ComputerShop\obj\Debug\view\main\AdminMainList.g.cs
+F:\course work\ComputerShop\ComputerShop\obj\Debug\view\main\AdminMainList.baml
+F:\course work\ComputerShop\ComputerShop\obj\Debug\ComputerShop.csprojAssemblyReference.cache
+F:\course work\ComputerShop\ComputerShop\obj\Debug\GeneratedInternalTypeHelper.g.cs
