@@ -21,7 +21,39 @@
             <ColumnDefinition></ColumnDefinition>
             <ColumnDefinition></ColumnDefinition>
         </Grid.ColumnDefinitions>
-        <Rectangle Grid.Row="0" Grid.ColumnSpan="6" Fill="#FF7676FF" />
+
+        <StackPanel Grid.Row="1" Grid.Column="1" Grid.RowSpan="3" Background="White">
+            <TextBlock Text="Панель фильтров" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="Bold" FontSize="14" Margin="0,27,0,76"/>
+            <StackPanel.Effect>
+                <DropShadowEffect BlurRadius="3" ShadowDepth="1" Opacity="0.5" Direction="0"></DropShadowEffect>
+            </StackPanel.Effect>
+        </StackPanel>
+        
+        <StackPanel Grid.Row="1" Grid.Column="0" Grid.RowSpan="3" Background="White">
+            <StackPanel.Effect>
+                <DropShadowEffect BlurRadius="3" ShadowDepth="1" Opacity="0.5" Direction="0"></DropShadowEffect>
+            </StackPanel.Effect>
+            <TextBlock x:Name="Catalog" Text="Панель разделов" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="Bold" FontSize="14" Margin="0,27,0,27"/>
+            
+            <TreeView BorderThickness="0">
+                <TreeViewItem Header="Компьютеры" IsExpanded="True">
+                    <TreeViewItem Header="Настольные пк"></TreeViewItem>
+                    <TreeViewItem Header="Ноутбуки"></TreeViewItem>
+                    <TreeViewItem Header="Моноблоки"></TreeViewItem>
+                </TreeViewItem>
+                <TreeViewItem Header="Периферия" IsExpanded="True">
+                    <TreeViewItem Header="Мыши"></TreeViewItem>
+                    <TreeViewItem Header="Клавиатуры"></TreeViewItem>
+                </TreeViewItem>
+            </TreeView>
+        </StackPanel>
+       
+        <Rectangle Grid.Row="0" Grid.ColumnSpan="6" Fill="#FF7676FF">
+            <Rectangle.Effect>
+                <DropShadowEffect BlurRadius="3" ShadowDepth="1" Opacity="0.5" Direction="270"></DropShadowEffect>
+            </Rectangle.Effect>
+        </Rectangle>
+        
         <Grid Grid.Column="3" Grid.ColumnSpan="3" Grid.Row="0">
             <Grid.RowDefinitions>
                 <RowDefinition Height="3*"/>
@@ -41,13 +73,9 @@
             <TextBox Grid.Row="1" Grid.Column="2" Grid.ColumnSpan="3" MaxHeight="30"  MaxLines="1" VerticalContentAlignment="Center" Padding="5,0" />
             <Button  Grid.Column="5" Grid.Row="1" Content="Поиск" MaxHeight="30" MinWidth="80" Margin="5,0,0,0" HorizontalAlignment="Left"   />
         </Grid>
-        
+
         <TextBlock Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3" Text="Computer shop" FontFamily="Imprint MT Shadow" FontWeight="Bold" FontSize="36" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center" />
-        <Rectangle Grid.Row="1" Grid.RowSpan="3" Fill="#FFE4E4E4" />
-        <Border Grid.Row="1" Grid.Column="0" Grid.RowSpan="3" BorderBrush="Black" BorderThickness="0,0,1,0"></Border>
-        <TextBlock x:Name="Catalog" Grid.Row="1" Grid.Column="0" Grid.RowSpan="3" Text="Панель разделов" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="Bold" FontSize="14" Margin="0,27,0,76"/>
-        <Border BorderBrush="Black" BorderThickness="0,0,1,0" Grid.Row="1" Grid.Column="1" Grid.RowSpan="3"></Border>
-        <TextBlock Grid.Row="1" Grid.Column="1" Grid.RowSpan="3" Text="Панель фильтров" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="Bold" FontSize="14" Margin="0,27,0,76"/>
+
 
         <ContentPresenter Grid.Row="1" Grid.Column="2" Grid.RowSpan="3" Grid.ColumnSpan="4" DockPanel.Dock="Left" x:Name="MainContent"></ContentPresenter>
         

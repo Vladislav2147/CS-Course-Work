@@ -17,7 +17,8 @@
             <RowDefinition Height="*"></RowDefinition>
         </Grid.RowDefinitions>
         <TextBlock Grid.Row="0" Text="Каталог" FontSize="36" Margin="5,0,0,0" ></TextBlock>
-        <ListBox HorizontalContentAlignment="Stretch" Grid.Row="1" x:Name="ProductList" ScrollViewer.VerticalScrollBarVisibility="Hidden" ScrollViewer.HorizontalScrollBarVisibility="Disabled" BorderThickness="0" Background="{x:Null}" BorderBrush="{x:Null}">
+
+        <ListBox x:Name="ProductList" HorizontalContentAlignment="Stretch" Grid.Row="1" VirtualizingPanel.ScrollUnit="Pixel" ScrollViewer.VerticalScrollBarVisibility="Hidden" ScrollViewer.HorizontalScrollBarVisibility="Disabled" BorderThickness="0" Background="{x:Null}" BorderBrush="{x:Null}">
             <ListBox.ItemContainerStyle>
                 <Style TargetType="ListBoxItem">
                     <Setter Property="Padding" Value="1"/>
@@ -43,10 +44,10 @@
 
                         <StackPanel Orientation="Vertical" Grid.Column="1" Margin="5,0,0,0">
                             <TextBlock Grid.Row="0" Text="{Binding Path=Name}" FontSize="20" Margin="5,5,5,5"/>
-                            <TextBlock Margin="5,5,5,5" Grid.Row="1" TextWrapping="Wrap" Text="Описание Описание Описание Описание Описание Описание Описание Описание Описание Описание Описание Описание Описание Описание Описание Описание Описание Описание Описание Описание Описание Описание"></TextBlock>
+                            <TextBlock Margin="5,5,5,5" Grid.Row="1" TextWrapping="Wrap" Text="{Binding}"></TextBlock>
                         </StackPanel>
-                        <TextBlock Grid.Column="2" Text="52.500" HorizontalAlignment="Center" FontSize="20" VerticalAlignment="Center"></TextBlock>
-                        <Button x:Name="ToCart" Grid.Column="3" Content="В корзину" Padding="5,5,5,5" HorizontalAlignment="Center" VerticalAlignment="Center"></Button>
+                        <TextBlock Grid.Column="2" Text="{Binding Path=Price, StringFormat=0.00}" HorizontalAlignment="Center" FontSize="20" VerticalAlignment="Center"></TextBlock>
+                        <Button x:Name="ToCart" Grid.Column="3" Content="В корзину" Padding="5,5,5,5" HorizontalAlignment="Center" VerticalAlignment="Center" Background="{x:Null}" BorderBrush="Black"></Button>
 
                         
                     </Grid>
