@@ -1,4 +1,5 @@
 ﻿using ComputerShop.model.database;
+using ComputerShop.viewmodel.main;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,15 +20,14 @@ namespace ComputerShop.view
 	/// <summary>
 	/// Логика взаимодействия для MainList.xaml
 	/// </summary>
-	public partial class UserMainList : UserControl
+	public partial class MainList : UserControl
 	{
 		public MainWindow Owner { get; set; }
-		public UserMainList(MainWindow owner)
+		public MainList(MainWindow owner)
 		{
-			InitializeComponent();
 			Owner = owner;
-
-			this.ProductList.ItemsSource = Owner.ProductService.GetAll();
+			InitializeComponent();
+			this.ProductList.ItemsSource = (Owner.DataContext as MainWindowViewModel).ProductService.GetAll();
 		}
 
 	}

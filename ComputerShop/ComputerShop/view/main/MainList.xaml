@@ -1,4 +1,4 @@
-﻿<UserControl x:Class="ComputerShop.view.UserMainList"
+﻿<UserControl x:Class="ComputerShop.view.MainList"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -47,9 +47,8 @@
                             <TextBlock Margin="5,5,5,5" Grid.Row="1" TextWrapping="Wrap" Text="{Binding}"></TextBlock>
                         </StackPanel>
                         <TextBlock Grid.Column="2" Text="{Binding Path=Price, StringFormat=0.00}" HorizontalAlignment="Center" FontSize="20" VerticalAlignment="Center"></TextBlock>
-                        <Button x:Name="ToCart" Grid.Column="3" Content="В корзину" Padding="5,5,5,5" HorizontalAlignment="Center" VerticalAlignment="Center" Background="{x:Null}" BorderBrush="Black"></Button>
-
-                        
+                        <Button x:Name="ToCart" Command="{Binding AddToCart}" Grid.Column="3" Content="В корзину" Padding="5,5,5,5" HorizontalAlignment="Center" VerticalAlignment="Center" Background="{x:Null}" BorderBrush="Black"></Button>
+                  
                     </Grid>
                 </DataTemplate>
             </ListBox.ItemTemplate>

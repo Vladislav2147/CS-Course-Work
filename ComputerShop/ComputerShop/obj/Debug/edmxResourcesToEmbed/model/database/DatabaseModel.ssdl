@@ -93,7 +93,7 @@
     <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="customer_id" Type="int" Nullable="false" />
     <Property Name="date" Type="datetime" Nullable="false" />
-    <Property Name="approved" Type="bit" />
+    <Property Name="state" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="ordered">
     <Key>

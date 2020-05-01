@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 
-namespace ComputerShop.viewmodel.login
+namespace ComputerShop.viewmodel
 {
 	public class RelayCommand : ICommand
 	{

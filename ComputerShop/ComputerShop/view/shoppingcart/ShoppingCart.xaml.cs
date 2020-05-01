@@ -13,16 +13,20 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace ComputerShop.view.main
+namespace ComputerShop.view.shoppingcart
 {
 	/// <summary>
-	/// Логика взаимодействия для AdminMainList.xaml
+	/// Логика взаимодействия для ShoppingCart.xaml
 	/// </summary>
-	public partial class AdminMainList : UserControl
+	public partial class ShoppingCart : UserControl
 	{
-		public AdminMainList()
+		public MainWindow Owner { get; set; }
+
+		public ShoppingCart(MainWindow owner)
 		{
+			this.Owner = owner;
 			InitializeComponent();
+			
 		}
 	}
 }

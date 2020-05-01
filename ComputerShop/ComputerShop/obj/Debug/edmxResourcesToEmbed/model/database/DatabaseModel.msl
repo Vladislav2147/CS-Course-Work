@@ -18,7 +18,7 @@
     <EntitySetMapping Name="Order">
       <EntityTypeMapping TypeName="ComputerShopModel.Order">
         <MappingFragment StoreEntitySet="order">
-          <ScalarProperty Name="Approved" ColumnName="approved" />
+          <ScalarProperty Name="State" ColumnName="state" />
           <ScalarProperty Name="Id" ColumnName="id" />
           <ScalarProperty Name="CustomerId" ColumnName="customer_id" />
           <ScalarProperty Name="Date" ColumnName="date" />

@@ -98,7 +98,7 @@
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="customer_id" Type="int" Nullable="false" />
           <Property Name="date" Type="datetime" Nullable="false" />
-          <Property Name="approved" Type="bit" />
+          <Property Name="state" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="ordered">
           <Key>
@@ -422,7 +422,7 @@
           <NavigationProperty Name="Customer" Relationship="Self.FK_order_customer" FromRole="order" ToRole="customer" />
           <Property Name="Id" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Ordered" Relationship="ComputerShopModel.FK_ordered_order1" FromRole="order" ToRole="Ordered" />
-          <Property Name="Approved" Type="Boolean" />
+          <Property Name="State" Type="ComputerShopModel.State" Nullable="false" />
         </EntityType>
         <EntityType Name="Product">
           <Key>
@@ -595,6 +595,11 @@
           <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
         </EntityType>
         <EnumType Name="Role" a:ExternalTypeName="ComputerShop.model.enums.Role" xmlns:a="http://schemas.microsoft.com/ado/2006/04/codegeneration" />
+        <EnumType Name="State">
+          <Member Name="Created" />
+          <Member Name="Formed" />
+          <Member Name="Approved" />
+        </EnumType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -618,7 +623,7 @@
           <EntitySetMapping Name="Order">
             <EntityTypeMapping TypeName="ComputerShopModel.Order">
               <MappingFragment StoreEntitySet="order">
-                <ScalarProperty Name="Approved" ColumnName="approved" />
+                <ScalarProperty Name="State" ColumnName="state" />
                 <ScalarProperty Name="Id" ColumnName="id" />
                 <ScalarProperty Name="CustomerId" ColumnName="customer_id" />
                 <ScalarProperty Name="Date" ColumnName="date" />

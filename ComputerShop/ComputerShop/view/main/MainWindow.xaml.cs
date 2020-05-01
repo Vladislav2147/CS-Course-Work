@@ -17,10 +17,10 @@ using ComputerShop.model.business;
 using ComputerShop.view;
 using ComputerShop.model.enums;
 using ComputerShop.model.service.implementations;
-using ComputerShop.view.main;
 
 using System.IO;
 using Microsoft.Win32;
+using ComputerShop.viewmodel.main;
 
 namespace ComputerShop
 {
@@ -29,44 +29,32 @@ namespace ComputerShop
 	/// </summary>
 	public partial class MainWindow : Window
 	{
-		public ProductService ProductService { get; set; }
-		public Customer Customer { get; set; }
+		
 		public MainWindow()
 		{
 			InitializeComponent();
-			ProductService = new ProductService();			
-			MainContent.Content = new UserMainList(this);
-			//OpenFileDialog openFileDialog = new OpenFileDialog();
-			//if (openFileDialog.ShowDialog() == true)
-			//{
-			//	System.Drawing.Image image = System.Drawing.Image.FromFile(openFileDialog.FileName);
-			//	using (MemoryStream ms = new MemoryStream())
-			//	{
-			//		image.Save(ms, image.RawFormat);
-			//		var products = ProductService.FindByPredicate(prod => prod.Photo == null);
-			//		foreach(Product product in products)
-			//		{
-			//			product.Photo = ms.ToArray();
-			//			ProductService.ChangeItem(product);
-			//		}
-			//		ProductService.SaveChanges();
-
-			//	}
-
-			//}
-			//Computer pc = new Computer()
-			//{
-			//	Id = 8801,
-			//	Name = "ppc",
-			//	Price = 9000
-			//};
-			//ProductService.Add(pc);
-			//ProductService.SaveChanges();
+			MainWindowViewModel mainvm = new MainWindowViewModel(this);
+			this.DataContext = mainvm;
+			//Авторизация костыль
+			using (ComputerShopContext context = new ComputerShopContext())
+			{
+				(this.DataContext as MainWindowViewModel).Customer = context.Customer.Include("Order").Where(customer => customer.Role == Role.User).FirstOrDefault();
+			}
+			if ((this.DataContext as MainWindowViewModel).Customer.Role == Role.Admin)
+			{
+				this.Cart.Visibility = Visibility.Collapsed;
+			}
+			//
+			MainList view = new MainList(this);
+			MainListViewModel vm = new MainListViewModel(view);
+			view.DataContext = vm;
+			MainContent.Content = view;
+			
 		}
 		public MainWindow(Customer customer) : this()
 		{
-			Customer = customer;
-			if(Customer.Role == Role.Admin)
+			(this.DataContext as MainWindowViewModel).Customer = customer;
+			if(customer.Role == Role.Admin)
 			{
 				this.Cart.Visibility = Visibility.Collapsed;
 			}

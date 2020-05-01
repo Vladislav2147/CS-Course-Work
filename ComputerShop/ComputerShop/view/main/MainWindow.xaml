@@ -69,7 +69,7 @@
                 <ColumnDefinition Width="7*"></ColumnDefinition>
             </Grid.ColumnDefinitions>
             
-            <Button Grid.Column="0" Grid.Row="1" x:Name="Cart" Content="Корзина" />
+            <Button Grid.Column="0" Grid.Row="1" x:Name="Cart" Content="Корзина" Command="{Binding GoToCart}" />
             <TextBox Grid.Row="1" Grid.Column="2" Grid.ColumnSpan="3" MaxHeight="30"  MaxLines="1" VerticalContentAlignment="Center" Padding="5,0" />
             <Button  Grid.Column="5" Grid.Row="1" Content="Поиск" MaxHeight="30" MinWidth="80" Margin="5,0,0,0" HorizontalAlignment="Left"   />
         </Grid>
