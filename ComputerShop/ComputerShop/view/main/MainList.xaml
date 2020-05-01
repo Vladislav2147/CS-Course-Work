@@ -6,7 +6,7 @@
              xmlns:local="clr-namespace:ComputerShop.view"
              xmlns:converter="clr-namespace:ComputerShop.model.converters"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800" Padding="10,10,10,10">
+             d:DesignHeight="450" d:DesignWidth="800" Padding="10,10,10,10" x:Name="ProdList">
     <UserControl.Resources>
         <converter:ImageConverter x:Key="ImageConverter"></converter:ImageConverter>
         <converter:SizeConverter x:Key="SizeConverter"></converter:SizeConverter>
@@ -47,8 +47,8 @@
                             <TextBlock Margin="5,5,5,5" Grid.Row="1" TextWrapping="Wrap" Text="{Binding}"></TextBlock>
                         </StackPanel>
                         <TextBlock Grid.Column="2" Text="{Binding Path=Price, StringFormat=0.00}" HorizontalAlignment="Center" FontSize="20" VerticalAlignment="Center"></TextBlock>
-                        <Button x:Name="ToCart" Command="{Binding AddToCart}" Grid.Column="3" Content="В корзину" Padding="5,5,5,5" HorizontalAlignment="Center" VerticalAlignment="Center" Background="{x:Null}" BorderBrush="Black"></Button>
-                  
+                        <Button x:Name="ToCart" Command="{Binding ElementName=ProdList, Path=DataContext.AddToCart}" CommandParameter="{Binding RelativeSource={RelativeSource Mode=Self}}"  Grid.Column="3" Content="В корзину" Padding="5,5,5,5" HorizontalAlignment="Center" VerticalAlignment="Center" Background="{x:Null}" BorderBrush="Black"></Button>
+                        
                     </Grid>
                 </DataTemplate>
             </ListBox.ItemTemplate>

@@ -33,20 +33,24 @@ namespace ComputerShop
 		public MainWindow()
 		{
 			InitializeComponent();
-			MainWindowViewModel mainvm = new MainWindowViewModel(this);
-			this.DataContext = mainvm;
 			//Авторизация костыль
+			Customer customer;
 			using (ComputerShopContext context = new ComputerShopContext())
 			{
-				(this.DataContext as MainWindowViewModel).Customer = context.Customer.Include("Order").Where(customer => customer.Role == Role.User).FirstOrDefault();
+				customer = context.Customer.Include("Order").Where(customer1 => customer1.Role == Role.User).FirstOrDefault();
 			}
-			if ((this.DataContext as MainWindowViewModel).Customer.Role == Role.Admin)
+			if (customer.Role == Role.Admin)
 			{
 				this.Cart.Visibility = Visibility.Collapsed;
 			}
 			//
+
+			MainWindowViewModel mainvm = new MainWindowViewModel(this, customer);
+			this.DataContext = mainvm;
+			
 			MainList view = new MainList(this);
 			MainListViewModel vm = new MainListViewModel(view);
+			vm.MainVM = this.DataContext as MainWindowViewModel;
 			view.DataContext = vm;
 			MainContent.Content = view;
 			
@@ -59,6 +63,6 @@ namespace ComputerShop
 				this.Cart.Visibility = Visibility.Collapsed;
 			}
 		}
-		
+
 	}
 }

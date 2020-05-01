@@ -97,7 +97,7 @@
           </Key>
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="customer_id" Type="int" Nullable="false" />
-          <Property Name="date" Type="datetime" Nullable="false" />
+          <Property Name="date" Type="datetime" />
           <Property Name="state" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="ordered">
@@ -418,7 +418,7 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="CustomerId" Type="Int32" Nullable="false" />
-          <Property Name="Date" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Date" Type="DateTime" Precision="3" />
           <NavigationProperty Name="Customer" Relationship="Self.FK_order_customer" FromRole="order" ToRole="customer" />
           <Property Name="Id" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Ordered" Relationship="ComputerShopModel.FK_ordered_order1" FromRole="order" ToRole="Ordered" />

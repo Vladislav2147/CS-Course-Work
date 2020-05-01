@@ -74,3 +74,4 @@ F:\course work\ComputerShop\ComputerShop\obj\Debug\view\shoppingcart\ShoppingCar
 F:\course work\ComputerShop\ComputerShop\obj\Debug\view\shoppingcart\ShoppingCart.baml
 F:\course work\ComputerShop\ComputerShop\obj\Debug\view\main\MainList.g.cs
 F:\course work\ComputerShop\ComputerShop\obj\Debug\view\main\MainList.baml
+F:\course work\ComputerShop\ComputerShop\obj\Debug\ComputerShop.csprojAssemblyReference.cache

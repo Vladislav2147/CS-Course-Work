@@ -21,7 +21,7 @@ namespace ComputerShop.model.database
         }
     
         public int CustomerId { get; set; }
-        public System.DateTime Date { get; set; }
+        public Nullable<System.DateTime> Date { get; set; }
         public int Id { get; set; }
         public State State { get; set; }
     
