@@ -8,16 +8,16 @@
           <ScalarProperty Name="Password" ColumnName="password" />
           <ScalarProperty Name="Login" ColumnName="login" />
           <ScalarProperty Name="Id" ColumnName="id" />
-          <ScalarProperty Name="Phone" ColumnName="phone" />
           <ScalarProperty Name="Email" ColumnName="email" />
           <ScalarProperty Name="Name" ColumnName="name" />
-          <ScalarProperty Name="Address" ColumnName="address" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="Order">
       <EntityTypeMapping TypeName="ComputerShopModel.Order">
         <MappingFragment StoreEntitySet="order">
+          <ScalarProperty Name="Phone" ColumnName="phone" />
+          <ScalarProperty Name="Address" ColumnName="address" />
           <ScalarProperty Name="State" ColumnName="state" />
           <ScalarProperty Name="Id" ColumnName="id" />
           <ScalarProperty Name="CustomerId" ColumnName="customer_id" />

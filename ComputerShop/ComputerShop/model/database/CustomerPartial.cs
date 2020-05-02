@@ -1,4 +1,5 @@
-﻿using ComputerShop.model.validation;
+﻿using ComputerShop.model.kindofmagic;
+using ComputerShop.model.validation;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -10,7 +11,7 @@ namespace ComputerShop.model.database
 {
 	
 	[MetadataType(typeof(CustomerMetadata))]
-	public partial class Customer: IEntity
+	public partial class Customer: PropertyChangedBase, IEntity
 	{
 	}
 	class CustomerMetadata

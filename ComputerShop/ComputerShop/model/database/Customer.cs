@@ -21,10 +21,8 @@ namespace ComputerShop.model.database
         }
     
         public int Id { get; set; }
-        public string Phone { get; set; }
         public string Email { get; set; }
         public string Name { get; set; }
-        public string Address { get; set; }
         public string Login { get; set; }
         public byte[] Password { get; set; }
         public ComputerShop.model.enums.Role Role { get; set; }

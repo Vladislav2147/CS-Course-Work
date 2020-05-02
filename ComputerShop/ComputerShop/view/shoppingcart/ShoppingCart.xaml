@@ -4,31 +4,65 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:ComputerShop.view.shoppingcart"
+             xmlns:model="clr-namespace:ComputerShop.model.database"
+             xmlns:c="clr-namespace:CalcBinding;assembly=CalcBinding"
+             xmlns:wpfx="http://schemas.xceed.com/wpf/xaml/toolkit"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
+             d:DesignHeight="450" d:DesignWidth="800" x:Name="CartView">
     <UserControl.Resources>
-        <DataTemplate x:Key="DateTemplate" >
-            <Grid>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition></ColumnDefinition>
-                    <ColumnDefinition></ColumnDefinition>
-                    <ColumnDefinition></ColumnDefinition>
-                </Grid.ColumnDefinitions>
-            </Grid>
+        <DataTemplate x:Key="AmountTemplate" >
+            <DockPanel LastChildFill="True">
+                <Button x:Name="MinusButton" Command="{Binding ElementName=CartView, Path=DataContext.ReduceAmountCommand}" CommandParameter="{Binding RelativeSource={RelativeSource Mode=Self}}" Content="-" DockPanel.Dock="Left"></Button>
+                <Button x:Name="PlusButton" Command="{Binding ElementName=CartView, Path=DataContext.AddAmountCommand}" CommandParameter="{Binding RelativeSource={RelativeSource Mode=Self}}" Content="+" DockPanel.Dock="Right"></Button>
+                <TextBlock x:Name="Amount" Text="{Binding Path=Amount}" TextAlignment="Center" DockPanel.Dock="Right"></TextBlock>
+            </DockPanel>
+        </DataTemplate>
+        <DataTemplate x:Key="Delete">
+            <Button x:Name="DeleteButton" Command="{Binding ElementName=CartView, Path=DataContext.DeleteProductCommand}" CommandParameter="{Binding RelativeSource={RelativeSource Mode=Self}}" Content="Удалить"></Button>
         </DataTemplate>
     </UserControl.Resources>
-    <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="50px"></RowDefinition>
-            <RowDefinition Height="*"></RowDefinition>
-        </Grid.RowDefinitions>
-        <TextBlock Grid.Row="0" Text="Корзина" FontSize="36" Margin="5,0,0,0" ></TextBlock>
-        <DataGrid x:Name="Order">
-            <DataGrid.Columns>
-                <DataGridTextColumn></DataGridTextColumn>
-                <DataGridTextColumn></DataGridTextColumn>
-            </DataGrid.Columns>
-        </DataGrid>
+    <ScrollViewer VerticalScrollBarVisibility="Auto">
+        <StackPanel Margin="5,5,5,5">
 
-    </Grid>
+            <TextBlock Text="Корзина" FontSize="36" Margin="5,0,0,0" ></TextBlock>
+            <DataGrid x:Name="Order" AutoGenerateColumns="False" IsReadOnly="True" GridLinesVisibility="None" BorderThickness="0px" Background="{x:Null}" >
+                <DataGrid.CellStyle>
+                    <Style TargetType="{x:Type DataGridCell}">
+                        <Style.Triggers>
+                            <Trigger Property="DataGridCell.IsSelected" Value="True">
+                                <Setter Property="BorderBrush" Value="{x:Null}"/>
+                                <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}"/>
+                                <Setter Property="Background">
+                                    <Setter.Value>
+                                        <SolidColorBrush Color="Transparent"/>
+                                    </Setter.Value>
+                                </Setter>
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </DataGrid.CellStyle>
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Артикул" Binding="{Binding Path=Product.Id}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Название" Binding="{Binding Path=Product.Name}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Цена" Binding="{Binding Path=Product.Price, StringFormat=0.00}"></DataGridTextColumn>
+                    <DataGridTemplateColumn Header="Количество" CellTemplate="{StaticResource ResourceKey=AmountTemplate}"></DataGridTemplateColumn>
+                    <DataGridTextColumn Header="Стоимость" Binding="{c:Binding Amount*Product.Price, StringFormat=0.00}"></DataGridTextColumn>
+                    <DataGridTemplateColumn CellTemplate="{StaticResource ResourceKey=Delete}"></DataGridTemplateColumn>
+                </DataGrid.Columns>
+            </DataGrid>
+            <TextBlock Text="Введите номер телефона"></TextBlock>
+            <wpfx:MaskedTextBox HorizontalAlignment="Left" Mask="9-999-999-99-99"></wpfx:MaskedTextBox>
+            <TextBlock Text="Введите адрес и время доставки"></TextBlock>
+            <RichTextBox HorizontalAlignment="Left" HorizontalContentAlignment="Left"></RichTextBox>
+            <StackPanel Orientation="Horizontal" FlowDirection="RightToLeft">
+                <Button x:Name="ConfirmButton" Content="Подтвердить" Margin="5,5,5,5"></Button>
+                <Button x:Name="CancelButton" Content="Назад" Margin="5,5,5,5"></Button>
+            </StackPanel>
+
+
+
+
+        </StackPanel>
+    </ScrollViewer>
+
 </UserControl>

@@ -31,10 +31,8 @@
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="phone" Type="nvarchar" MaxLength="20" />
           <Property Name="email" Type="nvarchar" MaxLength="30" Nullable="false" />
           <Property Name="name" Type="nvarchar" MaxLength="50" />
-          <Property Name="address" Type="nvarchar" MaxLength="50" />
           <Property Name="login" Type="nvarchar" MaxLength="30" Nullable="false" />
           <Property Name="password" Type="varbinary" MaxLength="255" Nullable="false" />
           <Property Name="role" Type="int" Nullable="false" />
@@ -99,6 +97,8 @@
           <Property Name="customer_id" Type="int" Nullable="false" />
           <Property Name="date" Type="datetime" />
           <Property Name="state" Type="int" Nullable="false" />
+          <Property Name="address" Type="nvarchar" MaxLength="50" />
+          <Property Name="phone" Type="nvarchar" MaxLength="25" />
         </EntityType>
         <EntityType Name="ordered">
           <Key>
@@ -404,10 +404,8 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" />
-          <Property Name="Phone" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
           <Property Name="Email" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Address" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Order" Relationship="Self.FK_order_customer" FromRole="customer" ToRole="order" />
           <Property Name="Login" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="true" />
           <Property Name="Password" Type="Binary" Nullable="false" MaxLength="255" FixedLength="false" />
@@ -423,6 +421,8 @@
           <Property Name="Id" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Ordered" Relationship="ComputerShopModel.FK_ordered_order1" FromRole="order" ToRole="Ordered" />
           <Property Name="State" Type="ComputerShopModel.State" Nullable="false" />
+          <Property Name="Address" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Phone" Type="String" MaxLength="25" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="Product">
           <Key>
@@ -613,16 +613,16 @@
                 <ScalarProperty Name="Password" ColumnName="password" />
                 <ScalarProperty Name="Login" ColumnName="login" />
                 <ScalarProperty Name="Id" ColumnName="id" />
-                <ScalarProperty Name="Phone" ColumnName="phone" />
                 <ScalarProperty Name="Email" ColumnName="email" />
                 <ScalarProperty Name="Name" ColumnName="name" />
-                <ScalarProperty Name="Address" ColumnName="address" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Order">
             <EntityTypeMapping TypeName="ComputerShopModel.Order">
               <MappingFragment StoreEntitySet="order">
+                <ScalarProperty Name="Phone" ColumnName="phone" />
+                <ScalarProperty Name="Address" ColumnName="address" />
                 <ScalarProperty Name="State" ColumnName="state" />
                 <ScalarProperty Name="Id" ColumnName="id" />
                 <ScalarProperty Name="CustomerId" ColumnName="customer_id" />

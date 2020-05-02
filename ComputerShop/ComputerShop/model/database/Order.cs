@@ -24,6 +24,8 @@ namespace ComputerShop.model.database
         public Nullable<System.DateTime> Date { get; set; }
         public int Id { get; set; }
         public State State { get; set; }
+        public string Address { get; set; }
+        public string Phone { get; set; }
     
         public virtual Customer Customer { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

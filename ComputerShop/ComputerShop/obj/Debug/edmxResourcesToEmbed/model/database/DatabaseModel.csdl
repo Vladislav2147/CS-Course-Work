@@ -22,10 +22,8 @@
       <PropertyRef Name="Id" />
     </Key>
     <Property Name="Id" Type="Int32" Nullable="false" />
-    <Property Name="Phone" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
     <Property Name="Email" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
     <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-    <Property Name="Address" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
     <NavigationProperty Name="Order" Relationship="Self.FK_order_customer" FromRole="customer" ToRole="order" />
     <Property Name="Login" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="true" />
     <Property Name="Password" Type="Binary" Nullable="false" MaxLength="255" FixedLength="false" />
@@ -41,6 +39,8 @@
     <Property Name="Id" Type="Int32" Nullable="false" />
     <NavigationProperty Name="Ordered" Relationship="ComputerShopModel.FK_ordered_order1" FromRole="order" ToRole="Ordered" />
     <Property Name="State" Type="ComputerShopModel.State" Nullable="false" />
+    <Property Name="Address" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Phone" Type="String" MaxLength="25" FixedLength="false" Unicode="true" />
   </EntityType>
   <EntityType Name="Product">
     <Key>
