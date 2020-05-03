@@ -43,6 +43,7 @@ namespace ComputerShop.viewmodel.cart
 				button.IsEnabled = false;
 			}
 			((button.Parent as DockPanel).Children[0] as Button).IsEnabled = true;
+			UpdateTotal();
 		}
 		private void ReduceAmountCommandExecute(object sender)
 		{
@@ -55,6 +56,7 @@ namespace ComputerShop.viewmodel.cart
 				button.IsEnabled = false;
 			}
 			((button.Parent as DockPanel).Children[1] as Button).IsEnabled = true;
+			UpdateTotal();
 		}
 		private void DeleteProductCommandExecute(object sender)
 		{
@@ -62,6 +64,11 @@ namespace ComputerShop.viewmodel.cart
 			Ordered ordered = button.DataContext as Ordered;
 			CodeBehind.Order.ItemsSource = CodeBehind.Order.ItemsSource.Cast<Ordered>().Where(ord => ord != ordered);
 			Customer.Order.First(order => order.Ordered.Contains(ordered)).Ordered.Remove(ordered);
+			UpdateTotal();
+		}
+		private void UpdateTotal()
+		{
+			CodeBehind.TotalCost.GetBindingExpression(TextBlock.TextProperty).UpdateTarget();
 		}
 	}
 }

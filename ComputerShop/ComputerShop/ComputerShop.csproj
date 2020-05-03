@@ -164,6 +164,7 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="model\converters\ImageConverter.cs" />
+    <Compile Include="model\converters\OrderPriceConverter.cs" />
     <Compile Include="model\converters\SizeConverter.cs" />
     <Compile Include="model\database\State.cs">
       <DependentUpon>DatabaseModel.tt</DependentUpon>

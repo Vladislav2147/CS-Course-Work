@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ComputerShop.model.kindofmagic;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
