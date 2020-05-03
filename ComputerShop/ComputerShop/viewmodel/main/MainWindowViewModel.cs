@@ -36,6 +36,7 @@ namespace ComputerShop.viewmodel.main
 			view.DataContext = vm;
 			ListState = CodeBehind.MainContent.Content as MainList;
 			CodeBehind.MainContent.Content = view;
+			CodeBehind.Filters.Visibility = System.Windows.Visibility.Collapsed;
 		}
 		public Order GetCreatedOrder()
 		{

@@ -46,8 +46,8 @@ namespace ComputerShop.viewmodel.cart
 		{
 			CodeBehind.Owner.MainContent.Content = (CodeBehind.Owner.DataContext as MainWindowViewModel).ListState;
 			((CodeBehind.Owner.MainContent.Content as MainList).DataContext as MainListViewModel).UpdateButtons();
+			CodeBehind.Owner.Filters.Visibility = System.Windows.Visibility.Visible;
 		}
-
 		private void AddAmountCommandExecute(object sender)
 		{
 			Button button = sender as Button;
