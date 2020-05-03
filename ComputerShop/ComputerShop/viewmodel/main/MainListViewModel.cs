@@ -1,8 +1,11 @@
 ﻿using ComputerShop.model.database;
 using ComputerShop.view;
+using System.Collections.Generic;
+using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
+using System.Windows.Media;
 
 namespace ComputerShop.viewmodel.main
 {
@@ -29,6 +32,37 @@ namespace ComputerShop.viewmodel.main
 			order.Ordered.Add(ordered);
 			button.Content = "В корзине";
 			button.IsEnabled = false;
+		}
+		public void UpdateButtons()
+		{
+			Order order = MainVM.Customer.Order.FirstOrDefault(ord => ord.State == State.Created);
+			foreach(Button button in FindVisualChildren<Button>(CodeBehind.ProductList))
+			{
+				if(order.Ordered.FirstOrDefault(ord => ord.Product == (Product)button.DataContext) != null && MainVM.Customer.Role == model.enums.Role.User)
+				{
+					button.IsEnabled = false;
+				}
+				else
+				{
+					button.IsEnabled = true;
+				}
+			}
+		}
+		public IEnumerable<T> FindVisualChildren<T>(DependencyObject depObj) where T : DependencyObject
+		{
+			if (depObj != null)
+			{
+				for (int i = 0; i < VisualTreeHelper.GetChildrenCount(depObj); i++)
+				{
+					DependencyObject child = VisualTreeHelper.GetChild(depObj, i);
+
+					if (child != null && child is T)
+						yield return (T)child;
+
+					foreach (T childOfChild in FindVisualChildren<T>(child))
+						yield return childOfChild;
+				}
+			}
 		}
 	}
 }

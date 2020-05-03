@@ -55,14 +55,8 @@ namespace ComputerShop
 			MainContent.Content = view;
 			
 		}
-		public MainWindow(Customer customer) : this()
-		{
-			(this.DataContext as MainWindowViewModel).Customer = customer;
-			if(customer.Role == Role.Admin)
-			{
-				this.Cart.Visibility = Visibility.Collapsed;
-			}
-		}
+		public MainWindow(Customer customer) { }
+
 
 	}
 }

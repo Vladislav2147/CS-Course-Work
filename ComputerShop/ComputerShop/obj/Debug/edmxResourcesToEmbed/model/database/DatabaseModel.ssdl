@@ -102,7 +102,7 @@
     <Property Name="order_id" Type="int" Nullable="false" />
     <Property Name="product_id" Type="int" Nullable="false" />
     <Property Name="amount" Type="int" Nullable="false" />
-    <Property Name="id" Type="int" Nullable="false" />
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
   </EntityType>
   <EntityType Name="peripherals">
     <Key>

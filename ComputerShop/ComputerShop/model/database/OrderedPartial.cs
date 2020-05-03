@@ -7,8 +7,17 @@ using System.Threading.Tasks;
 
 namespace ComputerShop.model.database
 {
-	public partial class Ordered : PropertyChangedBase, IEntity
+	public partial class Ordered : PropertyChangedBase, IEntity, ICloneable
 	{
-
+		public object Clone()
+		{
+			Ordered ordered = new Ordered()
+			{
+				ProductId = this.Product.Id,
+				OrderId = this.OrderId,
+				Amount = this.Amount
+			};
+			return ordered;
+		}
 	}
 }

@@ -54,12 +54,12 @@
             </DataGrid>
             <TextBlock x:Name="TotalCost" HorizontalAlignment="Right" FontWeight="Bold" FontSize="16px" Text="{Binding Converter={StaticResource TotalConverter}, StringFormat='К оплате: \{0\}'}"></TextBlock>
             <TextBlock Text="Введите номер телефона"></TextBlock>
-            <wpfx:MaskedTextBox HorizontalAlignment="Left" Mask="9-999-999-99-99"></wpfx:MaskedTextBox>
+            <wpfx:MaskedTextBox x:Name="Phone" HorizontalAlignment="Left" Mask="9-999-999-99-99"></wpfx:MaskedTextBox>
             <TextBlock Text="Введите адрес и время доставки"></TextBlock>
-            <RichTextBox HorizontalAlignment="Left" HorizontalContentAlignment="Left"></RichTextBox>
+            <TextBox x:Name="Address" MinWidth="100px" HorizontalAlignment="Left" HorizontalContentAlignment="Left"></TextBox>
             <StackPanel Orientation="Horizontal" FlowDirection="RightToLeft">
-                <Button x:Name="ConfirmButton" Content="Подтвердить" Margin="5,5,5,5"></Button>
-                <Button x:Name="CancelButton" Content="Назад" Margin="5,5,5,5"></Button>
+                <Button x:Name="ConfirmButton" Content="Подтвердить" Margin="5,5,5,5" Command="{Binding ElementName=CartView, Path=DataContext.ConfirmCommand}"></Button>
+                <Button x:Name="CancelButton" Content="Назад" Margin="5,5,5,5" Command="{Binding ElementName=CartView, Path=DataContext.CancelCommand}"></Button>
             </StackPanel>
 
 
