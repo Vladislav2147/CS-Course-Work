@@ -28,7 +28,13 @@ namespace ComputerShop.view
 			Owner = owner;
 			InitializeComponent();
 			this.ProductList.ItemsSource = (Owner.DataContext as MainWindowViewModel).ProductService.GetAll();
+			Loaded += MainList_Loaded;
+
 		}
 
+		private void MainList_Loaded(object sender, RoutedEventArgs e)
+		{
+			(this.DataContext as MainListViewModel).UpdateButtons();
+		}
 	}
 }

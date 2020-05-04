@@ -41,10 +41,12 @@ namespace ComputerShop.viewmodel.main
 				if(order.Ordered.FirstOrDefault(ord => ord.Product == (Product)button.DataContext) != null && MainVM.Customer.Role == model.enums.Role.User)
 				{
 					button.IsEnabled = false;
+					button.Content = "В корзине";
 				}
 				else
 				{
 					button.IsEnabled = true;
+					button.Content = "В корзину";
 				}
 			}
 		}

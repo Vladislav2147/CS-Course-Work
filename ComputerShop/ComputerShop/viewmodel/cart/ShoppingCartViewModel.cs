@@ -47,6 +47,7 @@ namespace ComputerShop.viewmodel.cart
 			CodeBehind.Owner.MainContent.Content = (CodeBehind.Owner.DataContext as MainWindowViewModel).ListState;
 			((CodeBehind.Owner.MainContent.Content as MainList).DataContext as MainListViewModel).UpdateButtons();
 			CodeBehind.Owner.Filters.Visibility = System.Windows.Visibility.Visible;
+			CodeBehind.Owner.Cart.IsEnabled = true;
 		}
 		private void AddAmountCommandExecute(object sender)
 		{
@@ -123,6 +124,7 @@ namespace ComputerShop.viewmodel.cart
 						vm.MainVM = CodeBehind.Owner.DataContext as MainWindowViewModel;
 						view.DataContext = vm;
 						CodeBehind.Owner.MainContent.Content = view;
+						CodeBehind.Owner.Cart.IsEnabled = true;
 						MessageBox.Show("Заказ успешно сформирован. Ожидайте подтверждения.");
 					}
 					else

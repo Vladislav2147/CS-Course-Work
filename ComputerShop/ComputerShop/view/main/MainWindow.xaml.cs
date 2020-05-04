@@ -55,8 +55,11 @@ namespace ComputerShop
 			MainContent.Content = view;
 			
 		}
+		private void TreeItemExecute(object sender, RoutedEventArgs e)
+		{
+			(DataContext as MainWindowViewModel).TreeItemExecute();
+		}
 		public MainWindow(Customer customer) { }
-
 
 	}
 }
