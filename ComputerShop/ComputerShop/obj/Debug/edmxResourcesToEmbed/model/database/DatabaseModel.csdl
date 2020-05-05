@@ -2,7 +2,7 @@
 <Schema Namespace="ComputerShopModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
   <EntityType Name="Computer" BaseType="ComputerShopModel.Product">
     <Property Name="Producer" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
-    <Property Name="Type" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="Type" Type="ComputerShopModel.ComputerType" />
     <Property Name="Processor" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
     <Property Name="Ram" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
     <Property Name="OpticalDrive" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
@@ -12,7 +12,7 @@
     <Property Name="RamSize" Type="Int32" />
     <Property Name="HardDriveType" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
     <Property Name="HardDriveSize" Type="Int32" />
-    <Property Name="OperatingSystem" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+    <Property Name="OperatingSystem" Type="ComputerShopModel.OperatingSystem" />
     <Property Name="Interfaces" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="Equipment" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="Case" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
@@ -194,9 +194,9 @@
     <Property Name="SensorResolution" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
   </EntityType>
   <EntityType Name="Peripherals" BaseType="ComputerShopModel.Product">
-    <Property Name="Interface" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="Interface" Type="ComputerShopModel.PeripheralInterface" />
     <Property Name="Material" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
-    <Property Name="Color" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="Color" Type="ComputerShopModel.Color" />
   </EntityType>
   <EntityType Name="Keyboard" BaseType="ComputerShopModel.Peripherals">
     <Property Name="KeyTechnology" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
@@ -218,4 +218,8 @@
     <Member Name="Formed" />
     <Member Name="Approved" />
   </EnumType>
+  <EnumType Name="OperatingSystem" a:ExternalTypeName="model.enums.OperatingSystem" xmlns:a="http://schemas.microsoft.com/ado/2006/04/codegeneration" />
+  <EnumType Name="Color" a:ExternalTypeName="model.enums.Color" xmlns:a="http://schemas.microsoft.com/ado/2006/04/codegeneration" />
+  <EnumType Name="ComputerType" a:ExternalTypeName="model.enums.ComputerType" xmlns:a="http://schemas.microsoft.com/ado/2006/04/codegeneration" />
+  <EnumType Name="PeripheralInterface" a:ExternalTypeName="model.enums.PeripheralInterface" xmlns:a="http://schemas.microsoft.com/ado/2006/04/codegeneration" />
 </Schema>

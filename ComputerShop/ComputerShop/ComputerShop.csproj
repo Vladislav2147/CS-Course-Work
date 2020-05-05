@@ -163,12 +163,18 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="model\converters\EnumBindingSourceExtension.cs" />
+    <Compile Include="model\converters\EnumDescriptionTypeConverter.cs" />
     <Compile Include="model\converters\ImageConverter.cs" />
     <Compile Include="model\converters\OrderPriceConverter.cs" />
     <Compile Include="model\converters\SizeConverter.cs" />
     <Compile Include="model\database\State.cs">
       <DependentUpon>DatabaseModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="model\enums\Color.cs" />
+    <Compile Include="model\enums\ComputerType.cs" />
+    <Compile Include="model\enums\OperatingSystem.cs" />
+    <Compile Include="model\enums\PeripheralInterface.cs" />
     <Compile Include="model\enums\Role.cs" />
     <Compile Include="model\kindofmagic\MagicAttribute.cs" />
     <Compile Include="model\kindofmagic\NoMagicAttribute.cs" />
@@ -205,12 +211,26 @@
     <Compile Include="view\login\SignUp.xaml.cs">
       <DependentUpon>SignUp.xaml</DependentUpon>
     </Compile>
+    <Compile Include="view\main\filters\ComputerFilters.xaml.cs">
+      <DependentUpon>ComputerFilters.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="view\main\filters\PeripheralFilters.xaml.cs">
+      <DependentUpon>PeripheralFilters.xaml</DependentUpon>
+    </Compile>
     <Compile Include="view\main\MainList.xaml.cs">
       <DependentUpon>MainList.xaml</DependentUpon>
     </Compile>
     <Compile Include="view\shoppingcart\ShoppingCart.xaml.cs">
       <DependentUpon>ShoppingCart.xaml</DependentUpon>
     </Compile>
+    <Page Include="view\main\filters\ComputerFilters.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="view\main\filters\PeripheralFilters.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="view\main\MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>

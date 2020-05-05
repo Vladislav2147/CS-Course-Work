@@ -44,10 +44,13 @@ namespace ComputerShop.viewmodel.cart
 
 		private void CancelCommandExecute()
 		{
-			CodeBehind.Owner.MainContent.Content = (CodeBehind.Owner.DataContext as MainWindowViewModel).ListState;
+			MainList view = new MainList(this.CodeBehind.Owner);			
+			view.ProductList.ItemsSource = (this.CodeBehind.Owner.DataContext as MainWindowViewModel).ProductService.GetAll();
+			MainListViewModel vm = new MainListViewModel(view);
+			vm.MainVM = this.CodeBehind.Owner.DataContext as MainWindowViewModel;
+			view.DataContext = vm;
+			CodeBehind.Owner.MainContent.Content = view;
 			((CodeBehind.Owner.MainContent.Content as MainList).DataContext as MainListViewModel).UpdateButtons();
-			CodeBehind.Owner.Filters.Visibility = System.Windows.Visibility.Visible;
-			CodeBehind.Owner.Cart.IsEnabled = true;
 		}
 		private void AddAmountCommandExecute(object sender)
 		{
@@ -111,9 +114,13 @@ namespace ComputerShop.viewmodel.cart
 					{
 						errorMessage.Append("Поле номера телефона заполнено некорректно!\n");
 					}
+					if(CodeBehind.Order.Items.Count == 0)
+					{
+						errorMessage.Append("Заказ не может быть пустым!\n");
+					}
 					if (errorMessage.Length == 0)
 					{
-						//context.Configuration.ProxyCreationEnabled = false;
+						
 						formedOrder.CustomerId = formedOrder.Customer.Id;
 						formedOrder.State = State.Formed;
 						formedOrder.Date = DateTime.Now;
@@ -124,7 +131,6 @@ namespace ComputerShop.viewmodel.cart
 						vm.MainVM = CodeBehind.Owner.DataContext as MainWindowViewModel;
 						view.DataContext = vm;
 						CodeBehind.Owner.MainContent.Content = view;
-						CodeBehind.Owner.Cart.IsEnabled = true;
 						MessageBox.Show("Заказ успешно сформирован. Ожидайте подтверждения.");
 					}
 					else

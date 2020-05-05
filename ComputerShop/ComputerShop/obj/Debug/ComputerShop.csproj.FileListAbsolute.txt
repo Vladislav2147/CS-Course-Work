@@ -74,7 +74,6 @@ F:\course work\ComputerShop\ComputerShop\obj\Debug\view\shoppingcart\ShoppingCar
 F:\course work\ComputerShop\ComputerShop\obj\Debug\view\shoppingcart\ShoppingCart.baml
 F:\course work\ComputerShop\ComputerShop\obj\Debug\view\main\MainList.g.cs
 F:\course work\ComputerShop\ComputerShop\obj\Debug\view\main\MainList.baml
-F:\course work\ComputerShop\ComputerShop\obj\Debug\ComputerShop.csprojAssemblyReference.cache
 F:\course work\ComputerShop\ComputerShop\bin\Debug\ru\EntityFramework.SqlServer.resources.dll
 F:\course work\ComputerShop\ComputerShop\bin\Debug\CalcBinding.dll
 F:\course work\ComputerShop\ComputerShop\bin\Debug\DynamicExpresso.Core.dll
@@ -94,3 +93,7 @@ F:\course work\ComputerShop\ComputerShop\bin\Debug\ro\Xceed.Wpf.AvalonDock.resou
 F:\course work\ComputerShop\ComputerShop\bin\Debug\ru\Xceed.Wpf.AvalonDock.resources.dll
 F:\course work\ComputerShop\ComputerShop\bin\Debug\sv\Xceed.Wpf.AvalonDock.resources.dll
 F:\course work\ComputerShop\ComputerShop\bin\Debug\zh-Hans\Xceed.Wpf.AvalonDock.resources.dll
+F:\course work\ComputerShop\ComputerShop\obj\Debug\view\main\filters\ComputerFilters.g.cs
+F:\course work\ComputerShop\ComputerShop\obj\Debug\view\main\filters\PeripheralFilters.g.cs
+F:\course work\ComputerShop\ComputerShop\obj\Debug\view\main\filters\ComputerFilters.baml
+F:\course work\ComputerShop\ComputerShop\obj\Debug\view\main\filters\PeripheralFilters.baml

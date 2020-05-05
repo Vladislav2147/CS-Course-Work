@@ -6,7 +6,7 @@
     </Key>
     <Property Name="id" Type="int" Nullable="false" />
     <Property Name="producer" Type="nvarchar" MaxLength="20" />
-    <Property Name="type" Type="nvarchar" MaxLength="20" />
+    <Property Name="type" Type="int" />
     <Property Name="processor" Type="nvarchar" MaxLength="30" />
     <Property Name="cores" Type="int" />
     <Property Name="frequency" Type="int" />
@@ -16,7 +16,7 @@
     <Property Name="hard_drive_size" Type="int" />
     <Property Name="optical_drive" Type="nvarchar" MaxLength="20" />
     <Property Name="graphics_card" Type="nvarchar" MaxLength="30" />
-    <Property Name="operating_system" Type="nvarchar" MaxLength="30" />
+    <Property Name="operating_system" Type="int" />
     <Property Name="interfaces" Type="nvarchar" MaxLength="50" />
     <Property Name="equipment" Type="nvarchar" MaxLength="50" />
     <Property Name="pc_case" Type="nvarchar" MaxLength="30" />
@@ -109,9 +109,9 @@
       <PropertyRef Name="id" />
     </Key>
     <Property Name="id" Type="int" Nullable="false" />
-    <Property Name="interface" Type="nchar" MaxLength="10" />
+    <Property Name="interface" Type="int" />
     <Property Name="material" Type="nchar" MaxLength="10" />
-    <Property Name="color" Type="nchar" MaxLength="10" />
+    <Property Name="color" Type="int" />
   </EntityType>
   <EntityType Name="product">
     <Key>

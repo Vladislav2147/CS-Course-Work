@@ -21,6 +21,8 @@ using ComputerShop.model.service.implementations;
 using System.IO;
 using Microsoft.Win32;
 using ComputerShop.viewmodel.main;
+using ComputerShop.view.shoppingcart;
+using System.ComponentModel;
 
 namespace ComputerShop
 {
@@ -53,8 +55,25 @@ namespace ComputerShop
 			vm.MainVM = this.DataContext as MainWindowViewModel;
 			view.DataContext = vm;
 			MainContent.Content = view;
-			
+
+			var desc = DependencyPropertyDescriptor.FromProperty(ContentControl.ContentProperty, typeof(ContentPresenter));
+			desc.AddValueChanged(MainContent, MainContent_DataContextChanged);
 		}
+
+		private void MainContent_DataContextChanged(object sender, EventArgs e)
+		{
+			if (MainContent.Content is ShoppingCart)
+			{
+				Filters.Visibility = Visibility.Collapsed;
+				Cart.IsEnabled = false;
+			}
+			else
+			{
+				Filters.Visibility = Visibility.Visible;
+				Cart.IsEnabled = true;
+			}
+		}
+
 		private void TreeItemExecute(object sender, RoutedEventArgs e)
 		{
 			(DataContext as MainWindowViewModel).TreeItemExecute();
