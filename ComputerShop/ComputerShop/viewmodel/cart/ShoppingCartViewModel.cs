@@ -50,8 +50,8 @@ namespace ComputerShop.viewmodel.cart
 			vm.MainVM = this.CodeBehind.Owner.DataContext as MainWindowViewModel;
 			view.DataContext = vm;
 			CodeBehind.Owner.MainContent.Content = view;
-			((CodeBehind.Owner.MainContent.Content as MainList).DataContext as MainListViewModel).UpdateButtons();
 		}
+
 		private void AddAmountCommandExecute(object sender)
 		{
 			Button button = sender as Button;

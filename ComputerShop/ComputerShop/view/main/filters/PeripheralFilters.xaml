@@ -4,9 +4,30 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:ComputerShop.view.main.filters"
+             xmlns:enums="clr-namespace:ComputerShop.model.enums"
+             xmlns:converters ="clr-namespace:ComputerShop.model.converters"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
-            
+        <Grid.RowDefinitions>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="0.1*"></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition Width="0.2*"></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition Width="0.1*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+
+        <TextBlock Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="3" Text="Цвет" Margin="0,5,5,5"></TextBlock>
+        <ComboBox Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="3" ItemsSource="{Binding Source={converters:EnumBindingSource {x:Type enums:Color}}}"></ComboBox>
+
+        <TextBlock Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="3" Text="Интерфейс" Margin="0,5,5,5"></TextBlock>
+        <ComboBox Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="3" ItemsSource="{Binding Source={converters:EnumBindingSource {x:Type enums:PeripheralInterface}}}"></ComboBox>
+
     </Grid>
 </UserControl>

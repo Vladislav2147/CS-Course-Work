@@ -33,6 +33,7 @@ namespace ComputerShop.viewmodel.main
 			button.Content = "В корзине";
 			button.IsEnabled = false;
 		}
+
 		public void UpdateButtons()
 		{
 			Order order = MainVM.Customer.Order.FirstOrDefault(ord => ord.State == State.Created);
@@ -42,6 +43,11 @@ namespace ComputerShop.viewmodel.main
 				{
 					button.IsEnabled = false;
 					button.Content = "В корзине";
+				}
+				else if (((Product)button.DataContext).Amount == 0) 
+				{
+					button.IsEnabled = false;
+					button.Content = "Нет на складе";
 				}
 				else
 				{

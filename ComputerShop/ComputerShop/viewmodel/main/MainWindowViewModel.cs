@@ -19,7 +19,9 @@ namespace ComputerShop.viewmodel.main
 		public MainWindow CodeBehind { get; set; }
 		public ProductService ProductService { get; set; }
 		public Customer Customer { get; set; }
+		public Type CurrentProductType { get; set; }
 		public ICommand GoToCart { get; set; }
+		public ICommand Filter { get; set; }
 
 		public MainWindowViewModel(MainWindow codeBehind, Customer customer)
 		{
@@ -27,11 +29,11 @@ namespace ComputerShop.viewmodel.main
 			CodeBehind = codeBehind;
 			ProductService = new ProductService();
 			GoToCart = new RelayCommand(param => ExecuteGoToCart());
+			Filter = new RelayCommand(param => FilterProducts());
 			if(GetCreatedOrder() == null)
 			{
 				Customer.Order.Add(new Order() { State = State.Created, Customer = this.Customer });
 			}
-			CodeBehind.FiltersContent.Content = new ComputerFilters();
 			
 		}
 		private void ExecuteGoToCart()
@@ -41,6 +43,7 @@ namespace ComputerShop.viewmodel.main
 			view.DataContext = vm;
 			CodeBehind.MainContent.Content = view;
 		}
+
 		public void TreeItemExecute()
 		{
 			Type type = null;
@@ -80,29 +83,68 @@ namespace ComputerShop.viewmodel.main
 					type = typeof(model.database.Keyboard);
 					break;
 			}
-			if(type == typeof(Product))
+
+			CurrentProductType = type;
+
+			if (Activator.CreateInstance(CurrentProductType) as Computer != null)
 			{
-				MessageBox.Show("Product");
+				CodeBehind.FiltersContent.Content = new ComputerFilters();
 			}
-			else if (Activator.CreateInstance(type) as Computer != null)
+			if (Activator.CreateInstance(CurrentProductType) as Peripherals != null)
 			{
-				MessageBox.Show("Computer");
+				CodeBehind.FiltersContent.Content = new PeripheralFilters();
 			}
-			else if(Activator.CreateInstance(type) as Peripherals != null)
-			{
-				MessageBox.Show("perip");
-			}
+
 			MainList view = new MainList(this.CodeBehind);
 			view.ProductList.ItemsSource = products;
 			MainListViewModel vm = new MainListViewModel(view);
 			vm.MainVM = this.CodeBehind.DataContext as MainWindowViewModel;
 			view.DataContext = vm;
-			CodeBehind.MainContent.Content = view;
-			
+			CodeBehind.MainContent.Content = view;			
 		}
+
 		public Order GetCreatedOrder()
 		{
 			return Customer.Order.FirstOrDefault(order => order.State == State.Created);
+		}
+
+		private void FilterProducts()
+		{
+
+			List<Product> products = ProductService.GetAll();
+
+
+			decimal beginPrice = Decimal.Zero, endPrice = Decimal.MaxValue;
+
+			if(Decimal.TryParse(CodeBehind.BeginPrice.Text, out beginPrice) && Decimal.TryParse(CodeBehind.EndPrice.Text, out endPrice))
+			{
+				products = products.Where(product => product.Price >= beginPrice && product.Price <= endPrice).ToList();
+			}
+
+
+			int beginYear = DateTime.Now.Year - 20, endYear = DateTime.Now.Year;
+			
+			if(Int32.TryParse(CodeBehind.BeginYear.Text, out beginYear) && Int32.TryParse(CodeBehind.EndYear.Text, out endYear))
+			{
+				products = products.Where(product => product.Year >= beginYear && product.Year <= endYear).ToList();
+			}
+
+			if(CodeBehind.IsInWarehouse.IsChecked.Value)
+			{
+				products = products.Where(product => product.Amount != 0).ToList();
+			}
+
+			
+			if (Activator.CreateInstance(CurrentProductType) as Computer != null)
+			{
+				MessageBox.Show("Computer");
+			}
+			if (Activator.CreateInstance(CurrentProductType) as Peripherals != null)
+			{
+				MessageBox.Show("perip");
+			}
+
+			(CodeBehind.MainContent.Content as MainList).ProductList.ItemsSource = products;
 		}
 	}
 }
