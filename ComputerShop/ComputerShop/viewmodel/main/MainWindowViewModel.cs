@@ -1,6 +1,7 @@
 ﻿using ComputerShop.model.database;
 using ComputerShop.model.enums;
 using ComputerShop.model.service.implementations;
+using ComputerShop.model.statics;
 using ComputerShop.view;
 using ComputerShop.view.main.filters;
 using ComputerShop.view.shoppingcart;
@@ -24,6 +25,7 @@ namespace ComputerShop.viewmodel.main
 		public ICommand GoToCart { get; set; }
 		public ICommand Filter { get; set; }
 		public ICommand FindByName { get; set; }
+		public ICommand Cancel { get; set; }
 
 		public MainWindowViewModel(MainWindow codeBehind, Customer customer)
 		{
@@ -33,6 +35,7 @@ namespace ComputerShop.viewmodel.main
 			GoToCart = new RelayCommand(param => ExecuteGoToCart());
 			Filter = new RelayCommand(param => FilterProducts());
 			FindByName = new RelayCommand(param => FindByNameExecute());
+			Cancel = new RelayCommand(param => CancelExecute());
 
 			if (GetCreatedOrder() == null)
 			{
@@ -50,46 +53,14 @@ namespace ComputerShop.viewmodel.main
 
 		public void TreeItemExecute()
 		{
-			Type type = null;
 			List<Product> products = ProductService.GetAll();
-			switch ((CodeBehind.Tree.SelectedItem as TreeViewItem).Header.ToString())
+			products = GetListOfCurrentType(products);
+			CurrentProductType = TypeOfList(products);
+
+			if(CurrentProductType == typeof(Product))
 			{
-				case "Товары":
-					products = products.Where(product => product is Product).ToList();
-					type = typeof(Product);
-					break;
-				case "Компьютеры":
-					products = products.Where(product => product is Computer).ToList();
-					type = typeof(Computer);
-					break;
-				case "Периферия":
-					products = products.Where(product => product is Peripherals).ToList();
-					type = typeof(Peripherals);
-					break;
-				case "Настольные пк":
-					products = products.Where(product => product is Desktop).ToList();
-					type = typeof(Desktop);
-					break;
-				case "Ноутбуки":
-					products = products.Where(product => product is Laptop).ToList();
-					type = typeof(Laptop);
-					break;
-				case "Моноблоки":
-					products = products.Where(product => product is Monoblock).ToList();
-					type = typeof(Monoblock);
-					break;
-				case "Мыши":
-					products = products.Where(product => product is model.database.Mouse).ToList();
-					type = typeof(model.database.Mouse);
-					break;
-				case "Клавиатуры":
-					products = products.Where(product => product is model.database.Keyboard).ToList();
-					type = typeof(model.database.Keyboard);
-					break;
+				CodeBehind.FiltersContent.Content = null;
 			}
-
-			CurrentProductType = type;
-
 			if (Activator.CreateInstance(CurrentProductType) as Computer != null)
 			{
 				CodeBehind.FiltersContent.Content = new ComputerFilters();
@@ -99,14 +70,17 @@ namespace ComputerShop.viewmodel.main
 				CodeBehind.FiltersContent.Content = new PeripheralFilters();
 			}
 
+			UpdateMainList(products);			
+		}
+		private void UpdateMainList(List<Product> products)
+		{
 			MainList view = new MainList(this.CodeBehind);
 			view.ProductList.ItemsSource = products;
 			MainListViewModel vm = new MainListViewModel(view);
 			vm.MainVM = this.CodeBehind.DataContext as MainWindowViewModel;
 			view.DataContext = vm;
-			CodeBehind.MainContent.Content = view;			
+			CodeBehind.MainContent.Content = view;
 		}
-
 		public Order GetCreatedOrder()
 		{
 			return Customer.Order.FirstOrDefault(order => order.State == State.Created);
@@ -115,7 +89,9 @@ namespace ComputerShop.viewmodel.main
 		private void FilterProducts()
 		{
 
-			List<Product> products = ProductService.GetAll();
+			List<Product> products = ProductService
+				.GetAll()
+				.Where(product => product.GetType().IsSubclassOf(CurrentProductType == null ? typeof(Product) : CurrentProductType)).ToList();
 
 
 			decimal beginPrice = Decimal.Zero, endPrice = Decimal.MaxValue;
@@ -204,7 +180,7 @@ namespace ComputerShop.viewmodel.main
 				}
 			}
 
-			(CodeBehind.MainContent.Content as MainList).ProductList.ItemsSource = products;
+			UpdateMainList(products);
 		}
 
 		private void FindByNameExecute()
@@ -215,8 +191,95 @@ namespace ComputerShop.viewmodel.main
 			{
 				CodeBehind.SearchString.Clear();
 				List<Product> products = ProductService.FindByPredicate(product => product.Name.ToLower().Contains(nameToFind.ToLower())).ToList();
-				(CodeBehind.MainContent.Content as MainList).ProductList.ItemsSource = products;
+				UpdateMainList(products);
 			}			
+		}
+		
+		private void CancelExecute()
+		{
+			UpdateMainList(GetListOfCurrentType(ProductService.GetAll()));
+			foreach(TextBox textBox in ChildFinder.FindVisualChildren<TextBox>(CodeBehind.Filters))
+			{
+				textBox.Text = "";
+			}
+			foreach(ComboBox comboBox in ChildFinder.FindVisualChildren<ComboBox>(CodeBehind.Filters))
+			{
+				comboBox.SelectedIndex = 0;
+			}
+			foreach(CheckBox checkBox in ChildFinder.FindVisualChildren<CheckBox>(CodeBehind.Filters))
+			{
+				checkBox.IsChecked = false;
+			}
+		}
+
+		private List<Product> GetListOfCurrentType(List<Product> products)
+		{
+			if(CodeBehind.Tree.SelectedItem as TreeViewItem != null)
+			{
+				switch ((CodeBehind.Tree.SelectedItem as TreeViewItem).Header.ToString())
+				{
+					case "Товары":
+						products = products.Where(product => product is Product).ToList();
+						break;
+					case "Компьютеры":
+						products = products.Where(product => product is Computer).ToList();
+						break;
+					case "Периферия":
+						products = products.Where(product => product is Peripherals).ToList();
+						break;
+					case "Настольные пк":
+						products = products.Where(product => product is Desktop).ToList();
+						break;
+					case "Ноутбуки":
+						products = products.Where(product => product is Laptop).ToList();
+						break;
+					case "Моноблоки":
+						products = products.Where(product => product is Monoblock).ToList();
+						break;
+					case "Мыши":
+						products = products.Where(product => product is model.database.Mouse).ToList();
+						break;
+					case "Клавиатуры":
+						products = products.Where(product => product is model.database.Keyboard).ToList();
+						break;
+				}
+			}			
+
+			return products;
+		}
+
+		private Type TypeOfList(List<Product> products)
+		{
+			Type type = null;
+			switch ((CodeBehind.Tree.SelectedItem as TreeViewItem).Header.ToString())
+			{
+				case "Товары":
+					type = typeof(Product);
+					break;
+				case "Компьютеры":
+					type = typeof(Computer);
+					break;
+				case "Периферия":
+					type = typeof(Peripherals);
+					break;
+				case "Настольные пк":
+					type = typeof(Desktop);
+					break;
+				case "Ноутбуки":
+					type = typeof(Laptop);
+					break;
+				case "Моноблоки":
+					type = typeof(Monoblock);
+					break;
+				case "Мыши":
+					type = typeof(model.database.Mouse);
+					break;
+				case "Клавиатуры":
+					type = typeof(model.database.Keyboard);
+					break;
+			}
+
+			return type;
 		}
 	}
 }
