@@ -1,4 +1,5 @@
 ﻿using ComputerShop.model.database;
+using ComputerShop.model.enums;
 using ComputerShop.model.service.implementations;
 using ComputerShop.view;
 using ComputerShop.view.main.filters;
@@ -22,6 +23,7 @@ namespace ComputerShop.viewmodel.main
 		public Type CurrentProductType { get; set; }
 		public ICommand GoToCart { get; set; }
 		public ICommand Filter { get; set; }
+		public ICommand FindByName { get; set; }
 
 		public MainWindowViewModel(MainWindow codeBehind, Customer customer)
 		{
@@ -30,7 +32,9 @@ namespace ComputerShop.viewmodel.main
 			ProductService = new ProductService();
 			GoToCart = new RelayCommand(param => ExecuteGoToCart());
 			Filter = new RelayCommand(param => FilterProducts());
-			if(GetCreatedOrder() == null)
+			FindByName = new RelayCommand(param => FindByNameExecute());
+
+			if (GetCreatedOrder() == null)
 			{
 				Customer.Order.Add(new Order() { State = State.Created, Customer = this.Customer });
 			}
@@ -116,7 +120,7 @@ namespace ComputerShop.viewmodel.main
 
 			decimal beginPrice = Decimal.Zero, endPrice = Decimal.MaxValue;
 
-			if(Decimal.TryParse(CodeBehind.BeginPrice.Text, out beginPrice) && Decimal.TryParse(CodeBehind.EndPrice.Text, out endPrice))
+			if (Decimal.TryParse(CodeBehind.BeginPrice.Text, out beginPrice) && Decimal.TryParse(CodeBehind.EndPrice.Text, out endPrice))
 			{
 				products = products.Where(product => product.Price >= beginPrice && product.Price <= endPrice).ToList();
 			}
@@ -124,12 +128,12 @@ namespace ComputerShop.viewmodel.main
 
 			int beginYear = DateTime.Now.Year - 20, endYear = DateTime.Now.Year;
 			
-			if(Int32.TryParse(CodeBehind.BeginYear.Text, out beginYear) && Int32.TryParse(CodeBehind.EndYear.Text, out endYear))
+			if (Int32.TryParse(CodeBehind.BeginYear.Text, out beginYear) && Int32.TryParse(CodeBehind.EndYear.Text, out endYear))
 			{
 				products = products.Where(product => product.Year >= beginYear && product.Year <= endYear).ToList();
 			}
 
-			if(CodeBehind.IsInWarehouse.IsChecked.Value)
+			if (CodeBehind.IsInWarehouse.IsChecked.Value)
 			{
 				products = products.Where(product => product.Amount != 0).ToList();
 			}
@@ -137,14 +141,82 @@ namespace ComputerShop.viewmodel.main
 			
 			if (Activator.CreateInstance(CurrentProductType) as Computer != null)
 			{
-				MessageBox.Show("Computer");
+				ComputerFilters filters = CodeBehind.FiltersContent.Content as ComputerFilters;
+
+
+				int minCores = 0, maxCores = Int32.MaxValue;
+
+				if (Int32.TryParse(filters.MinCores.Text, out minCores) && Int32.TryParse(filters.MaxCores.Text, out maxCores))
+				{
+					products = products.Where(product => (product as Computer).Cores >= minCores && (product as Computer).Cores <= maxCores).ToList();
+				}
+
+
+				int minFrequency = 0, maxFrequency = Int32.MaxValue;
+
+				if (Int32.TryParse(filters.MinFrequency.Text, out minFrequency) && Int32.TryParse(filters.MaxFrequency.Text, out maxFrequency))
+				{
+					products = products.Where(product => (product as Computer).Frequency >= minFrequency && (product as Computer).Frequency <= maxFrequency).ToList();
+				}
+
+				
+				int minRam = 0, maxRam = Int32.MaxValue;
+
+				if (Int32.TryParse(filters.MinRAM.Text, out minRam) && Int32.TryParse(filters.MaxRAM.Text, out maxRam))
+				{
+					products = products.Where(product => (product as Computer).RamSize >= minRam && (product as Computer).RamSize <= maxRam).ToList();
+				}
+
+				ComputerType computerType = (ComputerType)filters.ComputerType.SelectedItem;
+				
+				if(computerType != ComputerType.None)
+				{
+					products = products.Where(product => (product as Computer).Type == computerType).ToList();
+				}
+				
+
+				model.enums.OperatingSystem operating = (model.enums.OperatingSystem)filters.OS.SelectedItem;
+
+				if (computerType != ComputerType.None)
+				{
+					products = products.Where(product => (product as Computer).OperatingSystem == operating).ToList();
+				}
+
 			}
 			if (Activator.CreateInstance(CurrentProductType) as Peripherals != null)
 			{
-				MessageBox.Show("perip");
+				PeripheralFilters filters = CodeBehind.FiltersContent.Content as PeripheralFilters;
+
+
+				Color color = (Color)filters.Color.SelectedItem;
+
+				if (color != Color.None)
+				{
+					products = products.Where(product => (product as Peripherals).Color == color).ToList();
+				}
+
+
+				PeripheralInterface peripheralInterface = (PeripheralInterface)filters.Interface.SelectedItem;
+
+				if (peripheralInterface != PeripheralInterface.None)
+				{
+					products = products.Where(product => (product as Peripherals).Interface == peripheralInterface).ToList();
+				}
 			}
 
 			(CodeBehind.MainContent.Content as MainList).ProductList.ItemsSource = products;
+		}
+
+		private void FindByNameExecute()
+		{
+			string nameToFind = CodeBehind.SearchString.Text;
+
+			if (nameToFind.Length != 0)
+			{
+				CodeBehind.SearchString.Clear();
+				List<Product> products = ProductService.FindByPredicate(product => product.Name.ToLower().Contains(nameToFind.ToLower())).ToList();
+				(CodeBehind.MainContent.Content as MainList).ProductList.ItemsSource = products;
+			}			
 		}
 	}
 }

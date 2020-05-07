@@ -195,6 +195,7 @@
     <Compile Include="model\service\implementations\OrderService.cs" />
     <Compile Include="model\service\implementations\ProductService.cs" />
     <Compile Include="model\service\implementations\SupplyService.cs" />
+    <Compile Include="model\statics\ChildFinder.cs" />
     <Compile Include="model\validation\EmailValidationAttribute.cs" />
     <Compile Include="viewmodel\cart\ShoppingCartViewModel.cs" />
     <Compile Include="viewmodel\login\SignUpViewModel.cs" />

@@ -11,6 +11,8 @@ namespace ComputerShop.model.enums
 	[TypeConverter(typeof(EnumDescriptionTypeConverter))]
 	public enum PeripheralInterface
 	{
+		[Description("Не указан")]
+		None,
 		[Description("PS/2")]
 		PS2,
 		[Description("USB")]

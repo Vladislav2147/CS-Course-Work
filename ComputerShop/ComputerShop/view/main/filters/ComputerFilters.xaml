@@ -30,25 +30,25 @@
         </Grid.ColumnDefinitions>
         
         <TextBlock Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="3" Text="Количество ядер:" Margin="0,5,5,5"></TextBlock>
-        <TextBox Grid.Row="1" Grid.Column="1"></TextBox>
+        <TextBox  x:Name="MinCores" Grid.Row="1" Grid.Column="1"></TextBox>
         <TextBlock Grid.Row="1" Grid.Column="2" Text="-" TextAlignment="Center"></TextBlock>
-        <TextBox Grid.Row="1" Grid.Column="3"></TextBox>
+        <TextBox  x:Name="MaxCores" Grid.Row="1" Grid.Column="3"></TextBox>
         
         <TextBlock Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="3" Text="Тактовая частота, МГц:" Margin="0,5,5,5"></TextBlock>
-        <TextBox Grid.Row="3" Grid.Column="1"></TextBox>
+        <TextBox  x:Name="MinFrequency" Grid.Row="3" Grid.Column="1"></TextBox>
         <TextBlock Grid.Row="3" Grid.Column="2" Text="-" TextAlignment="Center"></TextBlock>
-        <TextBox Grid.Row="3" Grid.Column="3"></TextBox>
+        <TextBox  x:Name="MaxFrequency" Grid.Row="3" Grid.Column="3"></TextBox>
         
         <TextBlock Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="3" Text="Оперативная память, Гб:" Margin="0,5,5,5"></TextBlock>
-        <TextBox Grid.Row="5" Grid.Column="1"></TextBox>
+        <TextBox  x:Name="MinRAM" Grid.Row="5" Grid.Column="1"></TextBox>
         <TextBlock Grid.Row="5" Grid.Column="2" Text="-" TextAlignment="Center"></TextBlock>
-        <TextBox Grid.Row="5" Grid.Column="3"></TextBox>
+        <TextBox x:Name="MaxRAM" Grid.Row="5" Grid.Column="3"></TextBox>
 
         <TextBlock Grid.Row="6" Grid.Column="1" Grid.ColumnSpan="3" Text="Тип компьютера" Margin="0,5,5,5"></TextBlock>
-        <ComboBox Grid.Row="7" Grid.Column="1" Grid.ColumnSpan="3" ItemsSource="{Binding Source={converters:EnumBindingSource {x:Type enums:ComputerType}}}"></ComboBox>
+        <ComboBox x:Name="ComputerType" SelectedIndex="0" Grid.Row="7" Grid.Column="1" Grid.ColumnSpan="3" ItemsSource="{Binding Source={converters:EnumBindingSource {x:Type enums:ComputerType}}}"></ComboBox>
 
         <TextBlock Grid.Row="8" Grid.Column="1" Grid.ColumnSpan="3" Text="Операционная система" Margin="0,5,5,5"></TextBlock>
-        <ComboBox Grid.Row="9" Grid.Column="1" Grid.ColumnSpan="3" ItemsSource="{Binding Source={converters:EnumBindingSource {x:Type enums:OperatingSystem}}}"></ComboBox>
+        <ComboBox x:Name="OS"  SelectedIndex="0" Grid.Row="9" Grid.Column="1" Grid.ColumnSpan="3" ItemsSource="{Binding Source={converters:EnumBindingSource {x:Type enums:OperatingSystem}}}"></ComboBox>
         
     </Grid>
 </UserControl>

@@ -1,4 +1,5 @@
 ﻿using ComputerShop.model.database;
+using ComputerShop.model.statics;
 using ComputerShop.view;
 using System.Collections.Generic;
 using System.Linq;
@@ -37,7 +38,8 @@ namespace ComputerShop.viewmodel.main
 		public void UpdateButtons()
 		{
 			Order order = MainVM.Customer.Order.FirstOrDefault(ord => ord.State == State.Created);
-			foreach(Button button in FindVisualChildren<Button>(CodeBehind.ProductList))
+
+			foreach(Button button in ChildFinder.FindVisualChildren<Button>(CodeBehind.ProductList))
 			{
 				if(order.Ordered.FirstOrDefault(ord => ord.Product == (Product)button.DataContext) != null && MainVM.Customer.Role == model.enums.Role.User)
 				{
@@ -56,21 +58,6 @@ namespace ComputerShop.viewmodel.main
 				}
 			}
 		}
-		public IEnumerable<T> FindVisualChildren<T>(DependencyObject depObj) where T : DependencyObject
-		{
-			if (depObj != null)
-			{
-				for (int i = 0; i < VisualTreeHelper.GetChildrenCount(depObj); i++)
-				{
-					DependencyObject child = VisualTreeHelper.GetChild(depObj, i);
-
-					if (child != null && child is T)
-						yield return (T)child;
-
-					foreach (T childOfChild in FindVisualChildren<T>(child))
-						yield return childOfChild;
-				}
-			}
-		}
+		
 	}
 }

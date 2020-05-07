@@ -11,7 +11,7 @@ namespace ComputerShop.model.enums
 	[TypeConverter(typeof(EnumDescriptionTypeConverter))]
 	public enum ComputerType
 	{
-		[Description("Отсутствует")]
+		[Description("Не указан")]
 		None,
 		[Description("Домашний")]
 		Home,
