@@ -21,7 +21,7 @@ namespace ComputerShop.viewmodel.main
 		public MainWindow CodeBehind { get; set; }
 		public ProductService ProductService { get; set; }
 		public Customer Customer { get; set; }
-		public Type CurrentProductType { get; set; }
+		public Type CurrentProductType { get; set; } 
 		public ICommand GoToCart { get; set; }
 		public ICommand Filter { get; set; }
 		public ICommand FindByName { get; set; }
@@ -36,13 +36,14 @@ namespace ComputerShop.viewmodel.main
 			Filter = new RelayCommand(param => FilterProducts());
 			FindByName = new RelayCommand(param => FindByNameExecute());
 			Cancel = new RelayCommand(param => CancelExecute());
-
+			CurrentProductType = typeof(Product);
 			if (GetCreatedOrder() == null)
 			{
 				Customer.Order.Add(new Order() { State = State.Created, Customer = this.Customer });
 			}
 			
 		}
+
 		private void ExecuteGoToCart()
 		{
 			ShoppingCart view = new ShoppingCart(CodeBehind);
@@ -72,6 +73,7 @@ namespace ComputerShop.viewmodel.main
 
 			UpdateMainList(products);			
 		}
+
 		private void UpdateMainList(List<Product> products)
 		{
 			MainList view = new MainList(this.CodeBehind);
@@ -81,6 +83,7 @@ namespace ComputerShop.viewmodel.main
 			view.DataContext = vm;
 			CodeBehind.MainContent.Content = view;
 		}
+
 		public Order GetCreatedOrder()
 		{
 			return Customer.Order.FirstOrDefault(order => order.State == State.Created);
@@ -91,12 +94,12 @@ namespace ComputerShop.viewmodel.main
 
 			List<Product> products = ProductService
 				.GetAll()
-				.Where(product => product.GetType().IsSubclassOf(CurrentProductType == null ? typeof(Product) : CurrentProductType)).ToList();
+				.Where(product => product.GetType().IsSubclassOf(CurrentProductType)).ToList();
 
 
 			decimal beginPrice = Decimal.Zero, endPrice = Decimal.MaxValue;
 
-			if (Decimal.TryParse(CodeBehind.BeginPrice.Text, out beginPrice) && Decimal.TryParse(CodeBehind.EndPrice.Text, out endPrice))
+			if (Decimal.TryParse(CodeBehind.BeginPrice.Text, out beginPrice) || Decimal.TryParse(CodeBehind.EndPrice.Text, out endPrice))
 			{
 				products = products.Where(product => product.Price >= beginPrice && product.Price <= endPrice).ToList();
 			}
@@ -104,7 +107,7 @@ namespace ComputerShop.viewmodel.main
 
 			int beginYear = DateTime.Now.Year - 20, endYear = DateTime.Now.Year;
 			
-			if (Int32.TryParse(CodeBehind.BeginYear.Text, out beginYear) && Int32.TryParse(CodeBehind.EndYear.Text, out endYear))
+			if (Int32.TryParse(CodeBehind.BeginYear.Text, out beginYear) || Int32.TryParse(CodeBehind.EndYear.Text, out endYear))
 			{
 				products = products.Where(product => product.Year >= beginYear && product.Year <= endYear).ToList();
 			}
@@ -122,7 +125,7 @@ namespace ComputerShop.viewmodel.main
 
 				int minCores = 0, maxCores = Int32.MaxValue;
 
-				if (Int32.TryParse(filters.MinCores.Text, out minCores) && Int32.TryParse(filters.MaxCores.Text, out maxCores))
+				if (Int32.TryParse(filters.MinCores.Text, out minCores) || Int32.TryParse(filters.MaxCores.Text, out maxCores))
 				{
 					products = products.Where(product => (product as Computer).Cores >= minCores && (product as Computer).Cores <= maxCores).ToList();
 				}
@@ -130,7 +133,7 @@ namespace ComputerShop.viewmodel.main
 
 				int minFrequency = 0, maxFrequency = Int32.MaxValue;
 
-				if (Int32.TryParse(filters.MinFrequency.Text, out minFrequency) && Int32.TryParse(filters.MaxFrequency.Text, out maxFrequency))
+				if (Int32.TryParse(filters.MinFrequency.Text, out minFrequency) || Int32.TryParse(filters.MaxFrequency.Text, out maxFrequency))
 				{
 					products = products.Where(product => (product as Computer).Frequency >= minFrequency && (product as Computer).Frequency <= maxFrequency).ToList();
 				}
@@ -138,7 +141,7 @@ namespace ComputerShop.viewmodel.main
 				
 				int minRam = 0, maxRam = Int32.MaxValue;
 
-				if (Int32.TryParse(filters.MinRAM.Text, out minRam) && Int32.TryParse(filters.MaxRAM.Text, out maxRam))
+				if (Int32.TryParse(filters.MinRAM.Text, out minRam) || Int32.TryParse(filters.MaxRAM.Text, out maxRam))
 				{
 					products = products.Where(product => (product as Computer).RamSize >= minRam && (product as Computer).RamSize <= maxRam).ToList();
 				}

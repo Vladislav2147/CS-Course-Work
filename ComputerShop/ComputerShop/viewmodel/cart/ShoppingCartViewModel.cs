@@ -50,6 +50,7 @@ namespace ComputerShop.viewmodel.cart
 			vm.MainVM = this.CodeBehind.Owner.DataContext as MainWindowViewModel;
 			view.DataContext = vm;
 			CodeBehind.Owner.MainContent.Content = view;
+			(CodeBehind.Owner.DataContext as MainWindowViewModel).Filter.Execute(this);
 		}
 
 		private void AddAmountCommandExecute(object sender)

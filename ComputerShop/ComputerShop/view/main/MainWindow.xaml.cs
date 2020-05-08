@@ -23,6 +23,7 @@ using Microsoft.Win32;
 using ComputerShop.viewmodel.main;
 using ComputerShop.view.shoppingcart;
 using System.ComponentModel;
+using ComputerShop.model.statics;
 
 namespace ComputerShop
 {
@@ -35,16 +36,13 @@ namespace ComputerShop
 		public MainWindow()
 		{
 			InitializeComponent();
-			//Авторизация костыль
+			//Авторизация костыль потом через конструктор передать
 			Customer customer;
 			using (ComputerShopContext context = new ComputerShopContext())
 			{
 				customer = context.Customer.Include("Order").Where(customer1 => customer1.Role == Role.User).FirstOrDefault();
 			}
-			if (customer.Role == Role.Admin)
-			{
-				this.Cart.Visibility = Visibility.Collapsed;
-			}
+			
 			//
 
 			MainWindowViewModel mainvm = new MainWindowViewModel(this, customer);
@@ -55,6 +53,15 @@ namespace ComputerShop
 			vm.MainVM = this.DataContext as MainWindowViewModel;
 			view.DataContext = vm;
 			MainContent.Content = view;
+
+			if (customer.Role == Role.Admin)
+			{
+				this.Cart.Visibility = Visibility.Collapsed;
+				foreach (Button button in ChildFinder.FindVisualChildren<Button>((this.MainContent.Content as MainList).ProductList))
+				{
+					button.Visibility = Visibility.Collapsed;
+				}
+			}
 
 			var desc = DependencyPropertyDescriptor.FromProperty(ContentControl.ContentProperty, typeof(ContentPresenter));
 			desc.AddValueChanged(MainContent, MainContent_DataContextChanged);

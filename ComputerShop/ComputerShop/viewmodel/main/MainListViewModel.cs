@@ -39,22 +39,25 @@ namespace ComputerShop.viewmodel.main
 		{
 			Order order = MainVM.Customer.Order.FirstOrDefault(ord => ord.State == State.Created);
 
-			foreach(Button button in ChildFinder.FindVisualChildren<Button>(CodeBehind.ProductList))
+			if(order != null)
 			{
-				if(order.Ordered.FirstOrDefault(ord => ord.Product == (Product)button.DataContext) != null && MainVM.Customer.Role == model.enums.Role.User)
+				foreach (Button button in ChildFinder.FindVisualChildren<Button>(CodeBehind.ProductList))
 				{
-					button.IsEnabled = false;
-					button.Content = "В корзине";
-				}
-				else if (((Product)button.DataContext).Amount == 0) 
-				{
-					button.IsEnabled = false;
-					button.Content = "Нет на складе";
-				}
-				else
-				{
-					button.IsEnabled = true;
-					button.Content = "В корзину";
+					if (order.Ordered.FirstOrDefault(ord => ord.Product == (Product)button.DataContext) != null && MainVM.Customer.Role == model.enums.Role.User)
+					{
+						button.IsEnabled = false;
+						button.Content = "В корзине";
+					}
+					else if (((Product)button.DataContext).Amount == 0)
+					{
+						button.IsEnabled = false;
+						button.Content = "Нет на складе";
+					}
+					else
+					{
+						button.IsEnabled = true;
+						button.Content = "В корзину";
+					}
 				}
 			}
 		}
