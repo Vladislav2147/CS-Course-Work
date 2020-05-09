@@ -32,9 +32,10 @@ namespace ComputerShop.view
 
 		}
 
-		private void MainList_Loaded(object sender, RoutedEventArgs e)
+		private void MainList_Loaded(object sender, EventArgs e)
 		{
 			(this.DataContext as MainListViewModel).UpdateButtons();
 		}
+
 	}
 }
