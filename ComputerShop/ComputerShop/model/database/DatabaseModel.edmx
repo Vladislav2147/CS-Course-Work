@@ -11,17 +11,14 @@
           </Key>
           <Property Name="id" Type="int" Nullable="false" />
           <Property Name="producer" Type="nvarchar" MaxLength="20" />
-          <Property Name="type" Type="int" />
+          <Property Name="type" Type="int" Nullable="false" />
           <Property Name="processor" Type="nvarchar" MaxLength="30" />
           <Property Name="cores" Type="int" />
           <Property Name="frequency" Type="int" />
-          <Property Name="ram" Type="nvarchar" MaxLength="20" />
           <Property Name="ram_size" Type="int" />
-          <Property Name="hard_drive_type" Type="nvarchar" MaxLength="30" />
           <Property Name="hard_drive_size" Type="int" />
-          <Property Name="optical_drive" Type="nvarchar" MaxLength="20" />
           <Property Name="graphics_card" Type="nvarchar" MaxLength="30" />
-          <Property Name="operating_system" Type="int" />
+          <Property Name="operating_system" Type="int" Nullable="false" />
           <Property Name="interfaces" Type="nvarchar" MaxLength="50" />
           <Property Name="equipment" Type="nvarchar" MaxLength="50" />
           <Property Name="pc_case" Type="nvarchar" MaxLength="30" />
@@ -114,9 +111,9 @@
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="int" Nullable="false" />
-          <Property Name="interface" Type="int" />
+          <Property Name="interface" Type="int" Nullable="false" />
           <Property Name="material" Type="nchar" MaxLength="10" />
-          <Property Name="color" Type="int" />
+          <Property Name="color" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="product">
           <Key>
@@ -384,17 +381,14 @@
       <Schema Namespace="ComputerShopModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityType Name="Computer" BaseType="ComputerShopModel.Product">
           <Property Name="Producer" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
-          <Property Name="Type" Type="ComputerShopModel.ComputerType" />
+          <Property Name="Type" Type="ComputerShopModel.ComputerType" Nullable="false" />
           <Property Name="Processor" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
-          <Property Name="Ram" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
-          <Property Name="OpticalDrive" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
           <Property Name="GraphicsCard" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
           <Property Name="Cores" Type="Int32" />
           <Property Name="Frequency" Type="Int32" />
           <Property Name="RamSize" Type="Int32" />
-          <Property Name="HardDriveType" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
           <Property Name="HardDriveSize" Type="Int32" />
-          <Property Name="OperatingSystem" Type="ComputerShopModel.OperatingSystem" />
+          <Property Name="OperatingSystem" Type="ComputerShopModel.OperatingSystem" Nullable="false" />
           <Property Name="Interfaces" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Equipment" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Case" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
@@ -576,9 +570,9 @@
           <Property Name="SensorResolution" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
         </EntityType>
         <EntityType Name="Peripherals" BaseType="ComputerShopModel.Product">
-          <Property Name="Interface" Type="ComputerShopModel.PeripheralInterface" />
+          <Property Name="Interface" Type="ComputerShopModel.PeripheralInterface" Nullable="false" />
           <Property Name="Material" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
-          <Property Name="Color" Type="ComputerShopModel.Color" />
+          <Property Name="Color" Type="ComputerShopModel.Color" Nullable="false" />
         </EntityType>
         <EntityType Name="Keyboard" BaseType="ComputerShopModel.Peripherals">
           <Property Name="KeyTechnology" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
@@ -652,13 +646,10 @@
                 <ScalarProperty Name="Interfaces" ColumnName="interfaces" />
                 <ScalarProperty Name="OperatingSystem" ColumnName="operating_system" />
                 <ScalarProperty Name="HardDriveSize" ColumnName="hard_drive_size" />
-                <ScalarProperty Name="HardDriveType" ColumnName="hard_drive_type" />
                 <ScalarProperty Name="RamSize" ColumnName="ram_size" />
                 <ScalarProperty Name="Frequency" ColumnName="frequency" />
                 <ScalarProperty Name="Cores" ColumnName="cores" />
                 <ScalarProperty Name="GraphicsCard" ColumnName="graphics_card" />
-                <ScalarProperty Name="OpticalDrive" ColumnName="optical_drive" />
-                <ScalarProperty Name="Ram" ColumnName="ram" />
                 <ScalarProperty Name="Processor" ColumnName="processor" />
                 <ScalarProperty Name="Type" ColumnName="type" />
                 <ScalarProperty Name="Producer" ColumnName="producer" />

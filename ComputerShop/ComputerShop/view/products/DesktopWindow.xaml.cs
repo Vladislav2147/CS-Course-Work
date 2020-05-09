@@ -1,4 +1,5 @@
-﻿using ComputerShop.model.kindofmagic;
+﻿using ComputerShop.model.database;
+using ComputerShop.viewmodel.products;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,25 +12,21 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace ComputerShop.view.shoppingcart
+namespace ComputerShop.view.products
 {
 	/// <summary>
-	/// Логика взаимодействия для ShoppingCart.xaml
+	/// Логика взаимодействия для DesktopWindow.xaml
 	/// </summary>
-	public partial class ShoppingCart : UserControl
+	public partial class DesktopWindow : Window, IProductWindow<Desktop>
 	{
-		public MainWindow Owner { get; set; }
-
-		public ShoppingCart(MainWindow owner)
+		public DesktopWindow()
 		{
-			this.Owner = owner;
 			InitializeComponent();
-			
+			this.DataContext = new DesktopWindowViewModel(this);
 		}
 
-		
+		public Desktop Product { get; set; }
 	}
 }

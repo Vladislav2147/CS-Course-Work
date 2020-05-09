@@ -6,17 +6,14 @@
     </Key>
     <Property Name="id" Type="int" Nullable="false" />
     <Property Name="producer" Type="nvarchar" MaxLength="20" />
-    <Property Name="type" Type="int" />
+    <Property Name="type" Type="int" Nullable="false" />
     <Property Name="processor" Type="nvarchar" MaxLength="30" />
     <Property Name="cores" Type="int" />
     <Property Name="frequency" Type="int" />
-    <Property Name="ram" Type="nvarchar" MaxLength="20" />
     <Property Name="ram_size" Type="int" />
-    <Property Name="hard_drive_type" Type="nvarchar" MaxLength="30" />
     <Property Name="hard_drive_size" Type="int" />
-    <Property Name="optical_drive" Type="nvarchar" MaxLength="20" />
     <Property Name="graphics_card" Type="nvarchar" MaxLength="30" />
-    <Property Name="operating_system" Type="int" />
+    <Property Name="operating_system" Type="int" Nullable="false" />
     <Property Name="interfaces" Type="nvarchar" MaxLength="50" />
     <Property Name="equipment" Type="nvarchar" MaxLength="50" />
     <Property Name="pc_case" Type="nvarchar" MaxLength="30" />
@@ -109,9 +106,9 @@
       <PropertyRef Name="id" />
     </Key>
     <Property Name="id" Type="int" Nullable="false" />
-    <Property Name="interface" Type="int" />
+    <Property Name="interface" Type="int" Nullable="false" />
     <Property Name="material" Type="nchar" MaxLength="10" />
-    <Property Name="color" Type="int" />
+    <Property Name="color" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="product">
     <Key>

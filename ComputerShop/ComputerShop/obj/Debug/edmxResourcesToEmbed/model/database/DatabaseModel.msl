@@ -43,13 +43,10 @@
           <ScalarProperty Name="Interfaces" ColumnName="interfaces" />
           <ScalarProperty Name="OperatingSystem" ColumnName="operating_system" />
           <ScalarProperty Name="HardDriveSize" ColumnName="hard_drive_size" />
-          <ScalarProperty Name="HardDriveType" ColumnName="hard_drive_type" />
           <ScalarProperty Name="RamSize" ColumnName="ram_size" />
           <ScalarProperty Name="Frequency" ColumnName="frequency" />
           <ScalarProperty Name="Cores" ColumnName="cores" />
           <ScalarProperty Name="GraphicsCard" ColumnName="graphics_card" />
-          <ScalarProperty Name="OpticalDrive" ColumnName="optical_drive" />
-          <ScalarProperty Name="Ram" ColumnName="ram" />
           <ScalarProperty Name="Processor" ColumnName="processor" />
           <ScalarProperty Name="Type" ColumnName="type" />
           <ScalarProperty Name="Producer" ColumnName="producer" />

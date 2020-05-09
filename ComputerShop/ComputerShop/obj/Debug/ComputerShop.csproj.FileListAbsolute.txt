@@ -97,5 +97,6 @@ F:\course work\ComputerShop\ComputerShop\obj\Debug\view\main\filters\ComputerFil
 F:\course work\ComputerShop\ComputerShop\obj\Debug\view\main\filters\PeripheralFilters.g.cs
 F:\course work\ComputerShop\ComputerShop\obj\Debug\view\main\filters\ComputerFilters.baml
 F:\course work\ComputerShop\ComputerShop\obj\Debug\view\main\filters\PeripheralFilters.baml
-F:\course work\ComputerShop\ComputerShop\obj\Debug\ComputerShop.csprojAssemblyReference.cache
 F:\course work\ComputerShop\ComputerShop\obj\Debug\ComputerShop.csproj.CoreCompileInputs.cache
+F:\course work\ComputerShop\ComputerShop\obj\Debug\view\products\DesktopWindow.g.cs
+F:\course work\ComputerShop\ComputerShop\obj\Debug\view\products\DesktopWindow.baml

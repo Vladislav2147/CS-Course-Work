@@ -14,8 +14,8 @@ namespace ComputerShop.model.database
     
     public partial class Peripherals : Product
     {
-        public Nullable<model.enums.PeripheralInterface> Interface { get; set; }
+        public model.enums.PeripheralInterface Interface { get; set; }
         public string Material { get; set; }
-        public Nullable<model.enums.Color> Color { get; set; }
+        public model.enums.Color Color { get; set; }
     }
 }
