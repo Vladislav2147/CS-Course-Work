@@ -59,7 +59,7 @@
       <PropertyRef Name="id" />
     </Key>
     <Property Name="id" Type="int" Nullable="false" />
-    <Property Name="screen_diagonal" Type="int" />
+    <Property Name="screen_diagonal" Type="float" />
     <Property Name="screen_resolution" Type="nchar" MaxLength="10" />
     <Property Name="screen_technology" Type="nchar" MaxLength="10" />
     <Property Name="battery_capacity" Type="int" />

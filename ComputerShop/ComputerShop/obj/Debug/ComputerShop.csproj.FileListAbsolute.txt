@@ -100,3 +100,7 @@ F:\course work\ComputerShop\ComputerShop\obj\Debug\view\main\filters\PeripheralF
 F:\course work\ComputerShop\ComputerShop\obj\Debug\ComputerShop.csproj.CoreCompileInputs.cache
 F:\course work\ComputerShop\ComputerShop\obj\Debug\view\products\DesktopWindow.g.cs
 F:\course work\ComputerShop\ComputerShop\obj\Debug\view\products\DesktopWindow.baml
+F:\course work\ComputerShop\ComputerShop\obj\Debug\view\products\LaptopWindow.g.cs
+F:\course work\ComputerShop\ComputerShop\obj\Debug\view\products\LaptopWindow.baml
+F:\course work\ComputerShop\ComputerShop\obj\Debug\view\products\ProductDictionary.baml
+F:\course work\ComputerShop\ComputerShop\obj\Debug\view\products\ReadonlyProductDictionary.baml

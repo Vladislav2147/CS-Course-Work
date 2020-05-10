@@ -163,6 +163,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="model\converters\DecimalConverter.cs" />
     <Compile Include="model\converters\EnumBindingSourceExtension.cs" />
     <Compile Include="model\converters\EnumDescriptionTypeConverter.cs" />
     <Compile Include="model\converters\ImageConverter.cs" />
@@ -197,16 +198,19 @@
     <Compile Include="model\service\implementations\SupplyService.cs" />
     <Compile Include="model\statics\ChildFinder.cs" />
     <Compile Include="model\validation\DecimalValidator.cs" />
+    <Compile Include="model\validation\DoubleValidator.cs" />
     <Compile Include="model\validation\EmailValidationAttribute.cs" />
     <Compile Include="model\validation\IntegerValidator.cs" />
     <Compile Include="model\validation\NotEmptyValidator.cs" />
     <Compile Include="model\validation\NullableIntegerValidator.cs" />
+    <Compile Include="model\validation\ResolutionValidator.cs" />
     <Compile Include="model\validation\YearValidator.cs" />
     <Compile Include="viewmodel\cart\ShoppingCartViewModel.cs" />
     <Compile Include="viewmodel\login\SignUpViewModel.cs" />
     <Compile Include="viewmodel\main\MainListViewModel.cs" />
     <Compile Include="viewmodel\main\MainWindowViewModel.cs" />
     <Compile Include="viewmodel\products\DesktopWindowViewModel.cs" />
+    <Compile Include="viewmodel\products\LaptopWindowViewModel.cs" />
     <Compile Include="viewmodel\products\ProductWindowViewModel.cs" />
     <Compile Include="viewmodel\RelayCommand.cs" />
     <Compile Include="viewmodel\login\SignInViewModel.cs" />
@@ -232,6 +236,9 @@
       <DependentUpon>DesktopWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="view\products\IProductWindow.cs" />
+    <Compile Include="view\products\LaptopWindow.xaml.cs">
+      <DependentUpon>LaptopWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="view\shoppingcart\ShoppingCart.xaml.cs">
       <DependentUpon>ShoppingCart.xaml</DependentUpon>
     </Compile>
@@ -331,6 +338,18 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="view\products\DesktopWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="view\products\LaptopWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="view\products\ProductDictionary.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="view\products\ReadonlyProductDictionary.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

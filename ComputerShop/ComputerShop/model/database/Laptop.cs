@@ -14,7 +14,7 @@ namespace ComputerShop.model.database
     
     public partial class Laptop : Computer
     {
-        public Nullable<int> Diagonal { get; set; }
+        public Nullable<double> Diagonal { get; set; }
         public string Resolution { get; set; }
         public string ScreenTechnology { get; set; }
         public Nullable<int> BatteryCapacity { get; set; }

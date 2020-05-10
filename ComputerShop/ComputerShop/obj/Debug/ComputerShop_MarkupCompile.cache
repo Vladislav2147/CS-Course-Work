@@ -10,11 +10,11 @@ none
 false
 DEBUG;TRACE
 F:\course work\ComputerShop\ComputerShop\App.xaml
-9-1382473493
+121796691854
 21273912965
-771149762173
+82-470894146
 155991404302
-view\main\filters\ComputerFilters.xaml;view\main\filters\PeripheralFilters.xaml;view\main\MainWindow.xaml;view\login\LoginWindow.xaml;view\login\SignIn.xaml;view\login\SignUp.xaml;view\main\MainList.xaml;view\products\DesktopWindow.xaml;view\shoppingcart\ShoppingCart.xaml;
+view\main\filters\ComputerFilters.xaml;view\main\filters\PeripheralFilters.xaml;view\main\MainWindow.xaml;view\login\LoginWindow.xaml;view\login\SignIn.xaml;view\login\SignUp.xaml;view\main\MainList.xaml;view\products\DesktopWindow.xaml;view\products\LaptopWindow.xaml;view\products\ProductDictionary.xaml;view\products\ReadonlyProductDictionary.xaml;view\shoppingcart\ShoppingCart.xaml;
 
 False
 

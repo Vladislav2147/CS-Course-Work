@@ -176,7 +176,7 @@
     <Property Name="PowerSupply" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
   </EntityType>
   <EntityType Name="Laptop" BaseType="ComputerShopModel.Computer">
-    <Property Name="Diagonal" Type="Int32" />
+    <Property Name="Diagonal" Type="Double" />
     <Property Name="Resolution" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
     <Property Name="ScreenTechnology" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
     <Property Name="BatteryCapacity" Type="Int32" />

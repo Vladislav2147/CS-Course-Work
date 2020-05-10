@@ -64,7 +64,7 @@
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="int" Nullable="false" />
-          <Property Name="screen_diagonal" Type="int" />
+          <Property Name="screen_diagonal" Type="float" />
           <Property Name="screen_resolution" Type="nchar" MaxLength="10" />
           <Property Name="screen_technology" Type="nchar" MaxLength="10" />
           <Property Name="battery_capacity" Type="int" />
@@ -555,7 +555,7 @@
           <Property Name="PowerSupply" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="Laptop" BaseType="ComputerShopModel.Computer">
-          <Property Name="Diagonal" Type="Int32" />
+          <Property Name="Diagonal" Type="Double" />
           <Property Name="Resolution" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
           <Property Name="ScreenTechnology" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
           <Property Name="BatteryCapacity" Type="Int32" />

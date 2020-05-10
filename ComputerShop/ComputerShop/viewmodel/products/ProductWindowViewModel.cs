@@ -9,10 +9,12 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.Runtime.Remoting.Proxies;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
+using System.Windows.Media;
 
 namespace ComputerShop.viewmodel.products
 {
@@ -24,15 +26,18 @@ namespace ComputerShop.viewmodel.products
 		public string ImageSource { get; set; } = "/pictures/none.png";
 		public ICommand GetImage { get; set; }
 		public ICommand Accept { get; set; }
+		public ICommand Cancel { get; set; }
+
 		public ProductWindowViewModel(IProductWindow<T> codeBehind)
 		{ 
 			CodeBehind = codeBehind;
 			ProductService = new ProductService();
 			GetImage = new RelayCommand(param => GetImageExecute());
 			Accept = new RelayCommand(param => AcceptExecute());
+			Cancel = new RelayCommand(param => CancelExecute());
 		}
 
-		private void GetImageExecute()
+		protected virtual void GetImageExecute()
 		{
 			try
 			{
@@ -57,6 +62,7 @@ namespace ComputerShop.viewmodel.products
 		{
 			try
 			{
+				MessageBox.Show(Product.Price.ToString());
 				ProductService.Add(Product);
 				ProductService.SaveChanges();
 				MessageBox.Show("Продукт успешно добавлен");
@@ -68,6 +74,9 @@ namespace ComputerShop.viewmodel.products
 			}
 		}
 
-
+		protected virtual void CancelExecute()
+		{
+			(CodeBehind as Window).Close();
+		}
 	}
 }

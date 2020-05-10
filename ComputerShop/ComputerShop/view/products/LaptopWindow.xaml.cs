@@ -17,14 +17,14 @@ using System.Windows.Shapes;
 namespace ComputerShop.view.products
 {
 	/// <summary>
-	/// Логика взаимодействия для DesktopWindow.xaml
+	/// Логика взаимодействия для LaptopWindow.xaml
 	/// </summary>
-	public partial class DesktopWindow : Window, IProductWindow<Desktop>
+	public partial class LaptopWindow : Window, IProductWindow<Laptop>
 	{
-		public DesktopWindow()
+		public LaptopWindow()
 		{
 			InitializeComponent();
-			this.DataContext = new DesktopWindowViewModel(this);
+			this.DataContext = new LaptopWindowViewModel(this);
 		}
 	}
 }

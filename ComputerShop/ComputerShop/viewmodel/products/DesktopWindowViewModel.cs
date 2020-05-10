@@ -1,10 +1,5 @@
 ﻿using ComputerShop.model.database;
 using ComputerShop.view.products;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ComputerShop.viewmodel.products
 {
@@ -12,7 +7,7 @@ namespace ComputerShop.viewmodel.products
 	{
 		public DesktopWindowViewModel(DesktopWindow codeBehind) : base(codeBehind) 
 		{
-			Product = new Desktop();
+			Product = new Desktop() { Type = model.enums.ComputerType.Home };
 		}
 	}
 }
