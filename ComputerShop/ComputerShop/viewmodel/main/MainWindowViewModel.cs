@@ -74,7 +74,7 @@ namespace ComputerShop.viewmodel.main
 			UpdateMainList(products);			
 		}
 
-		private void UpdateMainList(List<Product> products)
+		public void UpdateMainList(List<Product> products)
 		{
 			MainList view = new MainList(this.CodeBehind);
 			view.ProductList.ItemsSource = products;
@@ -215,7 +215,7 @@ namespace ComputerShop.viewmodel.main
 			}
 		}
 
-		private List<Product> GetListOfCurrentType(List<Product> products)
+		public List<Product> GetListOfCurrentType(List<Product> products)
 		{
 			if(CodeBehind.Tree.SelectedItem as TreeViewItem != null)
 			{

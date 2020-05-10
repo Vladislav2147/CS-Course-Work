@@ -202,7 +202,7 @@
                     <ColumnDefinition></ColumnDefinition>
                 </Grid.ColumnDefinitions>
 
-                <TextBlock Grid.Column="0" Text="Блок питания::"></TextBlock>
+                <TextBlock Grid.Column="0" Text="Блок питания:"></TextBlock>
 
                 <TextBox Grid.Column="1" Text="{Binding Product.PowerSupply}"></TextBox>
             </Grid>

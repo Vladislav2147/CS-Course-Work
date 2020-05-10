@@ -22,7 +22,7 @@ namespace ComputerShop.model.service
 		}
 		public virtual List<T> GetAll()
 		{
-			return ComputerShopContext.GetEntity<T>().Cast<T>().ToList();
+			return ComputerShopContext.GetEntity<T>().AsNoTracking().Cast<T>().ToList();
 		}
 		public virtual void Add(T item)
 		{
@@ -32,6 +32,12 @@ namespace ComputerShop.model.service
 		public virtual void Remove(T item)
 		{
 			ComputerShopContext.GetEntity<T>().Remove(item);
+		}
+
+		public virtual void RemoveById(int id)
+		{
+			T t = FindByPredicate(item => item.Id == id).FirstOrDefault();
+			ComputerShopContext.GetEntity<T>().Remove(t);
 		}
 
 		public virtual void ChangeItem(T newItem)

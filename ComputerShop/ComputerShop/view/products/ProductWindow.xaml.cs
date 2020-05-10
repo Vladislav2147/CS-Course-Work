@@ -1,6 +1,8 @@
 ﻿using ComputerShop.model.database;
+using ComputerShop.model.statics;
 using ComputerShop.viewmodel.products;
 using System;
+using System.CodeDom;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -25,8 +27,21 @@ namespace ComputerShop.view.products
 		public ProductWindow()
 		{
 			InitializeComponent();
-			this.DataContext = new ProductWindowViewModel<Keyboard>(this, new Keyboard());
-			this.RestParams.Content = new KeyboardUC();
+
 		}
+		public ProductWindow(Product product, IProductUC productUC, bool isReadonly) : this()
+		{
+			this.DataContext = new ProductWindowViewModel(this, product);
+
+			if (isReadonly)
+			{
+				(DataContext as ProductWindowViewModel).UserViewSetup();
+			}
+
+			
+			this.RestParams.Content = productUC;
+		}
+
+		
 	}
 }

@@ -8,7 +8,7 @@
         xmlns:converters="clr-namespace:ComputerShop.model.converters"
         xmlns:validation="clr-namespace:ComputerShop.model.validation"
         mc:Ignorable="d"
-        Title="DesktopWindow" MinHeight="700" MinWidth="650" Width="650">
+        Title="DesktopWindow" MinHeight="800" MinWidth="650" Width="650">
     <Window.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
@@ -33,7 +33,7 @@
     </Window.Resources>
     <Grid>
         <StackPanel>
-            <TextBlock Text="Добавить настольный ПК" Background="#FF7676FF" Height="auto" HorizontalAlignment="Stretch" Margin="0" Padding="0,10" FontSize="40px" TextAlignment="Center">
+            <TextBlock Text="{Binding Title}" Background="#FF7676FF" Height="auto" HorizontalAlignment="Stretch" Margin="0" Padding="0,10" FontSize="40px" TextAlignment="Center">
                 <TextBlock.Effect>
                     <DropShadowEffect BlurRadius="1" ShadowDepth="1" Direction="270"/>
                 </TextBlock.Effect></TextBlock>
@@ -48,7 +48,7 @@
                 </StackPanel>
                 
                 <StackPanel Grid.Column="1">
-                    <Grid>
+                    <Grid x:Name="Article">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition></ColumnDefinition>
                             <ColumnDefinition></ColumnDefinition>
@@ -56,7 +56,7 @@
                         
                         <TextBlock Grid.Column="0" Text="Артикул:"></TextBlock>
                         
-                        <TextBox Grid.Column="1" Validation.ErrorTemplate="{StaticResource validationErrorTemplate}">
+                        <TextBox x:Name="ArticleField" Grid.Column="1" Validation.ErrorTemplate="{StaticResource validationErrorTemplate}">
                             <Binding Path="Product.Id" Mode="TwoWay" 
                             UpdateSourceTrigger="LostFocus">
                                 <Binding.ValidationRules>
@@ -66,7 +66,7 @@
                         </TextBox>
                     </Grid>
 
-                    <Grid>
+                    <Grid x:Name="ProductName">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition></ColumnDefinition>
                             <ColumnDefinition></ColumnDefinition>
@@ -84,7 +84,7 @@
                         </TextBox>
                     </Grid>
 
-                    <Grid>
+                    <Grid x:Name="Price">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition></ColumnDefinition>
                             <ColumnDefinition></ColumnDefinition>
@@ -115,7 +115,7 @@
                         
                     </Grid>
                     
-                    <Grid>
+                    <Grid x:Name="Amount">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition></ColumnDefinition>
                             <ColumnDefinition></ColumnDefinition>

@@ -110,6 +110,5 @@ F:\course work\ComputerShop\ComputerShop\obj\Debug\view\products\MonoblockUC.g.c
 F:\course work\ComputerShop\ComputerShop\obj\Debug\view\products\MonoblockUC.baml
 F:\course work\ComputerShop\ComputerShop\obj\Debug\view\products\MouseUC.g.cs
 F:\course work\ComputerShop\ComputerShop\obj\Debug\view\products\MouseUC.baml
-F:\course work\ComputerShop\ComputerShop\obj\Debug\ComputerShop.csprojAssemblyReference.cache
 F:\course work\ComputerShop\ComputerShop\obj\Debug\view\products\KeyboardUC.g.cs
 F:\course work\ComputerShop\ComputerShop\obj\Debug\view\products\KeyboardUC.baml

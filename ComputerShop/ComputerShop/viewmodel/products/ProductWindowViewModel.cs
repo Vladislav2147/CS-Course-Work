@@ -1,6 +1,7 @@
 ﻿using ComputerShop.model.database;
 using ComputerShop.model.kindofmagic;
 using ComputerShop.model.service.implementations;
+using ComputerShop.model.statics;
 using ComputerShop.view.products;
 using Microsoft.Win32;
 using System;
@@ -13,15 +14,19 @@ using System.Runtime.Remoting.Proxies;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
+using Image = System.Drawing.Image;
 
 namespace ComputerShop.viewmodel.products
 {
-	public class ProductWindowViewModel<T> : PropertyChangedBase where T: Product
+	public class ProductWindowViewModel : PropertyChangedBase
 	{
+		public string Title { get; set; } = "Добавить товар";
 		public ProductWindow CodeBehind { get; set; }
-		public T Product { get; set; }
+		public Product Product { get; set; }
+		public bool IsCreatedNow { get; set; } = false;
 		public ProductService ProductService { get; set; }
 		public string ImageSource { get; set; } = "/pictures/none.png";
 		public ICommand GetImage { get; set; }
@@ -31,8 +36,11 @@ namespace ComputerShop.viewmodel.products
 		public ProductWindowViewModel(ProductWindow codeBehind, Product product)
 		{
 			CodeBehind = codeBehind;
-			Product = product as T;
-			
+			if(product.Name == null || product.Name.Length == 0)
+			{
+				IsCreatedNow = true;
+			}
+			Product = product;
 			ProductService = new ProductService();
 			GetImage = new RelayCommand(param => GetImageExecute());
 			Accept = new RelayCommand(param => AcceptExecute());
@@ -64,7 +72,14 @@ namespace ComputerShop.viewmodel.products
 		{
 			try
 			{
-				ProductService.Add(Product);
+				if (IsCreatedNow)
+				{
+					ProductService.Add(Product);
+				}
+				else
+				{
+					ProductService.ChangeItem(Product);					
+				}				
 				ProductService.SaveChanges();
 				MessageBox.Show("Продукт успешно добавлен");
 				(CodeBehind as Window).Close();
@@ -78,6 +93,35 @@ namespace ComputerShop.viewmodel.products
 		private void CancelExecute()
 		{
 			(CodeBehind as Window).Close();
+		}
+		public void UserViewSetup()
+		{
+			Title = Product.Name;
+			CodeBehind.Loaded += ProductWindowLoaded;
+			CodeBehind.ProductName.Visibility = Visibility.Collapsed;
+			CodeBehind.Amount.Visibility = Visibility.Collapsed;
+			
+		}
+
+		private void ProductWindowLoaded(object sender, RoutedEventArgs e)
+		{
+			ResourceDictionary resource = new ResourceDictionary() { Source = new Uri("view\\products\\ReadonlyProductDictionary.xaml", UriKind.Relative) };
+			CodeBehind.Resources.MergedDictionaries.Clear();
+			CodeBehind.Resources.MergedDictionaries.Add(resource);
+
+
+			foreach (var textBox in ChildFinder.FindVisualChildren<TextBox>(CodeBehind))
+			{
+				textBox.Style = resource["BoxStyle"] as Style;
+			}
+			foreach (var comboBox in ChildFinder.FindVisualChildren<ComboBox>(CodeBehind))
+			{
+				comboBox.Style = resource["ComboboxStyle"] as Style;
+			}
+			foreach (var button in ChildFinder.FindVisualChildren<Button>(CodeBehind))
+			{
+				button.Visibility = Visibility.Collapsed;
+			}
 		}
 	}
 }

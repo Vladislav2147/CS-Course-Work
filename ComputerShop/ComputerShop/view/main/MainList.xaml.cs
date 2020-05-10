@@ -1,6 +1,8 @@
 ﻿using ComputerShop.model.database;
+using ComputerShop.view.products;
 using ComputerShop.viewmodel.main;
 using System;
+using System.CodeDom;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -29,7 +31,13 @@ namespace ComputerShop.view
 			InitializeComponent();
 			this.ProductList.ItemsSource = (Owner.DataContext as MainWindowViewModel).ProductService.GetAll();
 			Loaded += MainList_Loaded;
+			this.ProductList.MouseDoubleClick += ItemDoubleClick;
 
+		}
+
+		private void ItemDoubleClick(object sender, MouseButtonEventArgs e)
+		{
+			(this.DataContext as MainListViewModel).ShowProduct(sender);
 		}
 
 		private void MainList_Loaded(object sender, EventArgs e)

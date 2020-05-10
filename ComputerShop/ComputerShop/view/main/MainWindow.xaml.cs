@@ -5,21 +5,10 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 using ComputerShop.model.database;
 using ComputerShop.model.business;
 using ComputerShop.view;
 using ComputerShop.model.enums;
-using ComputerShop.model.service.implementations;
-
-using System.IO;
-using Microsoft.Win32;
 using ComputerShop.viewmodel.main;
 using ComputerShop.view.shoppingcart;
 using System.ComponentModel;
@@ -40,7 +29,7 @@ namespace ComputerShop
 			Customer customer;
 			using (ComputerShopContext context = new ComputerShopContext())
 			{
-				customer = context.Customer.Include("Order").Where(customer1 => customer1.Role == Role.User).FirstOrDefault();
+				customer = context.Customer.Include("Order").Where(customer1 => customer1.Role == Role.Admin).FirstOrDefault();
 			}
 			
 			//

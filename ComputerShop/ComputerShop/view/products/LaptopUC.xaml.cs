@@ -18,7 +18,7 @@ namespace ComputerShop.view.products
 	/// <summary>
 	/// Логика взаимодействия для LaptopUC.xaml
 	/// </summary>
-	public partial class LaptopUC : UserControl
+	public partial class LaptopUC : UserControl, IProductUC
 	{
 		public LaptopUC()
 		{

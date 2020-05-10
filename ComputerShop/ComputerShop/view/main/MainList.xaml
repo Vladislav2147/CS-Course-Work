@@ -11,14 +11,54 @@
     <UserControl.Resources>
         <converter:ImageConverter x:Key="ImageConverter"></converter:ImageConverter>
         <converter:SizeConverter x:Key="SizeConverter"></converter:SizeConverter>
+        <Style TargetType="Button">
+            <Setter Property="Padding" Value="5"></Setter> 
+            <Setter Property="Margin" Value="5"></Setter>
+            <Setter Property="HorizontalAlignment" Value="Center"></Setter>
+            <Setter Property="VerticalAlignment" Value="Center"></Setter>
+            <Setter Property="BorderBrush" Value="Black"></Setter>
+            <Setter Property="Background" Value="{x:Null}"></Setter>
+        </Style>
     </UserControl.Resources>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="50px"></RowDefinition>
             <RowDefinition Height="*"></RowDefinition>
         </Grid.RowDefinitions>
-        <TextBlock Grid.Row="0" Text="Каталог" FontSize="36" Margin="5,0,0,0" ></TextBlock>
+        <DockPanel Grid.Row="0" LastChildFill="False">
+            <TextBlock DockPanel.Dock="Left" Text="Каталог" FontSize="36" Margin="5,0" ></TextBlock>
+            <StackPanel x:Name="AdminTools" DockPanel.Dock="Right" Orientation="Horizontal">
+                
+                <Button Command="{Binding Create}" Content="Создать..." Background="White" Height="30"></Button>
 
+                <ComboBox SelectedValue="{Binding ProductType, Mode=OneWayToSource}" Name="Types" SelectedIndex="0" Height="30" MinWidth="100" VerticalContentAlignment="Center" Margin="5">
+                    <ComboBoxItem Content="Настольный пк"/>
+                    <ComboBoxItem Content="Ноутбук"/>
+                    <ComboBoxItem Content="Моноблок"/>
+                    <ComboBoxItem Content="Клавиатура"/>
+                    <ComboBoxItem Content="Мышь"/>
+                </ComboBox>
+                
+                <Button Command="{Binding Remove}" Content="Удалить" Background="White" Height="30">
+                    <Button.Style>
+                        <Style TargetType="Button">
+                            <Setter Property="IsEnabled" Value="True" />
+                            <Style.Triggers>
+
+                                <DataTrigger Binding="{Binding SelectedItem,ElementName=ProductList}" 
+                                             Value="{x:Null}">
+                                    <Setter Property="IsEnabled" Value="False"></Setter>
+                                </DataTrigger>
+
+                            </Style.Triggers>
+                        </Style>
+                    </Button.Style>
+                </Button>
+                
+            </StackPanel>
+            
+        </DockPanel>
+        
         <ListBox x:Name="ProductList" HorizontalContentAlignment="Stretch" Grid.Row="1" VirtualizingPanel.ScrollUnit="Pixel" ScrollViewer.VerticalScrollBarVisibility="Hidden" ScrollViewer.ScrollChanged="MainList_Loaded" ScrollViewer.HorizontalScrollBarVisibility="Disabled" BorderThickness="0" Background="{x:Null}" BorderBrush="{x:Null}">
             <ListBox.ItemContainerStyle>
                 <Style TargetType="ListBoxItem">
@@ -42,7 +82,7 @@
                         <Image Grid.Column="0" Margin="5,5,5,5" x:Name="Picture" Source="{Binding Path=Photo, Converter={StaticResource ImageConverter}}"></Image>
 
                         <DockPanel LastChildFill="True" Grid.Column="1">
-                            <Button x:Name="ToCart" DockPanel.Dock="Right" Command="{Binding ElementName=ProdList, Path=DataContext.AddToCart}" CommandParameter="{Binding RelativeSource={RelativeSource Mode=Self}}"  Grid.Column="3" Content="В корзину" Padding="5,5,5,5" Margin="5,5,5,5" HorizontalAlignment="Center" VerticalAlignment="Center" Background="{x:Null}" BorderBrush="Black"></Button>
+                            <Button x:Name="ToCart" DockPanel.Dock="Right" Command="{Binding ElementName=ProdList, Path=DataContext.AddToCart}" CommandParameter="{Binding RelativeSource={RelativeSource Mode=Self}}"  Grid.Column="3" Content="В корзину"></Button>
                             <TextBlock DockPanel.Dock="Right" Text="{Binding Path=Price, StringFormat=0.00}" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5,5,5,5"></TextBlock>
                             <StackPanel Orientation="Vertical" Grid.Column="1" Margin="5,0,0,0">
                                 <TextBlock Text="{Binding Path=Name}" Margin="5,5,5,5"/>
