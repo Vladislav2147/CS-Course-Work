@@ -1,0 +1,268 @@
+﻿<UserControl x:Class="ComputerShop.view.products.LaptopUC"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:local="clr-namespace:ComputerShop.view.products"
+             xmlns:enums="clr-namespace:ComputerShop.model.enums"
+             xmlns:converters="clr-namespace:ComputerShop.model.converters"
+             xmlns:validation="clr-namespace:ComputerShop.model.validation"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <UserControl.Resources>
+        <converters:ImageConverter x:Key="ImageConverter"></converters:ImageConverter>
+        <converters:DecimalConverter x:Key="DecimalConverter"></converters:DecimalConverter>
+        <ControlTemplate x:Key="validationErrorTemplate">
+            <DockPanel>
+                <TextBlock Foreground="Red" FontSize="9px" Margin="0,-2,0,0" DockPanel.Dock="Bottom" 
+                           Text="{Binding ElementName=ErrorAdorner, Path=AdornedElement.(Validation.Errors)[0].ErrorContent}"></TextBlock>
+                <AdornedElementPlaceholder x:Name="ErrorAdorner"></AdornedElementPlaceholder>
+            </DockPanel>
+        </ControlTemplate>
+    </UserControl.Resources>
+    <Grid>
+        <StackPanel>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+
+                <TextBlock Grid.Column="0" Text="Производитель:"></TextBlock>
+
+                <TextBox Grid.Column="1" Text="{Binding Product.Producer}"></TextBox>
+
+            </Grid>
+
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+
+                <TextBlock Grid.Column="0" Text="Тип:"></TextBlock>
+
+                <ComboBox Grid.Column="1" SelectedItem="{Binding Product.Type}" ItemsSource="{Binding Source={converters:EnumBindingSource {x:Type enums:ComputerType}}}"></ComboBox>
+
+            </Grid>
+
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+
+                <TextBlock Grid.Column="0" Text="Процессор:"></TextBlock>
+
+                <TextBox Grid.Column="1" Text="{Binding Product.Processor}"></TextBox>
+
+
+            </Grid>
+
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+
+                <TextBlock Grid.Column="0" Text="Кол-во ядер:"></TextBlock>
+
+                <TextBox Grid.Column="1" Validation.ErrorTemplate="{StaticResource validationErrorTemplate}">
+                    <Binding Path="Product.Cores" Mode="TwoWay" 
+                            UpdateSourceTrigger="LostFocus">
+                        <Binding.ValidationRules>
+                            <validation:NullableIntegerValidator></validation:NullableIntegerValidator>
+                        </Binding.ValidationRules>
+                    </Binding>
+                </TextBox>
+
+
+            </Grid>
+
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+
+                <TextBlock Grid.Column="0" Text="Частота, МГц:"></TextBlock>
+
+                <TextBox Grid.Column="1" Validation.ErrorTemplate="{StaticResource validationErrorTemplate}">
+                    <Binding Path="Product.Frequency" Mode="TwoWay" 
+                            UpdateSourceTrigger="LostFocus">
+                        <Binding.ValidationRules>
+                            <validation:NullableIntegerValidator></validation:NullableIntegerValidator>
+                        </Binding.ValidationRules>
+                    </Binding>
+                </TextBox>
+
+            </Grid>
+
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+
+                <TextBlock Grid.Column="0" Text="ОЗУ, Гб:"></TextBlock>
+
+                <TextBox Grid.Column="1" Validation.ErrorTemplate="{StaticResource validationErrorTemplate}">
+                    <Binding Path="Product.RamSize" Mode="TwoWay" 
+                            UpdateSourceTrigger="LostFocus">
+                        <Binding.ValidationRules>
+                            <validation:NullableIntegerValidator></validation:NullableIntegerValidator>
+                        </Binding.ValidationRules>
+                    </Binding>
+                </TextBox>
+
+            </Grid>
+
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+
+                <TextBlock Grid.Column="0" Text="Память, Гб:"></TextBlock>
+
+                <TextBox Grid.Column="1" Validation.ErrorTemplate="{StaticResource validationErrorTemplate}">
+                    <Binding Path="Product.HardDriveSize" Mode="TwoWay" 
+                            UpdateSourceTrigger="LostFocus">
+                        <Binding.ValidationRules>
+                            <validation:NullableIntegerValidator></validation:NullableIntegerValidator>
+                        </Binding.ValidationRules>
+                    </Binding>
+                </TextBox>
+
+            </Grid>
+
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+
+                <TextBlock Grid.Column="0" Text="Видеокарта:"></TextBlock>
+
+                <TextBox Grid.Column="1" Text="{Binding Product.GraphicsCard}"></TextBox>
+
+            </Grid>
+
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+
+                <TextBlock Grid.Column="0" Text="Операционная система:"></TextBlock>
+
+                <ComboBox Grid.Column="1" SelectedItem="{Binding Product.OperatingSystem}" ItemsSource="{Binding Source={converters:EnumBindingSource {x:Type enums:OperatingSystem}}}"></ComboBox>
+
+            </Grid>
+
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+
+                <TextBlock Grid.Column="0" Text="Интерфейсы:"></TextBlock>
+
+                <TextBox Grid.Column="1" Text="{Binding Product.Interfaces}"></TextBox>
+
+            </Grid>
+
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+
+                <TextBlock Grid.Column="0" Text="Комплект:"></TextBlock>
+
+                <TextBox Grid.Column="1" Text="{Binding Product.Equipment}"></TextBox>
+
+            </Grid>
+
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+
+                <TextBlock Grid.Column="0" Text="Корпус:"></TextBlock>
+
+                <TextBox Grid.Column="1" Text="{Binding Product.Case}"></TextBox>
+
+            </Grid>
+
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+
+                <TextBlock Grid.Column="0" Text="Диагональ экрана:"></TextBlock>
+
+                <TextBox Grid.Column="1" Validation.ErrorTemplate="{StaticResource validationErrorTemplate}">
+                    <Binding Path="Product.Diagonal" Mode="TwoWay" 
+                            UpdateSourceTrigger="LostFocus">
+                        <Binding.ValidationRules>
+                            <validation:DoubleValidator></validation:DoubleValidator>
+                        </Binding.ValidationRules>
+                    </Binding>
+                </TextBox>
+
+            </Grid>
+
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+
+                <TextBlock Grid.Column="0" Text="Разрешение:"></TextBlock>
+
+                <TextBox Grid.Column="1" Validation.ErrorTemplate="{StaticResource validationErrorTemplate}">
+                    <Binding Path="Product.Resolution" Mode="TwoWay" 
+                            UpdateSourceTrigger="LostFocus">
+                        <Binding.ValidationRules>
+                            <validation:ResolutionValidator></validation:ResolutionValidator>
+                        </Binding.ValidationRules>
+                    </Binding>
+                </TextBox>
+               
+            </Grid>
+
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+
+                <TextBlock Grid.Column="0" Text="Тип матрицы:"></TextBlock>
+
+                <TextBox Grid.Column="1" Text="{Binding Product.ScreenTechnology}"></TextBox>
+                
+            </Grid>
+
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+
+                <TextBlock Grid.Column="0" Text="Емкость, мА*ч:"></TextBlock>
+
+                <TextBox Grid.Column="1" Validation.ErrorTemplate="{StaticResource validationErrorTemplate}">
+                    <Binding Path="Product.BatteryCapacity" Mode="TwoWay" 
+                            UpdateSourceTrigger="LostFocus">
+                        <Binding.ValidationRules>
+                            <validation:NullableIntegerValidator></validation:NullableIntegerValidator>
+                        </Binding.ValidationRules>
+                    </Binding>
+                </TextBox>
+            </Grid>
+        </StackPanel>
+    </Grid>
+</UserControl>

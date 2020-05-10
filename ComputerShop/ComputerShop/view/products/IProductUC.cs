@@ -8,7 +8,7 @@ using System.Windows;
 
 namespace ComputerShop.view.products
 {
-	interface IProductWindow<T> where T: Product
+	public interface IProductUC<T> where T: Product
 	{
 	}
 }

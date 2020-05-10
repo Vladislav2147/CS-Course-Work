@@ -1,0 +1,151 @@
+﻿<Window x:Class="ComputerShop.view.products.ProductWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ComputerShop.view.products"
+        xmlns:enums="clr-namespace:ComputerShop.model.enums"
+        xmlns:converters="clr-namespace:ComputerShop.model.converters"
+        xmlns:validation="clr-namespace:ComputerShop.model.validation"
+        mc:Ignorable="d"
+        Title="DesktopWindow" MinHeight="700" MinWidth="650" Width="650">
+    <Window.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="ProductDictionary.xaml"></ResourceDictionary>
+            </ResourceDictionary.MergedDictionaries>
+            <converters:ImageConverter x:Key="ImageConverter"></converters:ImageConverter>
+            <converters:DecimalConverter x:Key="DecimalConverter"></converters:DecimalConverter>
+            <ControlTemplate x:Key="validationErrorTemplate">
+                <DockPanel>
+                    <TextBlock Foreground="Red" FontSize="9px" Margin="0,-2,0,0" DockPanel.Dock="Bottom" 
+                           Text="{Binding ElementName=ErrorAdorner, Path=AdornedElement.(Validation.Errors)[0].ErrorContent}"></TextBlock>
+                    <AdornedElementPlaceholder x:Name="ErrorAdorner"></AdornedElementPlaceholder>
+                </DockPanel>
+            </ControlTemplate>
+            <Style TargetType="TextBlock" BasedOn="{StaticResource BlockStyle}"></Style>
+            <Style TargetType="TextBox" BasedOn="{StaticResource BoxStyle}"></Style>
+            <Style TargetType="ComboBox" BasedOn="{StaticResource ComboboxStyle}"></Style>
+            <Style TargetType="ComboBoxItem" BasedOn="{StaticResource ItemStyle}"></Style>
+            <Style TargetType="Button" BasedOn="{StaticResource ButtonStyle}"></Style>
+        </ResourceDictionary>
+        
+    </Window.Resources>
+    <Grid>
+        <StackPanel>
+            <TextBlock Text="Добавить настольный ПК" Background="#FF7676FF" Height="auto" HorizontalAlignment="Stretch" Margin="0" Padding="0,10" FontSize="40px" TextAlignment="Center">
+                <TextBlock.Effect>
+                    <DropShadowEffect BlurRadius="1" ShadowDepth="1" Direction="270"/>
+                </TextBlock.Effect></TextBlock>
+            <Grid Margin="10">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <StackPanel Grid.Column="0">
+                    <Image x:Name="MyImage" Source="{Binding Product.Photo, Converter={StaticResource ImageConverter}}" Margin="5" MaxHeight="200px"></Image>
+                    <Button Command="{Binding GetImage}" Content="Выбрать Изображение" Width="150px" Padding="0,5,0,5"></Button>
+                </StackPanel>
+                
+                <StackPanel Grid.Column="1">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition></ColumnDefinition>
+                            <ColumnDefinition></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        
+                        <TextBlock Grid.Column="0" Text="Артикул:"></TextBlock>
+                        
+                        <TextBox Grid.Column="1" Validation.ErrorTemplate="{StaticResource validationErrorTemplate}">
+                            <Binding Path="Product.Id" Mode="TwoWay" 
+                            UpdateSourceTrigger="LostFocus">
+                                <Binding.ValidationRules>
+                                    <validation:IntegerValidator></validation:IntegerValidator>
+                                </Binding.ValidationRules>
+                            </Binding>
+                        </TextBox>
+                    </Grid>
+
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition></ColumnDefinition>
+                            <ColumnDefinition></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+
+                        <TextBlock Grid.Column="0" Text="Название:"></TextBlock>
+
+                        <TextBox Grid.Column="1" Validation.ErrorTemplate="{StaticResource validationErrorTemplate}">
+                            <Binding Path="Product.Name" Mode="TwoWay" 
+                            UpdateSourceTrigger="LostFocus">
+                                <Binding.ValidationRules>
+                                    <validation:NotEmptyValidator></validation:NotEmptyValidator>
+                                </Binding.ValidationRules>
+                            </Binding>
+                        </TextBox>
+                    </Grid>
+
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition></ColumnDefinition>
+                            <ColumnDefinition></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+
+                        <TextBlock Grid.Column="0" Text="Стоимость:"></TextBlock>
+
+                        <TextBox Grid.Column="1" Text="{Binding Product.Price, Converter={StaticResource DecimalConverter}, Mode=TwoWay, StringFormat=0.00 }"></TextBox>
+                        
+                    </Grid>
+
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition></ColumnDefinition>
+                            <ColumnDefinition></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+
+                        <TextBlock Grid.Column="0" Text="Год выпуска:"></TextBlock>
+
+                        <TextBox Grid.Column="1" Validation.ErrorTemplate="{StaticResource validationErrorTemplate}">
+                            <Binding Path="Product.Year" Mode="TwoWay" 
+                            UpdateSourceTrigger="LostFocus">
+                                <Binding.ValidationRules>
+                                    <validation:YearValidator></validation:YearValidator>
+                                </Binding.ValidationRules>
+                            </Binding>
+                        </TextBox>
+                        
+                    </Grid>
+                    
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition></ColumnDefinition>
+                            <ColumnDefinition></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+
+                        <TextBlock Grid.Column="0" Text="Количество:"></TextBlock>
+
+                        <TextBox Grid.Column="1" Validation.ErrorTemplate="{StaticResource validationErrorTemplate}">
+                            <Binding Path="Product.Amount" Mode="TwoWay" 
+                            UpdateSourceTrigger="LostFocus">
+                                <Binding.ValidationRules>
+                                    <validation:IntegerValidator></validation:IntegerValidator>
+                                </Binding.ValidationRules>
+                            </Binding>
+                        </TextBox>
+                        
+                    </Grid>
+
+                    <ContentPresenter x:Name="RestParams"></ContentPresenter>
+                    
+
+                    
+
+                    
+                </StackPanel>
+            </Grid>
+            <StackPanel Orientation="Horizontal" FlowDirection="RightToLeft">
+                <Button Command="{Binding Accept}" Content="Принять"></Button>
+                <Button Command="{Binding Cancel}" Content="Отмена"></Button>
+            </StackPanel>
+        </StackPanel>
+    </Grid>
+</Window>

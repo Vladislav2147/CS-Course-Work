@@ -33,6 +33,5 @@
         <Setter Property="Margin" Value="5,0,5,3"></Setter>
         <Setter Property="SelectedIndex" Value="0"></Setter>
         <Setter Property="Height" Value="23.9px"></Setter>
-        
     </Style>
 </ResourceDictionary>

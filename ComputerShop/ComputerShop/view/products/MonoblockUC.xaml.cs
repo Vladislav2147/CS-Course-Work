@@ -1,6 +1,4 @@
-﻿using ComputerShop.model.database;
-using ComputerShop.viewmodel.products;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,19 +10,19 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace ComputerShop.view.products
 {
 	/// <summary>
-	/// Логика взаимодействия для LaptopWindow.xaml
+	/// Логика взаимодействия для MonoblockUC.xaml
 	/// </summary>
-	public partial class LaptopWindow : Window, IProductWindow<Laptop>
+	public partial class MonoblockUC : UserControl
 	{
-		public LaptopWindow()
+		public MonoblockUC()
 		{
 			InitializeComponent();
-			this.DataContext = new LaptopWindowViewModel(this);
 		}
 	}
 }

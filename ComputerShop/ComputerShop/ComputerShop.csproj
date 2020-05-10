@@ -209,8 +209,6 @@
     <Compile Include="viewmodel\login\SignUpViewModel.cs" />
     <Compile Include="viewmodel\main\MainListViewModel.cs" />
     <Compile Include="viewmodel\main\MainWindowViewModel.cs" />
-    <Compile Include="viewmodel\products\DesktopWindowViewModel.cs" />
-    <Compile Include="viewmodel\products\LaptopWindowViewModel.cs" />
     <Compile Include="viewmodel\products\ProductWindowViewModel.cs" />
     <Compile Include="viewmodel\RelayCommand.cs" />
     <Compile Include="viewmodel\login\SignInViewModel.cs" />
@@ -232,13 +230,25 @@
     <Compile Include="view\main\MainList.xaml.cs">
       <DependentUpon>MainList.xaml</DependentUpon>
     </Compile>
-    <Compile Include="view\products\DesktopWindow.xaml.cs">
-      <DependentUpon>DesktopWindow.xaml</DependentUpon>
+    <Compile Include="view\products\DesktopUC.xaml.cs">
+      <DependentUpon>DesktopUC.xaml</DependentUpon>
     </Compile>
-    <Compile Include="view\products\IProductWindow.cs" />
-    <Compile Include="view\products\LaptopWindow.xaml.cs">
-      <DependentUpon>LaptopWindow.xaml</DependentUpon>
+    <Compile Include="view\products\KeyboardUC.xaml.cs">
+      <DependentUpon>KeyboardUC.xaml</DependentUpon>
     </Compile>
+    <Compile Include="view\products\LaptopUC.xaml.cs">
+      <DependentUpon>LaptopUC.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="view\products\MonoblockUC.xaml.cs">
+      <DependentUpon>MonoblockUC.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="view\products\MouseUC.xaml.cs">
+      <DependentUpon>MouseUC.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="view\products\ProductWindow.xaml.cs">
+      <DependentUpon>ProductWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="view\products\IProductUC.cs" />
     <Compile Include="view\shoppingcart\ShoppingCart.xaml.cs">
       <DependentUpon>ShoppingCart.xaml</DependentUpon>
     </Compile>
@@ -337,11 +347,27 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="view\products\DesktopWindow.xaml">
+    <Page Include="view\products\DesktopUC.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="view\products\LaptopWindow.xaml">
+    <Page Include="view\products\KeyboardUC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="view\products\LaptopUC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="view\products\MonoblockUC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="view\products\MouseUC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="view\products\ProductWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

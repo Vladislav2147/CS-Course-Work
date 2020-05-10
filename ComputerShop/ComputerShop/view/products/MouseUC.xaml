@@ -1,0 +1,88 @@
+﻿<UserControl x:Class="ComputerShop.view.products.MouseUC"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:local="clr-namespace:ComputerShop.view.products"
+             xmlns:enums="clr-namespace:ComputerShop.model.enums"
+             xmlns:converters="clr-namespace:ComputerShop.model.converters"
+             xmlns:validation="clr-namespace:ComputerShop.model.validation"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <UserControl.Resources>
+        <converters:ImageConverter x:Key="ImageConverter"></converters:ImageConverter>
+        <converters:DecimalConverter x:Key="DecimalConverter"></converters:DecimalConverter>
+        <ControlTemplate x:Key="validationErrorTemplate">
+            <DockPanel>
+                <TextBlock Foreground="Red" FontSize="9px" Margin="0,-2,0,0" DockPanel.Dock="Bottom" 
+                           Text="{Binding ElementName=ErrorAdorner, Path=AdornedElement.(Validation.Errors)[0].ErrorContent}"></TextBlock>
+                <AdornedElementPlaceholder x:Name="ErrorAdorner"></AdornedElementPlaceholder>
+            </DockPanel>
+        </ControlTemplate>
+    </UserControl.Resources>
+    <Grid>
+        <StackPanel>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+
+                <TextBlock Grid.Column="0" Text="Интерфейс:"></TextBlock>
+
+                <ComboBox Grid.Column="1" SelectedItem="{Binding Product.Interface}" ItemsSource="{Binding Source={converters:EnumBindingSource {x:Type enums:PeripheralInterface}}}"></ComboBox>
+
+            </Grid>
+
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+
+                <TextBlock Grid.Column="0" Text="Материал:"></TextBlock>
+
+                <TextBox Grid.Column="1" Text="{Binding Product.Material}"></TextBox>
+
+            </Grid>
+
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+
+                <TextBlock Grid.Column="0" Text="Цвет:"></TextBlock>
+
+                <ComboBox Grid.Column="1" SelectedItem="{Binding Product.Color}" ItemsSource="{Binding Source={converters:EnumBindingSource {x:Type enums:Color}}}"></ComboBox>
+
+            </Grid>
+
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+
+                <TextBlock Grid.Column="0" Text="Тип сенсора:"></TextBlock>
+
+                <TextBox Grid.Column="1" Text="{Binding Product.SensorType}"></TextBox>
+
+
+            </Grid>
+
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+
+                <TextBlock Grid.Column="0" Text="Разрешение, dpi:"></TextBlock>
+
+                <TextBox Grid.Column="1" Text="{Binding Product.SensorResolution}"></TextBox>
+
+            </Grid>
+           
+        </StackPanel>
+    </Grid>
+</UserControl>
