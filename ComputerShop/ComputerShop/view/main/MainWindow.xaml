@@ -41,6 +41,11 @@
                         </TreeViewItem>
                     </TreeViewItem>
                 </TreeView>
+                <TreeView x:Name="AdminMenu" Visibility="Collapsed" SelectedItemChanged="AdminToolsSelectedItemChanged" BorderThickness="0">
+                    <TreeViewItem Header="Заказы"></TreeViewItem>
+                    <TreeViewItem Header="Поставки"></TreeViewItem>
+                    <TreeViewItem Header="Статистика"></TreeViewItem>
+                </TreeView>
             </StackPanel>
             <ScrollViewer VerticalScrollBarVisibility="Hidden">
                 <StackPanel x:Name="Filters" Grid.Row="1" Grid.Column="1" DockPanel.Dock="Left" Grid.RowSpan="3" Background="White" Margin="2,0,0,0" Width="{c:Binding ElementName=Window, Path=ActualWidth / 5}">

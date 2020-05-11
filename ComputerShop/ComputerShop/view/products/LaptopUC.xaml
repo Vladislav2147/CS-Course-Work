@@ -42,7 +42,7 @@
 
                 <TextBlock Grid.Column="0" Text="Тип:"></TextBlock>
 
-                <ComboBox Grid.Column="1" SelectedItem="{Binding Product.Type}" ItemsSource="{Binding Source={converters:EnumBindingSource {x:Type enums:ComputerType}}}"></ComboBox>
+                <ComboBox Grid.Column="1" SelectedItem="{Binding Product.Type, Mode=Default}" ItemsSource="{Binding Source={converters:EnumBindingSource {x:Type enums:ComputerType}}}"></ComboBox>
 
             </Grid>
 

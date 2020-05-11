@@ -30,14 +30,12 @@
             <Setter.Value>
                 <ControlTemplate TargetType="ComboBox">
                     <Grid>
-                        <ContentPresenter Name="ContentSite" IsHitTestVisible="False"  Content="{TemplateBinding SelectionBoxItem}" HorizontalAlignment="Left"></ContentPresenter>
+                        <ContentPresenter Name="ContentSite" IsHitTestVisible="False"  Content="{TemplateBinding SelectedItem}" HorizontalAlignment="Left"></ContentPresenter>
                     </Grid>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
         <Setter Property="FontSize" Value="12px"></Setter>
-        <Setter Property="Margin" Value="5,0,5,3"></Setter>
-        <Setter Property="SelectedIndex" Value="0"></Setter>
-        <Setter Property="Height" Value="23.9px"></Setter>
+        <Setter Property="Height" Value="26px"></Setter>
     </Style>
 </ResourceDictionary>

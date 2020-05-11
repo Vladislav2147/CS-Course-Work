@@ -21,7 +21,7 @@ namespace ComputerShop
 	/// </summary>
 	public partial class MainWindow : Window
 	{
-		
+		public MainWindow(Customer customer) { }
 		public MainWindow()
 		{
 			InitializeComponent();
@@ -46,10 +46,7 @@ namespace ComputerShop
 			if (customer.Role == Role.Admin)
 			{
 				this.Cart.Visibility = Visibility.Collapsed;
-				foreach (Button button in ChildFinder.FindVisualChildren<Button>((this.MainContent.Content as MainList).ProductList))
-				{
-					button.Visibility = Visibility.Collapsed;
-				}
+				this.AdminMenu.Visibility = Visibility.Visible;
 			}
 
 			var desc = DependencyPropertyDescriptor.FromProperty(ContentControl.ContentProperty, typeof(ContentPresenter));
@@ -74,7 +71,11 @@ namespace ComputerShop
 		{
 			(DataContext as MainWindowViewModel).TreeItemExecute();
 		}
-		public MainWindow(Customer customer) { }
-
+		
+		private void AdminToolsSelectedItemChanged(object sender, RoutedPropertyChangedEventArgs<object> e)
+		{
+			string tool = ((sender as TreeView).SelectedItem as TreeViewItem).Header.ToString();
+			(DataContext as MainWindowViewModel).SelectAdminTool(tool);
+		}
 	}
 }

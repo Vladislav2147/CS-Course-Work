@@ -197,6 +197,7 @@
     <Compile Include="model\service\implementations\ProductService.cs" />
     <Compile Include="model\service\implementations\SupplyService.cs" />
     <Compile Include="model\statics\ChildFinder.cs" />
+    <Compile Include="model\statics\PostEmail.cs" />
     <Compile Include="model\validation\DecimalValidator.cs" />
     <Compile Include="model\validation\DoubleValidator.cs" />
     <Compile Include="model\validation\EmailValidationAttribute.cs" />
@@ -205,6 +206,7 @@
     <Compile Include="model\validation\NullableIntegerValidator.cs" />
     <Compile Include="model\validation\ResolutionValidator.cs" />
     <Compile Include="model\validation\YearValidator.cs" />
+    <Compile Include="viewmodel\adminTools\OrdersViewModel.cs" />
     <Compile Include="viewmodel\cart\ShoppingCartViewModel.cs" />
     <Compile Include="viewmodel\login\SignUpViewModel.cs" />
     <Compile Include="viewmodel\main\MainListViewModel.cs" />
@@ -212,6 +214,9 @@
     <Compile Include="viewmodel\products\ProductWindowViewModel.cs" />
     <Compile Include="viewmodel\RelayCommand.cs" />
     <Compile Include="viewmodel\login\SignInViewModel.cs" />
+    <Compile Include="view\adminTools\OrdersUC.xaml.cs">
+      <DependentUpon>OrdersUC.xaml</DependentUpon>
+    </Compile>
     <Compile Include="view\login\LoginWindow.xaml.cs">
       <DependentUpon>LoginWindow.xaml</DependentUpon>
     </Compile>
@@ -252,6 +257,10 @@
     <Compile Include="view\shoppingcart\ShoppingCart.xaml.cs">
       <DependentUpon>ShoppingCart.xaml</DependentUpon>
     </Compile>
+    <Page Include="view\adminTools\OrdersUC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="view\main\filters\ComputerFilters.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

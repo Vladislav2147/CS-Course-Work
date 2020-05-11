@@ -112,3 +112,6 @@ F:\course work\ComputerShop\ComputerShop\obj\Debug\view\products\MouseUC.g.cs
 F:\course work\ComputerShop\ComputerShop\obj\Debug\view\products\MouseUC.baml
 F:\course work\ComputerShop\ComputerShop\obj\Debug\view\products\KeyboardUC.g.cs
 F:\course work\ComputerShop\ComputerShop\obj\Debug\view\products\KeyboardUC.baml
+F:\course work\ComputerShop\ComputerShop\obj\Debug\ComputerShop.csprojAssemblyReference.cache
+F:\course work\ComputerShop\ComputerShop\obj\Debug\view\adminTools\OrdersUC.g.cs
+F:\course work\ComputerShop\ComputerShop\obj\Debug\view\adminTools\OrdersUC.baml

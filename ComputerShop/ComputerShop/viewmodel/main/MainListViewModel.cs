@@ -91,22 +91,32 @@ namespace ComputerShop.viewmodel.main
 
 			if(order != null)
 			{
-				foreach (Button button in ChildFinder.FindVisualChildren<Button>(CodeBehind.ProductList))
+				if(MainVM.Customer.Role == model.enums.Role.User)
 				{
-					if (order.Ordered.FirstOrDefault(ord => ord.Product == (Product)button.DataContext) != null && MainVM.Customer.Role == model.enums.Role.User)
+					foreach (Button button in ChildFinder.FindVisualChildren<Button>(CodeBehind.ProductList))
 					{
-						button.IsEnabled = false;
-						button.Content = "В корзине";
+						if (order.Ordered.FirstOrDefault(ord => ord.Product == (Product)button.DataContext) != null && MainVM.Customer.Role == model.enums.Role.User)
+						{
+							button.IsEnabled = false;
+							button.Content = "В корзине";
+						}
+						else if (((Product)button.DataContext).Amount == 0)
+						{
+							button.IsEnabled = false;
+							button.Content = "Нет на складе";
+						}
+						else
+						{
+							button.IsEnabled = true;
+							button.Content = "В корзину";
+						}
 					}
-					else if (((Product)button.DataContext).Amount == 0)
+				}
+				else
+				{
+					foreach (Button button in ChildFinder.FindVisualChildren<Button>(CodeBehind.ProductList))
 					{
-						button.IsEnabled = false;
-						button.Content = "Нет на складе";
-					}
-					else
-					{
-						button.IsEnabled = true;
-						button.Content = "В корзину";
+						button.Visibility = Visibility.Collapsed;
 					}
 				}
 			}

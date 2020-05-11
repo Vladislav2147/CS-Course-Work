@@ -3,12 +3,14 @@ using ComputerShop.model.enums;
 using ComputerShop.model.service.implementations;
 using ComputerShop.model.statics;
 using ComputerShop.view;
+using ComputerShop.view.adminTools;
 using ComputerShop.view.main.filters;
 using ComputerShop.view.shoppingcart;
 using ComputerShop.viewmodel.cart;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -36,6 +38,7 @@ namespace ComputerShop.viewmodel.main
 			Filter = new RelayCommand(param => FilterProducts());
 			FindByName = new RelayCommand(param => FindByNameExecute());
 			Cancel = new RelayCommand(param => CancelExecute());
+
 			CurrentProductType = typeof(Product);
 			if (GetCreatedOrder() == null)
 			{
@@ -50,6 +53,39 @@ namespace ComputerShop.viewmodel.main
 			ShoppingCartViewModel vm = new ShoppingCartViewModel(Customer, view);
 			view.DataContext = vm;
 			CodeBehind.MainContent.Content = view;
+		}
+
+		private void ExecuteGoToOrders()
+		{
+			CodeBehind.MainContent.Content = new OrdersUC();
+			CodeBehind.Filters.Visibility = Visibility.Collapsed;
+		}
+
+		private void ExecuteGoToDelivers()
+		{
+			
+		}
+
+		private void ExecuteGoToStats()
+		{
+			
+		}
+
+		public void SelectAdminTool(string tool)
+		{
+			
+			switch(tool)
+			{
+				case "Заказы":
+					ExecuteGoToOrders();
+					break;
+				case "Поставки":
+					ExecuteGoToDelivers();
+					break;
+				case "Статистика":
+					ExecuteGoToStats();
+					break;
+			}
 		}
 
 		public void TreeItemExecute()
