@@ -31,7 +31,7 @@
                 <TextBlock Grid.Column="0" Text="Интерфейс:"></TextBlock>
 
                 <ComboBox Grid.Column="1" SelectedItem="{Binding Product.Interface}" ItemsSource="{Binding Source={converters:EnumBindingSource {x:Type enums:PeripheralInterface}}}"></ComboBox>
-
+                <TextBlock Grid.Column="1" Text="{Binding Product.Interface}" HorizontalAlignment="Left" Visibility="Collapsed"></TextBlock>
             </Grid>
 
             <Grid>
@@ -55,6 +55,7 @@
                 <TextBlock Grid.Column="0" Text="Цвет:"></TextBlock>
 
                 <ComboBox Grid.Column="1" SelectedItem="{Binding Product.Color}" ItemsSource="{Binding Source={converters:EnumBindingSource {x:Type enums:Color}}}"></ComboBox>
+                <TextBlock Grid.Column="1" Text="{Binding Product.Color}" HorizontalAlignment="Left" Visibility="Collapsed"></TextBlock>
 
             </Grid>
 

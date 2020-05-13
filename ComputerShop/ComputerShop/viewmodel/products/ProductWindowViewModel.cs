@@ -100,7 +100,6 @@ namespace ComputerShop.viewmodel.products
 			CodeBehind.Loaded += ProductWindowLoaded;
 			CodeBehind.ProductName.Visibility = Visibility.Collapsed;
 			CodeBehind.Amount.Visibility = Visibility.Collapsed;
-			
 		}
 
 		private void ProductWindowLoaded(object sender, RoutedEventArgs e)
@@ -108,15 +107,23 @@ namespace ComputerShop.viewmodel.products
 			ResourceDictionary resource = new ResourceDictionary() { Source = new Uri("view\\products\\ReadonlyProductDictionary.xaml", UriKind.Relative) };
 			CodeBehind.Resources.MergedDictionaries.Clear();
 			CodeBehind.Resources.MergedDictionaries.Add(resource);
-
+			
 
 			foreach (var textBox in ChildFinder.FindVisualChildren<TextBox>(CodeBehind))
 			{
 				textBox.Style = resource["BoxStyle"] as Style;
+				if(textBox.Text.Length == 0)
+				{
+					textBox.Text = "Информации нет";
+				}
 			}
 			foreach (var comboBox in ChildFinder.FindVisualChildren<ComboBox>(CodeBehind))
 			{
-				comboBox.Style = resource["ComboboxStyle"] as Style;
+				comboBox.Visibility = Visibility.Collapsed;
+			}
+			foreach (var textblock in ChildFinder.FindVisualChildren<TextBlock>(CodeBehind))
+			{
+				textblock.Visibility = Visibility.Visible;
 			}
 			foreach (var button in ChildFinder.FindVisualChildren<Button>(CodeBehind))
 			{

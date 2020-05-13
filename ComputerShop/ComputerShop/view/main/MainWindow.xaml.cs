@@ -29,7 +29,7 @@ namespace ComputerShop
 			Customer customer;
 			using (ComputerShopContext context = new ComputerShopContext())
 			{
-				customer = context.Customer.Include("Order").Where(customer1 => customer1.Role == Role.Admin).FirstOrDefault();
+				customer = context.Customer.Include("Order").Where(customer1 => customer1.Role == Role.User).FirstOrDefault();
 			}
 			
 			//

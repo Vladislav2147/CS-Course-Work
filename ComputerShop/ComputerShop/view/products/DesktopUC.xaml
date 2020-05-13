@@ -43,7 +43,7 @@
                 <TextBlock Grid.Column="0" Text="Тип:"></TextBlock>
 
                 <ComboBox Grid.Column="1" SelectedItem="{Binding Product.Type}" ItemsSource="{Binding Source={converters:EnumBindingSource {x:Type enums:ComputerType}}}"></ComboBox>
-
+                <TextBlock Grid.Column="1" Text="{Binding Product.Type}" HorizontalAlignment="Left" Visibility="Collapsed"></TextBlock>
             </Grid>
 
             <Grid>
@@ -157,7 +157,7 @@
                 <TextBlock Grid.Column="0" Text="Операционная система:"></TextBlock>
 
                 <ComboBox Grid.Column="1" SelectedItem="{Binding Product.OperatingSystem}" ItemsSource="{Binding Source={converters:EnumBindingSource {x:Type enums:OperatingSystem}}}"></ComboBox>
-
+                <TextBlock Grid.Column="1" Text="{Binding Product.OperatingSystem}" HorizontalAlignment="Left" Visibility="Collapsed"></TextBlock>
             </Grid>
 
             <Grid>
