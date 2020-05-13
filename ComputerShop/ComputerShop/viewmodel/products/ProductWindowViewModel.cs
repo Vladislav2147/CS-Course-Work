@@ -25,6 +25,7 @@ namespace ComputerShop.viewmodel.products
 	{
 		public string Title { get; set; } = "Добавить товар";
 		public ProductWindow CodeBehind { get; set; }
+		[Magic]
 		public Product Product { get; set; }
 		public bool IsCreatedNow { get; set; } = false;
 		public ProductService ProductService { get; set; }
@@ -75,11 +76,7 @@ namespace ComputerShop.viewmodel.products
 				if (IsCreatedNow)
 				{
 					ProductService.Add(Product);
-				}
-				else
-				{
-					ProductService.ChangeItem(Product);					
-				}				
+				}		
 				ProductService.SaveChanges();
 				MessageBox.Show("Продукт успешно добавлен");
 				(CodeBehind as Window).Close();
@@ -112,9 +109,9 @@ namespace ComputerShop.viewmodel.products
 			foreach (var textBox in ChildFinder.FindVisualChildren<TextBox>(CodeBehind))
 			{
 				textBox.Style = resource["BoxStyle"] as Style;
-				if(textBox.Text.Length == 0)
+				if (textBox.Text.Length == 0)
 				{
-					textBox.Text = "Информации нет";
+					textBox.Text = "-";
 				}
 			}
 			foreach (var comboBox in ChildFinder.FindVisualChildren<ComboBox>(CodeBehind))

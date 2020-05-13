@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Schema Namespace="ComputerShopModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-  <EntityType Name="Computer" BaseType="ComputerShopModel.Product">
+  <EntityType Name="Computer" BaseType="ComputerShopModel.Product" Abstract="false">
     <Property Name="Producer" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
     <Property Name="Type" Type="ComputerShopModel.ComputerType" Nullable="false" />
     <Property Name="Processor" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
@@ -39,7 +39,7 @@
     <Property Name="Address" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="Phone" Type="String" MaxLength="25" FixedLength="false" Unicode="true" />
   </EntityType>
-  <EntityType Name="Product">
+  <EntityType Name="Product" Abstract="false">
     <Key>
       <PropertyRef Name="Id" />
     </Key>
@@ -190,7 +190,7 @@
     <Property Name="SensorType" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
     <Property Name="SensorResolution" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
   </EntityType>
-  <EntityType Name="Peripherals" BaseType="ComputerShopModel.Product">
+  <EntityType Name="Peripherals" BaseType="ComputerShopModel.Product" Abstract="false">
     <Property Name="Interface" Type="ComputerShopModel.PeripheralInterface" Nullable="false" />
     <Property Name="Material" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
     <Property Name="Color" Type="ComputerShopModel.Color" Nullable="false" />
