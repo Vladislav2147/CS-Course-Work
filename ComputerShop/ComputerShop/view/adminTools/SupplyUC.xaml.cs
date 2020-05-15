@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ComputerShop.viewmodel.adminTools;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -16,13 +17,14 @@ using System.Windows.Shapes;
 namespace ComputerShop.view.adminTools
 {
 	/// <summary>
-	/// Логика взаимодействия для WareHouseUC.xaml
+	/// Логика взаимодействия для SupplyUC.xaml
 	/// </summary>
-	public partial class WareHouseUC : UserControl
+	public partial class SupplyUC : UserControl
 	{
-		public WareHouseUC()
+		public SupplyUC()
 		{
 			InitializeComponent();
+			this.DataContext = new SupplyViewModel(this);
 		}
 	}
 }

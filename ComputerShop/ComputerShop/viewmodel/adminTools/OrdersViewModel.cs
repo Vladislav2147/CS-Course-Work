@@ -39,8 +39,20 @@ namespace ComputerShop.viewmodel.adminTools
 		private void ExecuteAccept(object sender)
 		{
 			Order order = (sender as Button).DataContext as Order;
-			order.State = State.Approved;
-			OrderService.SaveChanges();
+			foreach(Ordered ordered in order.Ordered)
+			{
+				ordered.Product.Amount -= ordered.Amount;
+			}
+			try
+			{
+				OrderService.SaveChanges();
+				order.State = State.Approved;
+				OrderService.SaveChanges();
+			}
+			catch (Exception)
+			{
+				MessageBox.Show("Неваозможно принять заказ");
+			}
 
 			Customer admin = CustomerService.FindByPredicate(cust => cust.Role == model.enums.Role.Admin).FirstOrDefault();
 			StringBuilder message = new StringBuilder($"Заказ N{order.Id} подтвержден");

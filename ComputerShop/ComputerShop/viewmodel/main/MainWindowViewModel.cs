@@ -58,12 +58,11 @@ namespace ComputerShop.viewmodel.main
 		private void ExecuteGoToOrders()
 		{
 			CodeBehind.MainContent.Content = new OrdersUC();
-			CodeBehind.Filters.Visibility = Visibility.Collapsed;
 		}
 
 		private void ExecuteGoToDelivers()
 		{
-			
+			CodeBehind.MainContent.Content = new SupplyUC();		
 		}
 
 		private void ExecuteGoToStats()
@@ -86,6 +85,7 @@ namespace ComputerShop.viewmodel.main
 					ExecuteGoToStats();
 					break;
 			}
+			CodeBehind.Filters.Visibility = Visibility.Collapsed;
 		}
 
 		public void TreeItemExecute()

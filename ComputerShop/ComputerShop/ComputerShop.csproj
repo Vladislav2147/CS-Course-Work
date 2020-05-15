@@ -169,6 +169,7 @@
     <Compile Include="model\converters\ImageConverter.cs" />
     <Compile Include="model\converters\OrderPriceConverter.cs" />
     <Compile Include="model\converters\SizeConverter.cs" />
+    <Compile Include="model\converters\TotalCostConverter.cs" />
     <Compile Include="model\database\State.cs">
       <DependentUpon>DatabaseModel.tt</DependentUpon>
     </Compile>
@@ -207,6 +208,7 @@
     <Compile Include="model\validation\ResolutionValidator.cs" />
     <Compile Include="model\validation\YearValidator.cs" />
     <Compile Include="viewmodel\adminTools\OrdersViewModel.cs" />
+    <Compile Include="viewmodel\adminTools\SupplyViewModel.cs" />
     <Compile Include="viewmodel\cart\ShoppingCartViewModel.cs" />
     <Compile Include="viewmodel\login\SignUpViewModel.cs" />
     <Compile Include="viewmodel\main\MainListViewModel.cs" />
@@ -216,6 +218,9 @@
     <Compile Include="viewmodel\login\SignInViewModel.cs" />
     <Compile Include="view\adminTools\OrdersUC.xaml.cs">
       <DependentUpon>OrdersUC.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="view\adminTools\SupplyUC.xaml.cs">
+      <DependentUpon>SupplyUC.xaml</DependentUpon>
     </Compile>
     <Compile Include="view\login\LoginWindow.xaml.cs">
       <DependentUpon>LoginWindow.xaml</DependentUpon>
@@ -258,6 +263,10 @@
       <DependentUpon>ShoppingCart.xaml</DependentUpon>
     </Compile>
     <Page Include="view\adminTools\OrdersUC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="view\adminTools\SupplyUC.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
