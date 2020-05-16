@@ -65,19 +65,19 @@ namespace ComputerShop.viewmodel.main
 			switch (type)
 			{
 				case "Настольный пк":
-					productWindow = new ProductWindow(new Desktop(), new DesktopUC(), false);
+					productWindow = new ProductWindow(new Desktop(), new DesktopUC());
 					break;
 				case "Ноутбук":
-					productWindow = new ProductWindow(new Laptop(), new LaptopUC(), false);
+					productWindow = new ProductWindow(new Laptop(), new LaptopUC());
 					break;
 				case "Моноблок":
-					productWindow = new ProductWindow(new Monoblock(), new MonoblockUC(), false);
+					productWindow = new ProductWindow(new Monoblock(), new MonoblockUC());
 					break;
 				case "Клавиатура":
-					productWindow = new ProductWindow(new Keyboard(), new KeyboardUC(), false);
+					productWindow = new ProductWindow(new Keyboard(), new KeyboardUC());
 					break;
 				case "Мышь":
-					productWindow = new ProductWindow(new Mouse(), new MouseUC(), false);
+					productWindow = new ProductWindow(new Mouse(), new MouseUC());
 					break;
 			}
 

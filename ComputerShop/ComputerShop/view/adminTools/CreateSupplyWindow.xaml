@@ -1,0 +1,45 @@
+﻿<Window x:Class="ComputerShop.view.adminTools.CreateSupplyWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ComputerShop.view.adminTools"
+        xmlns:validator="clr-namespace:ComputerShop.model.validation"
+        mc:Ignorable="d"
+        Title="CreateSupplyWindow" Height="450" Width="800">
+    <Grid>
+        <StackPanel Margin="5">
+            <TextBlock Text="Добавить поставку" FontSize="32" TextAlignment="Center"></TextBlock>
+            <TextBlock Text="Если продукта с добавляемым артикулом не существует, можно его создать:"></TextBlock>
+            <StackPanel x:Name="AdminTools" DockPanel.Dock="Right" Orientation="Horizontal">
+
+                <Button Command="{Binding Create}" Content="Создать..." Background="White" Height="30"></Button>
+
+                <ComboBox SelectedValue="{Binding ProductType, Mode=OneWayToSource}" Name="Types" SelectedIndex="0" Height="30" MinWidth="100" VerticalContentAlignment="Center" Margin="5">
+                    <ComboBoxItem Content="Настольный пк"/>
+                    <ComboBoxItem Content="Ноутбук"/>
+                    <ComboBoxItem Content="Моноблок"/>
+                    <ComboBoxItem Content="Клавиатура"/>
+                    <ComboBoxItem Content="Мышь"/>
+                </ComboBox>
+
+            </StackPanel>
+            
+            <DataGrid ItemsSource="{Binding Delivered}" AutoGenerateColumns="False">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Артикул">
+                        <DataGridTextColumn.Binding>
+                            <Binding Path="ProductId">
+                                <Binding.ValidationRules>
+                                    <validator:IsExistValidator></validator:IsExistValidator>
+                                </Binding.ValidationRules>
+                            </Binding>
+                        </DataGridTextColumn.Binding>
+                    </DataGridTextColumn>
+                    <DataGridTextColumn Header="Количество" Binding="{Binding Amount}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Цена за шт." Binding="{Binding Price}"></DataGridTextColumn>
+                </DataGrid.Columns>
+            </DataGrid>
+        </StackPanel>
+    </Grid>
+</Window>

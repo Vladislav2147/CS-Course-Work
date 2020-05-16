@@ -29,7 +29,7 @@ namespace ComputerShop.view.products
 			InitializeComponent();
 
 		}
-		public ProductWindow(Product product, IProductUC productUC, bool isReadonly) : this()
+		public ProductWindow(Product product, IProductUC productUC, bool isReadonly = false) : this()
 		{
 			this.DataContext = new ProductWindowViewModel(this, product);
 

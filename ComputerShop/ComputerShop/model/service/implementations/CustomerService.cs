@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace ComputerShop.model.service.implementations
 {
-	class CustomerService : AbstractService<Customer>
+	public class CustomerService : AbstractService<Customer>
 	{
 		public CustomerService() : base() { }
 		public CustomerService(ComputerShopContext context) : base(context) { }

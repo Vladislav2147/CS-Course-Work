@@ -13,7 +13,11 @@
     <Grid>
         <StackPanel Margin="5">
             <TextBlock Text="Поставки"></TextBlock>
-            <DataGrid ItemsSource="{Binding Supplies}" AutoGenerateColumns="False" IsReadOnly="True">
+            <StackPanel Orientation="Horizontal">
+                <Button Content="Создать" Command="{Binding CreateCommand}"></Button>
+                <Button Content="Удалить" Command="{Binding RemoveCommand}"></Button>
+            </StackPanel>
+            <DataGrid ItemsSource="{Binding Supplies}" AutoGenerateColumns="False" IsReadOnly="True" MaxHeight="500">
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="N" Binding="{Binding Id}"></DataGridTextColumn>
                     <DataGridTemplateColumn Header="Товары">
