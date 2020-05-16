@@ -67,7 +67,7 @@ namespace ComputerShop.viewmodel.main
 
 		private void ExecuteGoToStats()
 		{
-			
+			CodeBehind.MainContent.Content = new StatsUC();
 		}
 
 		public void SelectAdminTool(string tool)

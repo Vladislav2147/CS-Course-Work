@@ -120,3 +120,9 @@ F:\course work\ComputerShop\ComputerShop\obj\Debug\ComputerShop.csprojAssemblyRe
 F:\course work\ComputerShop\ComputerShop\obj\Debug\view\adminTools\CreateSupplyWindow.g.cs
 F:\course work\ComputerShop\ComputerShop\obj\Debug\view\adminTools\CreateSupplyWindow.baml
 F:\course work\ComputerShop\ComputerShop\obj\Debug\App.baml
+F:\course work\ComputerShop\ComputerShop\bin\Debug\OxyPlot.dll
+F:\course work\ComputerShop\ComputerShop\bin\Debug\OxyPlot.Wpf.dll
+F:\course work\ComputerShop\ComputerShop\bin\Debug\OxyPlot.xml
+F:\course work\ComputerShop\ComputerShop\bin\Debug\OxyPlot.Wpf.xml
+F:\course work\ComputerShop\ComputerShop\obj\Debug\view\adminTools\StatsUC.g.cs
+F:\course work\ComputerShop\ComputerShop\obj\Debug\view\adminTools\StatsUC.baml
