@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace ComputerShop.model.service
 {
-	public abstract class AbstractService<T> where T: IEntity, new()
+	public abstract class AbstractService<T> : IDisposable where T: IEntity, new()
 	{
 		public ComputerShopContext ComputerShopContext { get; set; }
 
@@ -60,6 +60,11 @@ namespace ComputerShop.model.service
 		public void SaveChanges()
 		{
 			ComputerShopContext.SaveChanges();
+		}
+
+		public void Dispose()
+		{
+			ComputerShopContext.Dispose();
 		}
 	}
 }

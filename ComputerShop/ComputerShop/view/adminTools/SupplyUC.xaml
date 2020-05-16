@@ -12,12 +12,25 @@
     </UserControl.Resources>
     <Grid>
         <StackPanel Margin="5">
-            <TextBlock Text="Поставки"></TextBlock>
+            <TextBlock Text="Поставки" FontSize="32"></TextBlock>
             <StackPanel Orientation="Horizontal">
-                <Button Content="Создать" Command="{Binding CreateCommand}"></Button>
-                <Button Content="Удалить" Command="{Binding RemoveCommand}"></Button>
+                <Button Content="Создать" Command="{Binding CreateCommand}" Margin="0,5,5,5" Background="White"></Button>
+                <Button Content="Удалить" Command="{Binding RemoveCommand}" Margin="5" Background="White">
+                    <Button.Style>
+                        <Style TargetType="Button">
+                            <Setter Property="IsEnabled" Value="True" />
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding SelectedItem,ElementName=DataSupplies}" 
+                                             Value="{x:Null}">
+                                    <Setter Property="IsEnabled" Value="False"></Setter>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Button.Style>
+                </Button>
             </StackPanel>
-            <DataGrid ItemsSource="{Binding Supplies}" AutoGenerateColumns="False" IsReadOnly="True" MaxHeight="500">
+            
+            <DataGrid x:Name="DataSupplies" ItemsSource="{Binding Supplies}" AutoGenerateColumns="False" IsReadOnly="True" MaxHeight="500">
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="N" Binding="{Binding Id}"></DataGridTextColumn>
                     <DataGridTemplateColumn Header="Товары">

@@ -12,13 +12,14 @@ namespace ComputerShop.model.validation
 	{
 		public override ValidationResult Validate(object value, CultureInfo cultureInfo)
 		{
-			if (value == null || !Decimal.TryParse((string)value, out _))
+			if (value != null && Decimal.TryParse((string)value, out _) && Decimal.Parse((string)value) > 0)
 			{
-				return new ValidationResult(false, "Неверный формат");
+				return ValidationResult.ValidResult;
 			}
 			else
 			{
-				return ValidationResult.ValidResult;
+				return new ValidationResult(false, "Неверный формат");
+				
 			}
 		}
 	}

@@ -119,3 +119,4 @@ F:\course work\ComputerShop\ComputerShop\obj\Debug\view\adminTools\SupplyUC.baml
 F:\course work\ComputerShop\ComputerShop\obj\Debug\ComputerShop.csprojAssemblyReference.cache
 F:\course work\ComputerShop\ComputerShop\obj\Debug\view\adminTools\CreateSupplyWindow.g.cs
 F:\course work\ComputerShop\ComputerShop\obj\Debug\view\adminTools\CreateSupplyWindow.baml
+F:\course work\ComputerShop\ComputerShop\obj\Debug\App.baml

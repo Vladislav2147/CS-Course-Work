@@ -79,7 +79,7 @@ namespace ComputerShop.viewmodel.products
 				}		
 				ProductService.SaveChanges();
 				MessageBox.Show("Продукт успешно добавлен");
-				(CodeBehind as Window).Close();
+				(CodeBehind as Window).Close();				
 			}
 			catch(Exception)
 			{

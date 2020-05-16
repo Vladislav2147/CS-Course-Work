@@ -77,5 +77,6 @@ namespace ComputerShop
 			string tool = ((sender as TreeView).SelectedItem as TreeViewItem).Header.ToString();
 			(DataContext as MainWindowViewModel).SelectAdminTool(tool);
 		}
+
 	}
 }

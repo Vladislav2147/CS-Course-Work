@@ -29,17 +29,21 @@ namespace ComputerShop.viewmodel.adminTools
 			Supplies = SupplyService.GetAll();
 
 			CreateCommand = new RelayCommand(param => Create());
-			RemoveCommand = new RelayCommand(param => Remove(param));
+			RemoveCommand = new RelayCommand(param => Remove());
 		}
 		
 		private void Create()
 		{
-			var createWindow = new CreateSupplyWindow(SupplyService);
+			var createWindow = new CreateSupplyWindow(SupplyService, CodeBehind);
 			createWindow.Show();
 		}
-		private void Remove(object sender)
+		private void Remove()
 		{
-
+			SupplyService.RemoveById((CodeBehind.DataSupplies.SelectedItem as Supply).Id);
+			SupplyService.SaveChanges();
+			Update();
 		}
+
+		public void Update() => Supplies = SupplyService.GetAll();
 	}
 }

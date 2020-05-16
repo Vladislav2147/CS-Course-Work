@@ -19,9 +19,9 @@
             <RowDefinition Height="50px"></RowDefinition>
             <RowDefinition Height="*"></RowDefinition>
         </Grid.RowDefinitions>
-        <TextBlock Grid.Row="0" Text="Заказы" FontSize="36" Margin="5,0"></TextBlock>
+        <TextBlock Grid.Row="0" Text="Заказы" FontSize="32" Margin="5,5,5,0"></TextBlock>
         <StackPanel Grid.Row="1" Margin="5">
-            <TextBlock Text="Запросы на заказ"></TextBlock>
+            <TextBlock Text="Запросы на заказ:"></TextBlock>
             
             <DataGrid ItemsSource="{Binding NotAcceptedOrders}" AutoGenerateColumns="False" IsReadOnly="True">
                 <DataGrid.Columns>
@@ -47,7 +47,7 @@
                 </DataGrid.Columns>
             </DataGrid>
             
-            <TextBlock Text="Принятые заказы"></TextBlock>
+            <TextBlock Text="Принятые заказы:"></TextBlock>
             
             <DataGrid ItemsSource="{Binding AcceptedOrders}" AutoGenerateColumns="False" IsReadOnly="True">
                 <DataGrid.Columns>

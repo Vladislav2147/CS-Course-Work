@@ -21,18 +21,15 @@ namespace ComputerShop.view.adminTools
 	/// </summary>
 	public partial class CreateSupplyWindow : Window
 	{
+		public new SupplyUC Owner { get; set; }
 		public CreateSupplyWindow()
 		{
 			InitializeComponent();
-
-			//
-
-			var vm = new CreateSupplyViewModel(new SupplyService(), this);
-
-			//
 		}
-		public CreateSupplyWindow(SupplyService supplyService) : this()
+
+		public CreateSupplyWindow(SupplyService supplyService, SupplyUC owner) : this()
 		{
+			Owner = owner;
 			var vm = new CreateSupplyViewModel(supplyService, this);
 		}
 	}
