@@ -53,9 +53,9 @@ namespace ComputerShop.viewmodel.main
 		private void ExecuteRemove()
 		{
 			Product product = CodeBehind.ProductList.SelectedItem as Product;
-			MainVM.ProductService.RemoveById(product.Id);
-			MainVM.ProductService.SaveChanges();
-			MainVM.UpdateMainList(MainVM.GetListOfCurrentType(MainVM.ProductService.GetAll()));
+			MainVM.ProductRepository.RemoveById(product.Id);
+			MainVM.ProductRepository.SaveChanges();
+			MainVM.UpdateMainList(MainVM.GetListOfCurrentType(MainVM.ProductRepository.GetAll()));
 		}
 
 		private void ExecuteCreate()
@@ -80,7 +80,7 @@ namespace ComputerShop.viewmodel.main
 					productWindow = new ProductWindow(new Mouse(), new MouseUC());
 					break;
 			}
-
+			productWindow.Owner = MainVM.CodeBehind;
 			productWindow.Show();
 
 		}
@@ -147,7 +147,7 @@ namespace ComputerShop.viewmodel.main
 			}
 
 			ProductWindow productWindow = new ProductWindow(product, productUC, MainVM.Customer.Role == model.enums.Role.User);
-			productWindow.Owner = CodeBehind.Owner;
+			productWindow.Owner = MainVM.CodeBehind;
 			productWindow.Show();
 		}
 		

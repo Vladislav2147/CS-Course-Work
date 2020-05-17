@@ -27,8 +27,9 @@ namespace ComputerShop.view.products
 		public ProductWindow()
 		{
 			InitializeComponent();
-
+			Closed += ProductWindow_Closed;
 		}
+
 		public ProductWindow(Product product, IProductUC productUC, bool isReadonly = false) : this()
 		{
 			this.DataContext = new ProductWindowViewModel(this, product);
@@ -42,6 +43,10 @@ namespace ComputerShop.view.products
 			this.RestParams.Content = productUC;
 		}
 
-		
+		private void ProductWindow_Closed(object sender, EventArgs e)
+		{
+			(DataContext as ProductWindowViewModel).Close();
+		}
+
 	}
 }

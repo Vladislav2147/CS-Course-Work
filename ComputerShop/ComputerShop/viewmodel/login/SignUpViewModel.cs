@@ -1,5 +1,5 @@
 ﻿using ComputerShop.model.database;
-using ComputerShop.model.service.implementations;
+using ComputerShop.model.repository.implementations;
 using ComputerShop.view.login;
 using System;
 using System.Collections.Generic;
@@ -19,7 +19,7 @@ namespace ComputerShop.viewmodel.login
 		public string Login { get; set; }
 		public string Password { get; set; }
 		public string ConfirmPassword { get; set; }
-		public CustomerService CustomerService { get; set; }
+		public CustomerRepository CustomerRepository { get; set; }
 		public ICommand Registrate { get; private set; }
 		public ICommand Back { get; private set; }
 		public LoginWindow CodeBehind { get; set; }
@@ -46,12 +46,12 @@ namespace ComputerShop.viewmodel.login
 					{
 						try
 						{
-							CustomerService = new CustomerService(context);
+							CustomerRepository = new CustomerRepository(context);
 							Customer customer = new Customer()
 							{
 								Login = Login,
 								Email = Email,
-								Password = CustomerService.HashPassword(Password)
+								Password = CustomerRepository.HashPassword(Password)
 							};
 							var results = new List<ValidationResult>();
 							var cont = new ValidationContext(customer);
@@ -67,8 +67,8 @@ namespace ComputerShop.viewmodel.login
 							else
 							{
 								
-								CustomerService.RegistrateCustomer(customer);
-								CustomerService.SaveChanges();
+								CustomerRepository.RegistrateCustomer(customer);
+								CustomerRepository.SaveChanges();
 								ExecuteBack();
 							}
 						}

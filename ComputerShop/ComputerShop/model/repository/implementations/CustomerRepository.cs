@@ -7,12 +7,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ComputerShop.model.service.implementations
+namespace ComputerShop.model.repository.implementations
 {
-	public class CustomerService : AbstractService<Customer>
+	public class CustomerRepository : AbstractRepository<Customer>
 	{
-		public CustomerService() : base() { }
-		public CustomerService(ComputerShopContext context) : base(context) { }
+		public CustomerRepository() : base() { }
+		public CustomerRepository(ComputerShopContext context) : base(context) { }
 		public byte[] HashPassword(string password)
 		{
 			return Encryptor.GetHash(password);

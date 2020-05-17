@@ -1,6 +1,6 @@
 ﻿using ComputerShop.model.database;
 using ComputerShop.model.enums;
-using ComputerShop.model.service.implementations;
+using ComputerShop.model.repository.implementations;
 using ComputerShop.model.statics;
 using ComputerShop.view;
 using ComputerShop.view.adminTools;
@@ -14,6 +14,7 @@ using System.Reflection;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
+using OperatingSystem = ComputerShop.model.enums.OperatingSystem;
 
 namespace ComputerShop.viewmodel.main
 {
@@ -21,7 +22,7 @@ namespace ComputerShop.viewmodel.main
 	{
 		public MainList ListState { get; set; }
 		public MainWindow CodeBehind { get; set; }
-		public ProductService ProductService { get; set; }
+		public ProductRepository ProductRepository { get; set; }
 		public Customer Customer { get; set; }
 		public Type CurrentProductType { get; set; } 
 		public ICommand GoToCart { get; set; }
@@ -33,7 +34,7 @@ namespace ComputerShop.viewmodel.main
 		{
 			Customer = customer;
 			CodeBehind = codeBehind;
-			ProductService = new ProductService();
+			ProductRepository = new ProductRepository();
 			GoToCart = new RelayCommand(param => ExecuteGoToCart());
 			Filter = new RelayCommand(param => FilterProducts());
 			FindByName = new RelayCommand(param => FindByNameExecute());
@@ -90,7 +91,7 @@ namespace ComputerShop.viewmodel.main
 
 		public void TreeItemExecute()
 		{
-			List<Product> products = ProductService.GetAll();
+			List<Product> products = ProductRepository.GetAll();
 			products = GetListOfCurrentType(products);
 			CurrentProductType = TypeOfList(products);
 
@@ -128,7 +129,7 @@ namespace ComputerShop.viewmodel.main
 		private void FilterProducts()
 		{
 
-			List<Product> products = ProductService
+			List<Product> products = ProductRepository
 				.GetAll()
 				.Where(product => product.GetType().IsSubclassOf(CurrentProductType)).ToList();
 
@@ -190,9 +191,9 @@ namespace ComputerShop.viewmodel.main
 				}
 				
 
-				model.enums.OperatingSystem operating = (model.enums.OperatingSystem)filters.OS.SelectedItem;
+				OperatingSystem operating = (OperatingSystem)filters.OS.SelectedItem;
 
-				if (computerType != ComputerType.None)
+				if (operating != OperatingSystem.None)
 				{
 					products = products.Where(product => (product as Computer).OperatingSystem == operating).ToList();
 				}
@@ -229,14 +230,14 @@ namespace ComputerShop.viewmodel.main
 			if (nameToFind.Length != 0)
 			{
 				CodeBehind.SearchString.Clear();
-				List<Product> products = ProductService.FindByPredicate(product => product.Name.ToLower().Contains(nameToFind.ToLower())).ToList();
+				List<Product> products = ProductRepository.FindByPredicate(product => product.Name.ToLower().Contains(nameToFind.ToLower())).ToList();
 				UpdateMainList(products);
 			}			
 		}
 		
 		private void CancelExecute()
 		{
-			UpdateMainList(GetListOfCurrentType(ProductService.GetAll()));
+			UpdateMainList(GetListOfCurrentType(ProductRepository.GetAll()));
 			foreach(TextBox textBox in ChildFinder.FindVisualChildren<TextBox>(CodeBehind.Filters))
 			{
 				textBox.Text = "";

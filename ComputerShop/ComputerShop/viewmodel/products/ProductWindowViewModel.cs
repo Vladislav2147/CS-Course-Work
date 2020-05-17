@@ -1,8 +1,10 @@
 ﻿using ComputerShop.model.database;
 using ComputerShop.model.kindofmagic;
-using ComputerShop.model.service.implementations;
+using ComputerShop.model.repository.implementations;
 using ComputerShop.model.statics;
+using ComputerShop.view;
 using ComputerShop.view.products;
+using ComputerShop.viewmodel.main;
 using Microsoft.Win32;
 using System;
 using System.CodeDom;
@@ -25,10 +27,11 @@ namespace ComputerShop.viewmodel.products
 	{
 		public string Title { get; set; } = "Добавить товар";
 		public ProductWindow CodeBehind { get; set; }
-		[Magic]
+
 		public Product Product { get; set; }
+		public int ProductId { get; set; }
 		public bool IsCreatedNow { get; set; } = false;
-		public ProductService ProductService { get; set; }
+		public ProductRepository ProductRepository { get; set; }
 		public string ImageSource { get; set; } = "/pictures/none.png";
 		public ICommand GetImage { get; set; }
 		public ICommand Accept { get; set; }
@@ -42,7 +45,8 @@ namespace ComputerShop.viewmodel.products
 				IsCreatedNow = true;
 			}
 			Product = product;
-			ProductService = new ProductService();
+			ProductId = product.Id;
+			ProductRepository = new ProductRepository();
 			GetImage = new RelayCommand(param => GetImageExecute());
 			Accept = new RelayCommand(param => AcceptExecute());
 			Cancel = new RelayCommand(param => CancelExecute());
@@ -73,12 +77,17 @@ namespace ComputerShop.viewmodel.products
 		{
 			try
 			{
+				Product.Price = Product.Price < 0 ? 0 : Product.Price;
 				if (IsCreatedNow)
 				{
-					ProductService.Add(Product);
-				}		
-				ProductService.SaveChanges();
-				MessageBox.Show("Продукт успешно добавлен");
+					ProductRepository.Add(Product);
+				}
+				else
+				{
+					ProductRepository.ChangeItem(Product);
+				}
+				ProductRepository.SaveChanges();
+				MessageBox.Show("Продукт успешно добавлен");			
 				(CodeBehind as Window).Close();				
 			}
 			catch(Exception)
@@ -126,6 +135,21 @@ namespace ComputerShop.viewmodel.products
 			{
 				button.Visibility = Visibility.Collapsed;
 			}
+		}
+
+		public void Close()
+		{
+			try
+			{
+				Product = ProductRepository.GetById(ProductId);
+				MainWindowViewModel MainVM = (CodeBehind.Owner as MainWindow).DataContext as MainWindowViewModel;
+				MainVM.UpdateMainList(MainVM.GetListOfCurrentType(MainVM.ProductRepository.GetAll()));
+			}
+			finally
+			{
+				ProductRepository.Dispose();
+			}
+			
 		}
 	}
 }

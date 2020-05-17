@@ -1,4 +1,4 @@
-﻿using ComputerShop.model.service.implementations;
+﻿using ComputerShop.model.repository.implementations;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
@@ -15,8 +15,8 @@ namespace ComputerShop.model.validation
 		{
 			try
 			{
-				ProductService productService = new ProductService();
-				if (value != null && productService.GetById(Int32.Parse((string)value)) != null)
+				ProductRepository productRepository = new ProductRepository();
+				if (value != null && productRepository.GetById(Int32.Parse((string)value)) != null)
 				{
 					return ValidationResult.ValidResult;
 				}

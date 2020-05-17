@@ -1,6 +1,6 @@
 ﻿using ComputerShop.model.database;
 using ComputerShop.model.kindofmagic;
-using ComputerShop.model.service.implementations;
+using ComputerShop.model.repository.implementations;
 using ComputerShop.model.statics;
 using ComputerShop.view.adminTools;
 using System;
@@ -16,8 +16,8 @@ namespace ComputerShop.viewmodel.adminTools
 {
 	class OrdersViewModel : PropertyChangedBase
 	{
-		public OrderService OrderService { get; set; }
-		public CustomerService CustomerService { get; set; }
+		public OrderRepository OrderRepository { get; set; }
+		public CustomerRepository CustomerRepository { get; set; }
 		public OrdersUC CodeBehind { get; set; }
 		
 		public List<Order> NotAcceptedOrders { get; set; }
@@ -29,8 +29,8 @@ namespace ComputerShop.viewmodel.adminTools
 		{
 			CodeBehind = codeBehind;
 
-			CustomerService = new CustomerService();
-			OrderService = new OrderService();
+			CustomerRepository = new CustomerRepository();
+			OrderRepository = new OrderRepository();
 
 			UpdateLists();
 			Accept = new RelayCommand(param => ExecuteAccept(param));
@@ -45,16 +45,16 @@ namespace ComputerShop.viewmodel.adminTools
 			}
 			try
 			{
-				OrderService.SaveChanges();
+				OrderRepository.SaveChanges();
 				order.State = State.Approved;
-				OrderService.SaveChanges();
+				OrderRepository.SaveChanges();
 			}
 			catch (Exception)
 			{
 				MessageBox.Show("Неваозможно принять заказ");
 			}
 
-			Customer admin = CustomerService.FindByPredicate(cust => cust.Role == model.enums.Role.Admin).FirstOrDefault();
+			Customer admin = CustomerRepository.FindByPredicate(cust => cust.Role == model.enums.Role.Admin).FirstOrDefault();
 			StringBuilder message = new StringBuilder($"Заказ N{order.Id} подтвержден");
 			message.Append("<table border=\"1\"><tr><td>Название</td><td>Количество</td><td>Цена за шт</td></tr>");
 			decimal total = 0;
@@ -71,8 +71,8 @@ namespace ComputerShop.viewmodel.adminTools
 		}
 		private void UpdateLists()
 		{
-			NotAcceptedOrders = OrderService.FindByPredicate(order => order.State == State.Formed).ToList();
-			AcceptedOrders = OrderService.FindByPredicate(order => order.State == State.Approved).ToList();
+			NotAcceptedOrders = OrderRepository.FindByPredicate(order => order.State == State.Formed).ToList();
+			AcceptedOrders = OrderRepository.FindByPredicate(order => order.State == State.Approved).ToList();
 		}
 	}
 }

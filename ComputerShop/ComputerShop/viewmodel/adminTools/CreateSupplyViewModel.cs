@@ -1,5 +1,5 @@
 ﻿using ComputerShop.model.database;
-using ComputerShop.model.service.implementations;
+using ComputerShop.model.repository.implementations;
 using ComputerShop.view.adminTools;
 using ComputerShop.view.products;
 using System;
@@ -18,7 +18,7 @@ namespace ComputerShop.viewmodel.adminTools
 {
 	class CreateSupplyViewModel
 	{
-		public SupplyService SupplyService { get; set; }
+		public SupplyRepository SupplyRepository { get; set; }
 		public CreateSupplyWindow CodeBehind { get; set; }
 		public Supply CreatedSupply { get; set; }
 		public List<DeliveredToWareHouse> Delivered { get; set; }
@@ -30,10 +30,10 @@ namespace ComputerShop.viewmodel.adminTools
 		public ICommand Accept { get; set; }
 
 
-		public CreateSupplyViewModel(SupplyService supplyService, CreateSupplyWindow codeBehind)
+		public CreateSupplyViewModel(SupplyRepository supplyRepository, CreateSupplyWindow codeBehind)
 		{
 			codeBehind.DataContext = this;
-			SupplyService = supplyService;
+			SupplyRepository = supplyRepository;
 			CodeBehind = codeBehind;
 			CreatedSupply = new Supply();
 			Delivered = new List<DeliveredToWareHouse>();
@@ -85,8 +85,8 @@ namespace ComputerShop.viewmodel.adminTools
 					}
 					CreatedSupply.Date = Date;
 					CreatedSupply.DeliveredToWareHouse = Delivered;
-					SupplyService.Add(CreatedSupply);
-					SupplyService.SaveChanges();
+					SupplyRepository.Add(CreatedSupply);
+					SupplyRepository.SaveChanges();
 					(CodeBehind.Owner.DataContext as SupplyViewModel).Update();
 					CodeBehind.Close();
 				}

@@ -10,7 +10,7 @@
     
     <UserControl.Resources>
         <DataTemplate x:Key="Accept">
-            <Button Command="{Binding ElementName=OrdersView, Path=DataContext.Accept}" CommandParameter="{Binding RelativeSource={RelativeSource Mode=Self}}" Content="Подтвердить"></Button>
+            <Button Command="{Binding ElementName=OrdersView, Path=DataContext.Accept}" CommandParameter="{Binding RelativeSource={RelativeSource Mode=Self}}" Background="White" Content="Принять"></Button>
         </DataTemplate>
     </UserControl.Resources>
     

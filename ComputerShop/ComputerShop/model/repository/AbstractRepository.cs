@@ -6,17 +6,17 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ComputerShop.model.service
+namespace ComputerShop.model.repository
 {
-	public abstract class AbstractService<T> : IDisposable where T: IEntity, new()
+	public abstract class AbstractRepository<T> : IDisposable where T: IEntity, new()
 	{
 		public ComputerShopContext ComputerShopContext { get; set; }
 
-		public AbstractService(ComputerShopContext computerShopContext)
+		public AbstractRepository(ComputerShopContext computerShopContext)
 		{
 			ComputerShopContext = computerShopContext;
 		}
-		public AbstractService()
+		public AbstractRepository()
 		{
 			ComputerShopContext = new ComputerShopContext();
 		}

@@ -1,6 +1,6 @@
 ﻿using ComputerShop.model.business;
 using ComputerShop.model.database;
-using ComputerShop.model.service.implementations;
+using ComputerShop.model.repository.implementations;
 using ComputerShop.view;
 using ComputerShop.view.login;
 using System;
@@ -20,7 +20,7 @@ namespace ComputerShop.viewmodel.login
 		public ICommand LoadRegistration { get; private set; }
 		public ICommand LoadMainWindow { get; private set; }
 		public LoginWindow CodeBehind { get; set; }
-		public CustomerService CustomerService { get; set;}
+		public CustomerRepository CustomerRepository { get; set;}
 
 		public SignInViewModel()
 		{
@@ -40,11 +40,11 @@ namespace ComputerShop.viewmodel.login
 		{
 			using(ComputerShopContext computerShopContext = new ComputerShopContext())
 			{
-				CustomerService = new CustomerService(computerShopContext);
-				Customer customer = CustomerService.FindByPredicate(cust => cust.Login == Login).FirstOrDefault();
+				CustomerRepository = new CustomerRepository(computerShopContext);
+				Customer customer = CustomerRepository.FindByPredicate(cust => cust.Login == Login).FirstOrDefault();
 				if (customer != null)
 				{
-					if (Password != null && CustomerService.HashEquals(Password, customer.Password))
+					if (Password != null && CustomerRepository.HashEquals(Password, customer.Password))
 					{
 						MainWindow mainWindow = new MainWindow(customer);
 						mainWindow.Show();

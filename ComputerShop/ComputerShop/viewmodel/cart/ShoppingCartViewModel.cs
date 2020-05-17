@@ -1,6 +1,6 @@
 ﻿using ComputerShop.model.database;
 using ComputerShop.model.kindofmagic;
-using ComputerShop.model.service.implementations;
+using ComputerShop.model.repository.implementations;
 using ComputerShop.view;
 using ComputerShop.view.shoppingcart;
 using ComputerShop.viewmodel.main;
@@ -17,7 +17,7 @@ namespace ComputerShop.viewmodel.cart
 {
 	class ShoppingCartViewModel : PropertyChangedBase
 	{
-		public OrderService OrderService { get; set; }
+		public OrderRepository OrderRepository { get; set; }
 		public ShoppingCart CodeBehind { get; set; }
 		public Customer Customer { get; set; }
 		public ICommand AddAmountCommand { get; set; }
@@ -27,7 +27,7 @@ namespace ComputerShop.viewmodel.cart
 		public ICommand CancelCommand { get; set; }
 		public ShoppingCartViewModel(Customer customer, ShoppingCart codeBehing)
 		{
-			OrderService = new OrderService();
+			OrderRepository = new OrderRepository();
 			AddAmountCommand = new RelayCommand(param => AddAmountCommandExecute(param));
 			ReduceAmountCommand = new RelayCommand(param => ReduceAmountCommandExecute(param));
 			DeleteProductCommand = new RelayCommand(param => DeleteProductCommandExecute(param));
@@ -45,7 +45,7 @@ namespace ComputerShop.viewmodel.cart
 		private void CancelCommandExecute()
 		{
 			MainList view = new MainList(this.CodeBehind.Owner);			
-			view.ProductList.ItemsSource = (this.CodeBehind.Owner.DataContext as MainWindowViewModel).ProductService.GetAll();
+			view.ProductList.ItemsSource = (this.CodeBehind.Owner.DataContext as MainWindowViewModel).ProductRepository.GetAll();
 			MainListViewModel vm = new MainListViewModel(view);
 			vm.MainVM = this.CodeBehind.Owner.DataContext as MainWindowViewModel;
 			view.DataContext = vm;

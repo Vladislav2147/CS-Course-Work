@@ -29,7 +29,7 @@ namespace ComputerShop.view
 		{
 			Owner = owner;
 			InitializeComponent();
-			this.ProductList.ItemsSource = (Owner.DataContext as MainWindowViewModel).ProductService.GetAll();
+			this.ProductList.ItemsSource = (Owner.DataContext as MainWindowViewModel).ProductRepository.GetAll();
 			Loaded += MainList_Loaded;
 			this.ProductList.MouseDoubleClick += ItemDoubleClick;
 

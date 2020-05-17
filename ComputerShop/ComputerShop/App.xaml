@@ -5,6 +5,9 @@
              StartupUri="view/main/MainWindow.xaml"
              ShutdownMode="OnLastWindowClose">
     <Application.Resources>
-         
+        <Style TargetType="Button" x:Key="WhiteButton">
+            <Setter Property="Margin" Value="5"></Setter>
+            <Setter Property="Background" Value="White"></Setter>
+        </Style>
     </Application.Resources>
 </Application>

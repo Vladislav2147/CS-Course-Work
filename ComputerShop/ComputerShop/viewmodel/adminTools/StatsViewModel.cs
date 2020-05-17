@@ -1,5 +1,5 @@
 ﻿using ComputerShop.model.database;
-using ComputerShop.model.service.implementations;
+using ComputerShop.model.repository.implementations;
 using ComputerShop.view.adminTools;
 using OxyPlot;
 using OxyPlot.Axes;
@@ -16,18 +16,18 @@ namespace ComputerShop.viewmodel.adminTools
 	class StatsViewModel
 	{
 		public StatsUC CodeBehind { get; set; }
-		public OrderService OrderService { get; set; }
-		public SupplyService SupplyService { get; set; }
-		public PlotModel Plot { get; set;
-		}
+		public OrderRepository OrderRepository { get; set; }
+		public SupplyRepository SupplyRepository { get; set; }
+		public PlotModel Plot { get; set; }
+
 		public StatsViewModel(StatsUC codeBehind)
 		{
-			OrderService = new OrderService();
-			SupplyService = new SupplyService();
+			OrderRepository = new OrderRepository();
+			SupplyRepository = new SupplyRepository();
 			CodeBehind = codeBehind;
 
-			List<Order> approvedOrders = OrderService.FindByPredicate(order => order.State == State.Approved).ToList();
-			List<Supply> supplies = SupplyService.GetAll();
+			List<Order> approvedOrders = OrderRepository.FindByPredicate(order => order.State == State.Approved).ToList();
+			List<Supply> supplies = SupplyRepository.GetAll();
 
 			DateTime today = DateTime.Now.Date;
 			DateTime monthAgo = today.AddMonths(-1);
@@ -80,6 +80,7 @@ namespace ComputerShop.viewmodel.adminTools
 				axis.Points.Add(new DataPoint(DateTimeAxis.ToDouble(date), 0));
 
 			}
+
 			Plot.Series.Add(axis);
 			Plot.Series.Add(income);
 			Plot.Series.Add(consumption);

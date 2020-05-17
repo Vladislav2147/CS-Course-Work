@@ -1,6 +1,6 @@
 ﻿using ComputerShop.model.database;
 using ComputerShop.model.kindofmagic;
-using ComputerShop.model.service.implementations;
+using ComputerShop.model.repository.implementations;
 using ComputerShop.view.adminTools;
 using System;
 using System.Collections.Generic;
@@ -16,7 +16,7 @@ namespace ComputerShop.viewmodel.adminTools
 	class SupplyViewModel : PropertyChangedBase
 	{
 		public List<Supply> Supplies { get; set; }
-		public SupplyService SupplyService { get; set; }
+		public SupplyRepository SupplyRepository { get; set; }
 		public SupplyUC CodeBehind { get; set; }
 
 		public ICommand CreateCommand { get; set; }
@@ -25,8 +25,8 @@ namespace ComputerShop.viewmodel.adminTools
 		public SupplyViewModel(SupplyUC codeBehind)
 		{
 			CodeBehind = codeBehind;
-			SupplyService = new SupplyService();
-			Supplies = SupplyService.GetAll();
+			SupplyRepository = new SupplyRepository();
+			Supplies = SupplyRepository.GetAll();
 
 			CreateCommand = new RelayCommand(param => Create());
 			RemoveCommand = new RelayCommand(param => Remove());
@@ -34,16 +34,16 @@ namespace ComputerShop.viewmodel.adminTools
 		
 		private void Create()
 		{
-			var createWindow = new CreateSupplyWindow(SupplyService, CodeBehind);
+			var createWindow = new CreateSupplyWindow(SupplyRepository, CodeBehind);
 			createWindow.Show();
 		}
 		private void Remove()
 		{
-			SupplyService.RemoveById((CodeBehind.DataSupplies.SelectedItem as Supply).Id);
-			SupplyService.SaveChanges();
+			SupplyRepository.RemoveById((CodeBehind.DataSupplies.SelectedItem as Supply).Id);
+			SupplyRepository.SaveChanges();
 			Update();
 		}
 
-		public void Update() => Supplies = SupplyService.GetAll();
+		public void Update() => Supplies = SupplyRepository.GetAll();
 	}
 }

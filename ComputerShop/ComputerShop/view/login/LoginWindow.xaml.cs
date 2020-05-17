@@ -1,6 +1,6 @@
 ﻿using ComputerShop.model.business;
 using ComputerShop.model.database;
-using ComputerShop.model.service.implementations;
+using ComputerShop.model.repository.implementations;
 using ComputerShop.viewmodel.login;
 using System;
 using System.Collections.Generic;

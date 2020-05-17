@@ -25,6 +25,7 @@ namespace ComputerShop
 		public MainWindow()
 		{
 			InitializeComponent();
+			Closed += MainWindowClosed;
 			//Авторизация костыль потом через конструктор передать
 			Customer customer;
 			using (ComputerShopContext context = new ComputerShopContext())
@@ -69,14 +70,26 @@ namespace ComputerShop
 
 		private void TreeItemExecute(object sender, RoutedEventArgs e)
 		{
+			foreach (var item in ChildFinder.FindVisualChildren<TreeViewItem>(AdminMenu))
+			{
+				item.IsSelected = false;
+			}
 			(DataContext as MainWindowViewModel).TreeItemExecute();
 		}
 		
-		private void AdminToolsSelectedItemChanged(object sender, RoutedPropertyChangedEventArgs<object> e)
+		private void AdminToolsSelectedItemChanged(object sender, RoutedEventArgs e)
 		{
-			string tool = ((sender as TreeView).SelectedItem as TreeViewItem).Header.ToString();
+			foreach (var item in ChildFinder.FindVisualChildren<TreeViewItem>(Tree))
+			{
+				item.IsSelected = false;
+			}
+			string tool = (sender as TreeViewItem).Header.ToString();
 			(DataContext as MainWindowViewModel).SelectAdminTool(tool);
 		}
 
+		private void MainWindowClosed(object sender, EventArgs e)
+		{
+			Application.Current.Shutdown();
+		}
 	}
 }

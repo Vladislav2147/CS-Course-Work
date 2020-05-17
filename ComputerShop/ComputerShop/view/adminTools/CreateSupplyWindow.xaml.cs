@@ -1,4 +1,4 @@
-﻿using ComputerShop.model.service.implementations;
+﻿using ComputerShop.model.repository.implementations;
 using ComputerShop.viewmodel.adminTools;
 using System;
 using System.Collections.Generic;
@@ -27,10 +27,10 @@ namespace ComputerShop.view.adminTools
 			InitializeComponent();
 		}
 
-		public CreateSupplyWindow(SupplyService supplyService, SupplyUC owner) : this()
+		public CreateSupplyWindow(SupplyRepository supplyRepository, SupplyUC owner) : this()
 		{
 			Owner = owner;
-			var vm = new CreateSupplyViewModel(supplyService, this);
+			var vm = new CreateSupplyViewModel(supplyRepository, this);
 		}
 	}
 }
