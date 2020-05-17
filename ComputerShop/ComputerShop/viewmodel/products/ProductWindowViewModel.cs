@@ -141,9 +141,12 @@ namespace ComputerShop.viewmodel.products
 		{
 			try
 			{
-				Product = ProductRepository.GetById(ProductId);
-				MainWindowViewModel MainVM = (CodeBehind.Owner as MainWindow).DataContext as MainWindowViewModel;
-				MainVM.UpdateMainList(MainVM.GetListOfCurrentType(MainVM.ProductRepository.GetAll()));
+				if (CodeBehind.Owner as MainWindow != null)
+				{
+					Product = ProductRepository.GetById(ProductId);
+					MainWindowViewModel MainVM = (CodeBehind.Owner as MainWindow).DataContext as MainWindowViewModel;
+					MainVM.UpdateMainList(MainVM.GetListOfCurrentType(MainVM.ProductRepository.GetAll()));
+				}					
 			}
 			finally
 			{
