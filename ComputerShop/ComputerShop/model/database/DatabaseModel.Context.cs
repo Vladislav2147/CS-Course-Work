@@ -31,6 +31,5 @@ namespace ComputerShop.model.database
         public virtual DbSet<Supply> Supply { get; set; }
         public virtual DbSet<DeliveredToWareHouse> DeliveredToWareHouse { get; set; }
         public virtual DbSet<Ordered> Ordered { get; set; }
-        public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
     }
 }

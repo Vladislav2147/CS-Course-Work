@@ -158,7 +158,6 @@
       <End Role="order" EntitySet="Order" />
       <End Role="Ordered" EntitySet="Ordered" />
     </AssociationSet>
-    <EntitySet Name="sysdiagrams" EntityType="ComputerShopModel.sysdiagrams" />
   </EntityContainer>
   <Association Name="FK_ordered_order1">
     <End Type="ComputerShopModel.Order" Role="order" Multiplicity="1" />
@@ -198,16 +197,6 @@
   <EntityType Name="Keyboard" BaseType="ComputerShopModel.Peripherals">
     <Property Name="KeyTechnology" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
     <Property Name="KeyForm" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
-  </EntityType>
-  <EntityType Name="sysdiagrams">
-    <Key>
-      <PropertyRef Name="diagram_id" />
-    </Key>
-    <Property Name="name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
-    <Property Name="principal_id" Type="Int32" Nullable="false" />
-    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="version" Type="Int32" />
-    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
   </EntityType>
   <EnumType Name="Role" a:ExternalTypeName="ComputerShop.model.enums.Role" xmlns:a="http://schemas.microsoft.com/ado/2006/04/codegeneration" />
   <EnumType Name="State">

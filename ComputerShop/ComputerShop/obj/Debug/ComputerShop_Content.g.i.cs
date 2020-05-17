@@ -8,6 +8,8 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("model/database/computershop.mdf")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("model/database/computershop_log.ldf")]
 [assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("model/database/databasemodel.context.tt")]
 [assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("model/database/databasemodel.tt")]
 

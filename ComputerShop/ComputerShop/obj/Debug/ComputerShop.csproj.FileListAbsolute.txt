@@ -126,3 +126,5 @@ F:\course work\ComputerShop\ComputerShop\bin\Debug\OxyPlot.xml
 F:\course work\ComputerShop\ComputerShop\bin\Debug\OxyPlot.Wpf.xml
 F:\course work\ComputerShop\ComputerShop\obj\Debug\view\adminTools\StatsUC.g.cs
 F:\course work\ComputerShop\ComputerShop\obj\Debug\view\adminTools\StatsUC.baml
+F:\course work\ComputerShop\ComputerShop\bin\Debug\model\database\ComputerShop.mdf
+F:\course work\ComputerShop\ComputerShop\bin\Debug\model\database\ComputerShop_log.ldf
