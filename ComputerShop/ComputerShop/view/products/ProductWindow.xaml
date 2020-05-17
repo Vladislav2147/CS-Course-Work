@@ -8,7 +8,7 @@
         xmlns:converters="clr-namespace:ComputerShop.model.converters"
         xmlns:validation="clr-namespace:ComputerShop.model.validation"
         mc:Ignorable="d"
-        Title="DesktopWindow" Height="auto" SizeToContent="Height" MinWidth="650" Width="650">
+        Title="Computer Shop" Height="auto" SizeToContent="Height" MinWidth="650" Width="650" Icon="/pictures/pc.ico">
     <Window.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>

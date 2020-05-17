@@ -6,6 +6,8 @@ using ComputerShop.view.login;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
+using System.Resources;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -19,13 +21,15 @@ namespace ComputerShop.viewmodel.login
 		public string Password { get; set; }
 		public ICommand LoadRegistration { get; private set; }
 		public ICommand LoadMainWindow { get; private set; }
+		public ICommand Backup { get; private set; }
 		public LoginWindow CodeBehind { get; set; }
 		public CustomerRepository CustomerRepository { get; set;}
 
 		public SignInViewModel()
 		{
 			LoadRegistration = new RelayCommand(param => ExecuteLoadRegistration());
-			LoadMainWindow = new RelayCommand(param => ExecuteLoadMainWindow());
+			LoadMainWindow = new RelayCommand(param => ExecuteLoadMainWindow());			
+			Backup = new RelayCommand(param => ExecuteBackup());			
 		}
 
 		private void ExecuteLoadRegistration()
@@ -61,6 +65,15 @@ namespace ComputerShop.viewmodel.login
 				}
 			}
 			
+		}
+
+		private void ExecuteBackup()
+		{
+			Backup view = new Backup();
+			BackupViewModel vm = new BackupViewModel();
+			vm.CodeBehind = this.CodeBehind;
+			view.DataContext = vm;
+			CodeBehind.LoginOutputView.Content = view;
 		}
 
 	}

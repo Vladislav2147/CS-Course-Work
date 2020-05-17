@@ -21,23 +21,18 @@ namespace ComputerShop
 	/// </summary>
 	public partial class MainWindow : Window
 	{
-		public MainWindow(Customer customer) { }
 		public MainWindow()
 		{
 			InitializeComponent();
 			Closed += MainWindowClosed;
-			//Авторизация костыль потом через конструктор передать
-			Customer customer;
-			using (ComputerShopContext context = new ComputerShopContext())
-			{
-				customer = context.Customer.Include("Order").Where(customer1 => customer1.Role == Role.Admin).FirstOrDefault();
-			}
-			
-			//
 
+		}
+
+		public MainWindow(Customer customer) : this()
+		{
 			MainWindowViewModel mainvm = new MainWindowViewModel(this, customer);
 			this.DataContext = mainvm;
-			
+
 			MainList view = new MainList(this);
 			MainListViewModel vm = new MainListViewModel(view);
 			vm.MainVM = this.DataContext as MainWindowViewModel;
@@ -53,6 +48,7 @@ namespace ComputerShop
 			var desc = DependencyPropertyDescriptor.FromProperty(ContentControl.ContentProperty, typeof(ContentPresenter));
 			desc.AddValueChanged(MainContent, MainContent_DataContextChanged);
 		}
+		
 
 		private void MainContent_DataContextChanged(object sender, EventArgs e)
 		{

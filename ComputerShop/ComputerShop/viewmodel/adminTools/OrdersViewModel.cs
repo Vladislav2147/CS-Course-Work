@@ -66,7 +66,7 @@ namespace ComputerShop.viewmodel.adminTools
 			}
 			message.Append($"</table><br><b>К оплате:{total:0.00}</b>");
 
-			PostEmail.SendEmail(admin.Email, "abcd88005553535", order.Customer.Email, message.ToString());			
+			PostEmail.SendEmail(order.Customer.Email, message.ToString());			
 			UpdateLists();
 		}
 		private void UpdateLists()

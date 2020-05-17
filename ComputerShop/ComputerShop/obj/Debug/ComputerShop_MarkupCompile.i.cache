@@ -10,11 +10,11 @@ none
 false
 DEBUG;TRACE
 F:\course work\ComputerShop\ComputerShop\App.xaml
-201903444601
+22-2026726100
 4-595743289
-95-1759082836
+98-400561119
 159-1219344010
-view\adminTools\CreateSupplyWindow.xaml;view\adminTools\OrdersUC.xaml;view\adminTools\StatsUC.xaml;view\adminTools\SupplyUC.xaml;view\main\filters\ComputerFilters.xaml;view\main\filters\PeripheralFilters.xaml;view\main\MainWindow.xaml;view\login\LoginWindow.xaml;view\login\SignIn.xaml;view\login\SignUp.xaml;view\main\MainList.xaml;view\products\DesktopUC.xaml;view\products\KeyboardUC.xaml;view\products\LaptopUC.xaml;view\products\MonoblockUC.xaml;view\products\MouseUC.xaml;view\products\ProductWindow.xaml;view\products\ProductDictionary.xaml;view\products\ReadonlyProductDictionary.xaml;view\shoppingcart\ShoppingCart.xaml;
+view\adminTools\CreateSupplyWindow.xaml;view\adminTools\OrdersUC.xaml;view\adminTools\StatsUC.xaml;view\adminTools\SupplyUC.xaml;view\login\Backup.xaml;view\login\Password.xaml;view\main\filters\ComputerFilters.xaml;view\main\filters\PeripheralFilters.xaml;view\main\MainWindow.xaml;view\login\LoginWindow.xaml;view\login\SignIn.xaml;view\login\SignUp.xaml;view\main\MainList.xaml;view\products\DesktopUC.xaml;view\products\KeyboardUC.xaml;view\products\LaptopUC.xaml;view\products\MonoblockUC.xaml;view\products\MouseUC.xaml;view\products\ProductWindow.xaml;view\products\ProductDictionary.xaml;view\products\ReadonlyProductDictionary.xaml;view\shoppingcart\ShoppingCart.xaml;
 
 False
 

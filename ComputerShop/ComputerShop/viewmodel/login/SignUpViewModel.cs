@@ -65,8 +65,7 @@ namespace ComputerShop.viewmodel.login
 								}
 							}
 							else
-							{
-								
+							{								
 								CustomerRepository.RegistrateCustomer(customer);
 								CustomerRepository.SaveChanges();
 								ExecuteBack();
@@ -97,7 +96,6 @@ namespace ComputerShop.viewmodel.login
 			vm.CodeBehind = this.CodeBehind;
 			view.DataContext = vm;
 			CodeBehind.LoginOutputView.Content = view;
-
 		}
 	}
 }

@@ -11,23 +11,29 @@ namespace ComputerShop.model.statics
 {
 	public static class PostEmail
 	{
-		public static void SendEmail(string fromAdress, string fromPassword, string toAdress, string message)
+		public static async void SendEmail(string toAdress, string message)
 		{
-
-                MailAddress from = new MailAddress(fromAdress);
+            try
+			{
+                MailAddress from = new MailAddress(Properties.Resources.AdminEmail);
                 MailAddress to = new MailAddress(toAdress);
                 MailMessage m = new MailMessage(from, to);
-                m.Subject = "Заказ подтвержден";
                 m.Body = message;
                 m.IsBodyHtml = true;
-               
-            using (SmtpClient smtp = new SmtpClient("smtp.gmail.com", 587))
+
+                using (SmtpClient smtp = new SmtpClient("smtp.gmail.com", 587))
+                {
+                    smtp.UseDefaultCredentials = false;
+                    smtp.Credentials = new NetworkCredential(Properties.Resources.AdminEmail, Properties.Resources.AdminPassword);
+                    smtp.EnableSsl = true;
+
+                    await smtp.SendMailAsync(m);
+                    MessageBox.Show("Сообщение отправлено");
+                }
+            }
+            catch(Exception e)
             {
-                smtp.UseDefaultCredentials = false;
-                smtp.Credentials = new NetworkCredential(fromAdress, fromPassword);
-                smtp.EnableSsl = true;
-               
-                smtp.Send(m);
+                MessageBox.Show($"Ошибка отправки сообщения: {e.Message}");
             }
         }
 	}

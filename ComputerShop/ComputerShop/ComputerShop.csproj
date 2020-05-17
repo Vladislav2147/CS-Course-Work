@@ -235,7 +235,8 @@
     <Compile Include="viewmodel\adminTools\OrdersViewModel.cs" />
     <Compile Include="viewmodel\adminTools\StatsViewModel.cs" />
     <Compile Include="viewmodel\adminTools\SupplyViewModel.cs" />
-    <Compile Include="viewmodel\cart\ShoppingCartViewModel.cs" />
+    <Compile Include="viewmodel\login\BackupViewModel.cs" />
+    <Compile Include="viewmodel\shoppingcart\ShoppingCartViewModel.cs" />
     <Compile Include="viewmodel\login\SignUpViewModel.cs" />
     <Compile Include="viewmodel\main\MainListViewModel.cs" />
     <Compile Include="viewmodel\main\MainWindowViewModel.cs" />
@@ -254,8 +255,14 @@
     <Compile Include="view\adminTools\SupplyUC.xaml.cs">
       <DependentUpon>SupplyUC.xaml</DependentUpon>
     </Compile>
+    <Compile Include="view\login\Backup.xaml.cs">
+      <DependentUpon>Backup.xaml</DependentUpon>
+    </Compile>
     <Compile Include="view\login\LoginWindow.xaml.cs">
       <DependentUpon>LoginWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="view\login\Password.xaml.cs">
+      <DependentUpon>Password.xaml</DependentUpon>
     </Compile>
     <Compile Include="view\login\SignIn.xaml.cs">
       <DependentUpon>SignIn.xaml</DependentUpon>
@@ -307,6 +314,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="view\adminTools\SupplyUC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="view\login\Backup.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="view\login\Password.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -505,6 +520,8 @@
       <DependentUpon>DatabaseModel.edmx</DependentUpon>
       <LastGenOutput>DatabaseModel.cs</LastGenOutput>
     </Content>
+    <Resource Include="pictures\cart.png" />
+    <Resource Include="pictures\pc.ico" />
     <Resource Include="pictures\none.png" />
   </ItemGroup>
   <ItemGroup>

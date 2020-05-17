@@ -6,7 +6,15 @@
         xmlns:c="clr-namespace:CalcBinding;assembly=CalcBinding"
         xmlns:local="clr-namespace:ComputerShop"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="810" MinHeight="450" MinWidth="810" Background="#FFE6E6E6" VerticalAlignment="Center" x:Name="Window">
+        Title="Computer Shop" 
+        Height="450" 
+        Width="810" 
+        MinHeight="450" 
+        MinWidth="810" 
+        Background="#FFE6E6E6" 
+        VerticalAlignment="Center" 
+        x:Name="Window" 
+        Icon="/pictures/pc.ico">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="*"></RowDefinition>
@@ -126,8 +134,10 @@
                 <ColumnDefinition Width="3*"></ColumnDefinition>
                 <ColumnDefinition Width="7*"></ColumnDefinition>
             </Grid.ColumnDefinitions>
-            
-            <Button Grid.Column="0" Grid.Row="1" x:Name="Cart" Content="Корзина" Command="{Binding GoToCart}" />
+
+            <Button Grid.Column="0" Grid.Row="1" x:Name="Cart" Command="{Binding GoToCart}" Background="{x:Null}" BorderThickness="0">
+                <Image Source="/pictures/cart.png"></Image>
+            </Button>
             <TextBox x:Name="SearchString" Grid.Row="1" Grid.Column="2" Grid.ColumnSpan="3" MaxHeight="30"  MaxLines="1" VerticalContentAlignment="Center" Padding="5,0" />
             <Button Command="{Binding FindByName}" Grid.Column="5" Grid.Row="1" Margin="5,0,0,0" Content="Поиск" MaxHeight="30" MinWidth="80" Background="White" HorizontalAlignment="Left"   />
         </Grid>

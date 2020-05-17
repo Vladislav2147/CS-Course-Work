@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:ComputerShop.view.adminTools"
         xmlns:validator="clr-namespace:ComputerShop.model.validation"
         mc:Ignorable="d"
-        Title="CreateSupplyWindow" Height="450" Width="500" MinWidth="500" MinHeight="450">
+        Title="Создать поставку" Height="450" Width="500" MinWidth="500" MinHeight="450" Icon="/pictures/pc.ico">
     <Grid>
         <StackPanel Margin="5">
             <TextBlock Text="Добавить поставку" FontSize="32" TextAlignment="Center"></TextBlock>

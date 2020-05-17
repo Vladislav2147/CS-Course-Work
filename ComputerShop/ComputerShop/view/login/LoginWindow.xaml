@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ComputerShop.view"
         mc:Ignorable="d"
-        Title="LoginWindow" Height="400" Width="300" MinHeight="400" MinWidth="300" MaxHeight="400" MaxWidth="300">
+        Title="Вход" Height="400" Width="300" MinHeight="400" MinWidth="300" MaxHeight="400" MaxWidth="300" Icon="/pictures/pc.ico">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition></RowDefinition>
