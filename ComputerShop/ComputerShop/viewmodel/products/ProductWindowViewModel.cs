@@ -2,23 +2,15 @@
 using ComputerShop.model.kindofmagic;
 using ComputerShop.model.repository.implementations;
 using ComputerShop.model.statics;
-using ComputerShop.view;
 using ComputerShop.view.products;
 using ComputerShop.viewmodel.main;
 using Microsoft.Win32;
 using System;
-using System.CodeDom;
-using System.Collections.Generic;
-using System.Drawing;
+using System.Data.Entity.Validation;
 using System.IO;
-using System.Linq;
-using System.Runtime.Remoting.Proxies;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
-using System.Windows.Media;
 using Image = System.Drawing.Image;
 
 namespace ComputerShop.viewmodel.products
@@ -34,13 +26,14 @@ namespace ComputerShop.viewmodel.products
 		public ProductRepository ProductRepository { get; set; }
 		public string ImageSource { get; set; } = "/pictures/none.png";
 		public ICommand GetImage { get; set; }
+		public ICommand ResetImage { get; set; }
 		public ICommand Accept { get; set; }
 		public ICommand Cancel { get; set; }
 
 		public ProductWindowViewModel(ProductWindow codeBehind, Product product)
 		{
 			CodeBehind = codeBehind;
-			if(product.Name == null || product.Name.Length == 0)
+			if (product.Name == null || product.Name.Length == 0)
 			{
 				IsCreatedNow = true;
 			}
@@ -49,6 +42,7 @@ namespace ComputerShop.viewmodel.products
 			ProductRepository = new ProductRepository();
 			GetImage = new RelayCommand(param => GetImageExecute());
 			Accept = new RelayCommand(param => AcceptExecute());
+			ResetImage = new RelayCommand(param => ImageSource = "/pictures/none.png");
 			Cancel = new RelayCommand(param => CancelExecute());
 		}
 
@@ -87,12 +81,18 @@ namespace ComputerShop.viewmodel.products
 					ProductRepository.ChangeItem(Product);
 				}
 				ProductRepository.SaveChanges();
-				MessageBox.Show("Продукт успешно добавлен");			
-				(CodeBehind as Window).Close();				
+				MessageBox.Show("Продукт успешно добавлен");
+				(CodeBehind as Window).Close();
 			}
-			catch(Exception)
+			catch (DbEntityValidationException ex)
 			{
-				MessageBox.Show("Ошибка");
+				foreach (var entityValidationErrors in ex.EntityValidationErrors)
+				{
+					foreach (var validationError in entityValidationErrors.ValidationErrors)
+					{
+						MessageBox.Show("Property: " + validationError.PropertyName + " Error: " + validationError.ErrorMessage);
+					}
+				}
 			}
 		}
 
@@ -100,6 +100,7 @@ namespace ComputerShop.viewmodel.products
 		{
 			(CodeBehind as Window).Close();
 		}
+
 		public void UserViewSetup()
 		{
 			Title = Product.Name;
@@ -113,7 +114,7 @@ namespace ComputerShop.viewmodel.products
 			ResourceDictionary resource = new ResourceDictionary() { Source = new Uri("view\\products\\ReadonlyProductDictionary.xaml", UriKind.Relative) };
 			CodeBehind.Resources.MergedDictionaries.Clear();
 			CodeBehind.Resources.MergedDictionaries.Add(resource);
-			
+
 
 			foreach (var textBox in ChildFinder.FindVisualChildren<TextBox>(CodeBehind))
 			{
@@ -146,13 +147,13 @@ namespace ComputerShop.viewmodel.products
 					Product = ProductRepository.GetById(ProductId);
 					MainWindowViewModel MainVM = (CodeBehind.Owner as MainWindow).DataContext as MainWindowViewModel;
 					MainVM.UpdateMainList(MainVM.GetListOfCurrentType(MainVM.ProductRepository.GetAll()));
-				}					
+				}
 			}
 			finally
 			{
 				ProductRepository.Dispose();
 			}
-			
+
 		}
 	}
 }

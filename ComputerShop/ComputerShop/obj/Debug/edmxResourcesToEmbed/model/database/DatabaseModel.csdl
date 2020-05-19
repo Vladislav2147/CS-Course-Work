@@ -186,17 +186,17 @@
     <Property Name="ScreenTechnology" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
   </EntityType>
   <EntityType Name="Mouse" BaseType="ComputerShopModel.Peripherals">
-    <Property Name="SensorType" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="SensorType" Type="String" MaxLength="20" FixedLength="true" Unicode="true" />
     <Property Name="SensorResolution" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
   </EntityType>
   <EntityType Name="Peripherals" BaseType="ComputerShopModel.Product" Abstract="false">
     <Property Name="Interface" Type="ComputerShopModel.PeripheralInterface" Nullable="false" />
-    <Property Name="Material" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="Material" Type="String" MaxLength="20" FixedLength="true" Unicode="true" />
     <Property Name="Color" Type="ComputerShopModel.Color" Nullable="false" />
   </EntityType>
   <EntityType Name="Keyboard" BaseType="ComputerShopModel.Peripherals">
-    <Property Name="KeyTechnology" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
-    <Property Name="KeyForm" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="KeyTechnology" Type="String" MaxLength="20" FixedLength="true" Unicode="true" />
+    <Property Name="KeyForm" Type="String" MaxLength="20" FixedLength="true" Unicode="true" />
   </EntityType>
   <EnumType Name="Role" a:ExternalTypeName="ComputerShop.model.enums.Role" xmlns:a="http://schemas.microsoft.com/ado/2006/04/codegeneration" />
   <EnumType Name="State">

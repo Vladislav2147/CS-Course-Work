@@ -4,10 +4,7 @@ using ComputerShop.view.adminTools;
 using ComputerShop.view.products;
 using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -19,6 +16,7 @@ namespace ComputerShop.viewmodel.adminTools
 	class CreateSupplyViewModel
 	{
 		public SupplyRepository SupplyRepository { get; set; }
+		public ProductRepository ProductRepository { get; set; }
 		public CreateSupplyWindow CodeBehind { get; set; }
 		public Supply CreatedSupply { get; set; }
 		public List<DeliveredToWareHouse> Delivered { get; set; }
@@ -35,6 +33,7 @@ namespace ComputerShop.viewmodel.adminTools
 			codeBehind.DataContext = this;
 			SupplyRepository = supplyRepository;
 			CodeBehind = codeBehind;
+			ProductRepository = new ProductRepository();
 			CreatedSupply = new Supply();
 			Delivered = new List<DeliveredToWareHouse>();
 			CreateProduct = new RelayCommand(param => ExecuteCreateProduct());
@@ -72,7 +71,7 @@ namespace ComputerShop.viewmodel.adminTools
 
 		private void ExecuteAccept()
 		{
-			if(Delivered.Count > 0 && Delivered.First().ProductId != 0)
+			if (Delivered.Count > 0 && Delivered.First().ProductId != 0)
 			{
 				try
 				{
@@ -85,6 +84,15 @@ namespace ComputerShop.viewmodel.adminTools
 					}
 					CreatedSupply.Date = Date;
 					CreatedSupply.DeliveredToWareHouse = Delivered;
+					
+					foreach(var delivered in Delivered)
+					{
+						Product deliveredProduct = ProductRepository.GetById(delivered.ProductId);
+						deliveredProduct.Amount += delivered.Amount;
+						ProductRepository.ChangeItem(deliveredProduct);
+						ProductRepository.SaveChanges();
+					}
+
 					SupplyRepository.Add(CreatedSupply);
 					SupplyRepository.SaveChanges();
 					(CodeBehind.Owner.DataContext as SupplyViewModel).Update();

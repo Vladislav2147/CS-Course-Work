@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using ComputerShop.model.kindofmagic;
+﻿using ComputerShop.model.kindofmagic;
+using System;
 
 namespace ComputerShop.model.database
 {
@@ -17,9 +13,9 @@ namespace ComputerShop.model.database
 				Address = this.Address,
 				Phone = this.Phone,
 				State = this.State,
-				CustomerId = this.CustomerId				
+				CustomerId = this.CustomerId
 			};
-			foreach(Ordered ordered in this.Ordered)
+			foreach (Ordered ordered in this.Ordered)
 			{
 				order.Ordered.Add((Ordered)ordered.Clone());
 			}

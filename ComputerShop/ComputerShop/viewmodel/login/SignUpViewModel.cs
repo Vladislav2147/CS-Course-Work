@@ -1,13 +1,10 @@
 ﻿using ComputerShop.model.database;
 using ComputerShop.model.repository.implementations;
 using ComputerShop.view.login;
-using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Data;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
 
@@ -28,13 +25,13 @@ namespace ComputerShop.viewmodel.login
 		{
 			Registrate = new RelayCommand(param => ExecuteRegistrate());
 			Back = new RelayCommand(param => ExecuteBack());
-			
+
 		}
 
 		private void ExecuteRegistrate()
 		{
 			StringBuilder stringBuilder = new StringBuilder("");
-			if(Password == null)
+			if (Password == null)
 			{
 				stringBuilder.Append("Поле пароль не может быть пустым");
 			}
@@ -42,7 +39,7 @@ namespace ComputerShop.viewmodel.login
 			{
 				if (Password == ConfirmPassword)
 				{
-					using(ComputerShopContext context = new ComputerShopContext())
+					using (ComputerShopContext context = new ComputerShopContext())
 					{
 						try
 						{
@@ -65,7 +62,7 @@ namespace ComputerShop.viewmodel.login
 								}
 							}
 							else
-							{								
+							{
 								CustomerRepository.RegistrateCustomer(customer);
 								CustomerRepository.SaveChanges();
 								ExecuteBack();
@@ -83,11 +80,11 @@ namespace ComputerShop.viewmodel.login
 					stringBuilder.Append("Подтверждение пароля не совпадает с паролем");
 				}
 			}
-			if(stringBuilder.Length != 0)
+			if (stringBuilder.Length != 0)
 			{
 				MessageBox.Show(stringBuilder.ToString());
 			}
-			
+
 		}
 		private void ExecuteBack()
 		{

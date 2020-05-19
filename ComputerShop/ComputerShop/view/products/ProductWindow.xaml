@@ -45,6 +45,7 @@
                 <StackPanel Grid.Column="0">
                     <Image x:Name="MyImage" Source="{Binding Product.Photo, Converter={StaticResource ImageConverter}, Mode=OneWay}" Margin="5" MaxHeight="200px"></Image>
                     <Button Command="{Binding GetImage}" Content="Выбрать Изображение" Width="150px" Padding="0,5,0,5"></Button>
+                    <Button Command="{Binding ResetImage}" Content="Удалить Изображение" Width="150px" Padding="0,5,0,5"></Button>
                 </StackPanel>
                 
                 <StackPanel Grid.Column="1">

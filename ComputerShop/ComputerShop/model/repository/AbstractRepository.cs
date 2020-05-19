@@ -1,14 +1,11 @@
 ﻿using ComputerShop.model.database;
 using System;
 using System.Collections.Generic;
-using System.Data.Entity;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ComputerShop.model.repository
 {
-	public abstract class AbstractRepository<T> : IDisposable where T: IEntity, new()
+	public abstract class AbstractRepository<T> : IDisposable where T : IEntity, new()
 	{
 		public ComputerShopContext ComputerShopContext { get; set; }
 

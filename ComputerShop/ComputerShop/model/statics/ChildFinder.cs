@@ -1,16 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using System.Windows;
-using System.Windows.Controls;
 using System.Windows.Media;
 
 namespace ComputerShop.model.statics
 {
-    public static class ChildFinder
-    {
+	public static class ChildFinder
+	{
 		public static IEnumerable<T> FindVisualChildren<T>(DependencyObject depObj) where T : DependencyObject
 		{
 			if (depObj != null)
@@ -27,5 +22,5 @@ namespace ComputerShop.model.statics
 				}
 			}
 		}
-    }
+	}
 }

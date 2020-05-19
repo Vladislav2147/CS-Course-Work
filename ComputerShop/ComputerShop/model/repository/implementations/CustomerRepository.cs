@@ -1,11 +1,5 @@
 ﻿using ComputerShop.model.business;
 using ComputerShop.model.database;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ComputerShop.model.repository.implementations
 {
@@ -27,5 +21,5 @@ namespace ComputerShop.model.repository.implementations
 			Add(customer);
 		}
 	}
-	
+
 }

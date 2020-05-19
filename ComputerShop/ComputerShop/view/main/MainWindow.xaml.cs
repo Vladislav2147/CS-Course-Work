@@ -1,18 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using ComputerShop.model.database;
+using ComputerShop.model.enums;
+using ComputerShop.model.statics;
+using ComputerShop.view;
+using ComputerShop.view.shoppingcart;
+using ComputerShop.viewmodel.main;
+using System;
+using System.ComponentModel;
 using System.Windows;
 using System.Windows.Controls;
-using ComputerShop.model.database;
-using ComputerShop.model.business;
-using ComputerShop.view;
-using ComputerShop.model.enums;
-using ComputerShop.viewmodel.main;
-using ComputerShop.view.shoppingcart;
-using System.ComponentModel;
-using ComputerShop.model.statics;
 
 namespace ComputerShop
 {
@@ -48,7 +43,7 @@ namespace ComputerShop
 			var desc = DependencyPropertyDescriptor.FromProperty(ContentControl.ContentProperty, typeof(ContentPresenter));
 			desc.AddValueChanged(MainContent, MainContent_DataContextChanged);
 		}
-		
+
 
 		private void MainContent_DataContextChanged(object sender, EventArgs e)
 		{
@@ -72,7 +67,7 @@ namespace ComputerShop
 			}
 			(DataContext as MainWindowViewModel).TreeItemExecute();
 		}
-		
+
 		private void AdminToolsSelectedItemChanged(object sender, RoutedEventArgs e)
 		{
 			foreach (var item in ChildFinder.FindVisualChildren<TreeViewItem>(Tree))

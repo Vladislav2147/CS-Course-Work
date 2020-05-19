@@ -51,8 +51,8 @@
       <PropertyRef Name="id" />
     </Key>
     <Property Name="id" Type="int" Nullable="false" />
-    <Property Name="key_technology" Type="nchar" MaxLength="10" />
-    <Property Name="key_form" Type="nchar" MaxLength="10" />
+    <Property Name="key_technology" Type="nchar" MaxLength="20" />
+    <Property Name="key_form" Type="nchar" MaxLength="20" />
   </EntityType>
   <EntityType Name="laptop">
     <Key>
@@ -78,7 +78,7 @@
       <PropertyRef Name="id" />
     </Key>
     <Property Name="id" Type="int" Nullable="false" />
-    <Property Name="sensor_type" Type="nchar" MaxLength="10" />
+    <Property Name="sensor_type" Type="nchar" MaxLength="20" />
     <Property Name="sensor_resolution" Type="nchar" MaxLength="10" />
   </EntityType>
   <EntityType Name="order">
@@ -107,7 +107,7 @@
     </Key>
     <Property Name="id" Type="int" Nullable="false" />
     <Property Name="interface" Type="int" Nullable="false" />
-    <Property Name="material" Type="nchar" MaxLength="10" />
+    <Property Name="material" Type="nchar" MaxLength="20" />
     <Property Name="color" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="product">

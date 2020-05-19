@@ -2,12 +2,10 @@
 using ComputerShop.model.statics;
 using ComputerShop.view;
 using ComputerShop.view.products;
-using System.Collections.Generic;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
-using System.Windows.Media;
 using Keyboard = ComputerShop.model.database.Keyboard;
 using Mouse = ComputerShop.model.database.Mouse;
 
@@ -29,7 +27,7 @@ namespace ComputerShop.viewmodel.main
 			Remove = new RelayCommand(param => ExecuteRemove());
 			Create = new RelayCommand(param => ExecuteCreate());
 			MainVM = CodeBehind.Owner.DataContext as MainWindowViewModel;
-			if(MainVM.Customer.Role == model.enums.Role.User)
+			if (MainVM.Customer.Role == model.enums.Role.User)
 			{
 				CodeBehind.AdminTools.Visibility = Visibility.Collapsed;
 			}
@@ -41,7 +39,7 @@ namespace ComputerShop.viewmodel.main
 			Product product = (Product)button.DataContext;
 			Ordered ordered = new Ordered() { Product = product, Amount = 1 };
 			Order order = MainVM.GetCreatedOrder();
-			if(order == null)
+			if (order == null)
 			{
 				order = new Order() { Customer = MainVM.Customer, State = State.Created };
 			}
@@ -89,9 +87,9 @@ namespace ComputerShop.viewmodel.main
 		{
 			Order order = MainVM.Customer.Order.FirstOrDefault(ord => ord.State == State.Created);
 
-			if(order != null)
+			if (order != null)
 			{
-				if(MainVM.Customer.Role == model.enums.Role.User)
+				if (MainVM.Customer.Role == model.enums.Role.User)
 				{
 					foreach (Button button in ChildFinder.FindVisualChildren<Button>(CodeBehind.ProductList))
 					{
@@ -150,6 +148,6 @@ namespace ComputerShop.viewmodel.main
 			productWindow.Owner = MainVM.CodeBehind;
 			productWindow.Show();
 		}
-		
+
 	}
 }

@@ -1,15 +1,8 @@
-﻿using ComputerShop.model.business;
-using ComputerShop.model.database;
+﻿using ComputerShop.model.database;
 using ComputerShop.model.repository.implementations;
-using ComputerShop.view;
 using ComputerShop.view.login;
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Reflection;
-using System.Resources;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
 
@@ -23,13 +16,13 @@ namespace ComputerShop.viewmodel.login
 		public ICommand LoadMainWindow { get; private set; }
 		public ICommand Backup { get; private set; }
 		public LoginWindow CodeBehind { get; set; }
-		public CustomerRepository CustomerRepository { get; set;}
+		public CustomerRepository CustomerRepository { get; set; }
 
 		public SignInViewModel()
 		{
 			LoadRegistration = new RelayCommand(param => ExecuteLoadRegistration());
-			LoadMainWindow = new RelayCommand(param => ExecuteLoadMainWindow());			
-			Backup = new RelayCommand(param => ExecuteBackup());			
+			LoadMainWindow = new RelayCommand(param => ExecuteLoadMainWindow());
+			Backup = new RelayCommand(param => ExecuteBackup());
 		}
 
 		private void ExecuteLoadRegistration()
@@ -42,29 +35,36 @@ namespace ComputerShop.viewmodel.login
 		}
 		private void ExecuteLoadMainWindow()
 		{
-			using(ComputerShopContext computerShopContext = new ComputerShopContext())
+			try
 			{
-				CustomerRepository = new CustomerRepository(computerShopContext);
-				Customer customer = CustomerRepository.FindByPredicate(cust => cust.Login == Login).FirstOrDefault();
-				if (customer != null)
+				using (ComputerShopContext computerShopContext = new ComputerShopContext())
 				{
-					if (Password != null && CustomerRepository.HashEquals(Password, customer.Password))
+					CustomerRepository = new CustomerRepository(computerShopContext);
+					Customer customer = CustomerRepository.FindByPredicate(cust => cust.Login == Login).FirstOrDefault();
+					if (customer != null)
 					{
-						MainWindow mainWindow = new MainWindow(customer);
-						mainWindow.Show();
-						CodeBehind.Close();
+						if (Password != null && CustomerRepository.HashEquals(Password, customer.Password))
+						{
+							MainWindow mainWindow = new MainWindow(customer);
+							mainWindow.Show();
+							CodeBehind.Close();
+						}
+						else
+						{
+							MessageBox.Show("Введен неверный пароль");
+						}
 					}
 					else
 					{
-						MessageBox.Show("Введен неверный пароль");
+						MessageBox.Show("Неверно введен логин");
 					}
 				}
-				else
-				{
-					MessageBox.Show("Неверно введен логин");
-				}
 			}
-			
+			catch (Exception e)
+			{
+				MessageBox.Show($"{e}\t{e.Message}");
+			}
+
 		}
 
 		private void ExecuteBackup()

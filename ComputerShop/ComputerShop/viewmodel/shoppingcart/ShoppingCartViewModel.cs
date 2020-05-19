@@ -5,10 +5,8 @@ using ComputerShop.view;
 using ComputerShop.view.shoppingcart;
 using ComputerShop.viewmodel.main;
 using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -44,7 +42,7 @@ namespace ComputerShop.viewmodel.cart
 
 		private void CancelCommandExecute()
 		{
-			MainList view = new MainList(this.CodeBehind.Owner);			
+			MainList view = new MainList(this.CodeBehind.Owner);
 			view.ProductList.ItemsSource = (this.CodeBehind.Owner.DataContext as MainWindowViewModel).ProductRepository.GetAll();
 			MainListViewModel vm = new MainListViewModel(view);
 			vm.MainVM = this.CodeBehind.Owner.DataContext as MainWindowViewModel;
@@ -58,7 +56,7 @@ namespace ComputerShop.viewmodel.cart
 			Button button = sender as Button;
 			Ordered ordered = button.DataContext as Ordered;
 			ordered.Amount++;
-			
+
 			if (ordered.Amount == ordered.Product.Amount)
 			{
 				button.IsEnabled = false;
@@ -71,7 +69,7 @@ namespace ComputerShop.viewmodel.cart
 			Button button = sender as Button;
 			Ordered ordered = button.DataContext as Ordered;
 			ordered.Amount--;
-			
+
 			if (ordered.Amount == 1)
 			{
 				button.IsEnabled = false;
@@ -93,12 +91,12 @@ namespace ComputerShop.viewmodel.cart
 		}
 		private void ConfirmCommandExecute()
 		{
-			using(ComputerShopContext context = new ComputerShopContext())
+			using (ComputerShopContext context = new ComputerShopContext())
 			{
 				StringBuilder errorMessage = new StringBuilder("");
 				Order formedOrder = Customer.Order.FirstOrDefault(order => order.State == State.Created);
 				if (formedOrder != null)
-				{					
+				{
 					if (CodeBehind.Address.Text.Length > 0)
 					{
 						formedOrder.Address = CodeBehind.Address.Text;
@@ -115,13 +113,13 @@ namespace ComputerShop.viewmodel.cart
 					{
 						errorMessage.Append("Поле номера телефона заполнено некорректно!\n");
 					}
-					if(CodeBehind.Order.Items.Count == 0)
+					if (CodeBehind.Order.Items.Count == 0)
 					{
 						errorMessage.Append("Заказ не может быть пустым!\n");
 					}
 					if (errorMessage.Length == 0)
 					{
-						
+
 						formedOrder.CustomerId = formedOrder.Customer.Id;
 						formedOrder.State = State.Formed;
 						formedOrder.Date = DateTime.Now;
@@ -144,7 +142,7 @@ namespace ComputerShop.viewmodel.cart
 					MessageBox.Show("Ошибка");
 				}
 			}
-			
+
 		}
 	}
 }

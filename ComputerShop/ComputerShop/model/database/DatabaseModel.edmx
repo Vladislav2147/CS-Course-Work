@@ -56,8 +56,8 @@
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="int" Nullable="false" />
-          <Property Name="key_technology" Type="nchar" MaxLength="10" />
-          <Property Name="key_form" Type="nchar" MaxLength="10" />
+          <Property Name="key_technology" Type="nchar" MaxLength="20" />
+          <Property Name="key_form" Type="nchar" MaxLength="20" />
         </EntityType>
         <EntityType Name="laptop">
           <Key>
@@ -83,7 +83,7 @@
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="int" Nullable="false" />
-          <Property Name="sensor_type" Type="nchar" MaxLength="10" />
+          <Property Name="sensor_type" Type="nchar" MaxLength="20" />
           <Property Name="sensor_resolution" Type="nchar" MaxLength="10" />
         </EntityType>
         <EntityType Name="order">
@@ -112,7 +112,7 @@
           </Key>
           <Property Name="id" Type="int" Nullable="false" />
           <Property Name="interface" Type="int" Nullable="false" />
-          <Property Name="material" Type="nchar" MaxLength="10" />
+          <Property Name="material" Type="nchar" MaxLength="20" />
           <Property Name="color" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="product">
@@ -554,17 +554,17 @@
           <Property Name="ScreenTechnology" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
         </EntityType>
         <EntityType Name="Mouse" BaseType="ComputerShopModel.Peripherals">
-          <Property Name="SensorType" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="SensorType" Type="String" MaxLength="20" FixedLength="true" Unicode="true" />
           <Property Name="SensorResolution" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
         </EntityType>
         <EntityType Name="Peripherals" BaseType="ComputerShopModel.Product" Abstract="false">
           <Property Name="Interface" Type="ComputerShopModel.PeripheralInterface" Nullable="false" />
-          <Property Name="Material" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="Material" Type="String" MaxLength="20" FixedLength="true" Unicode="true" />
           <Property Name="Color" Type="ComputerShopModel.Color" Nullable="false" />
         </EntityType>
         <EntityType Name="Keyboard" BaseType="ComputerShopModel.Peripherals">
-          <Property Name="KeyTechnology" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
-          <Property Name="KeyForm" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="KeyTechnology" Type="String" MaxLength="20" FixedLength="true" Unicode="true" />
+          <Property Name="KeyForm" Type="String" MaxLength="20" FixedLength="true" Unicode="true" />
         </EntityType>
         <EnumType Name="Role" a:ExternalTypeName="ComputerShop.model.enums.Role" xmlns:a="http://schemas.microsoft.com/ado/2006/04/codegeneration" />
         <EnumType Name="State">

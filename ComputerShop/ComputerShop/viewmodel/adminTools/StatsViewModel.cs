@@ -7,9 +7,6 @@ using OxyPlot.Series;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
 
 namespace ComputerShop.viewmodel.adminTools
 {
@@ -44,11 +41,11 @@ namespace ComputerShop.viewmodel.adminTools
 			decimal incomeOfDay = 0;
 			decimal consumptionOfDay = 0;
 
-			Plot.Axes.Add(new DateTimeAxis 
-			{ 
-				Position = AxisPosition.Bottom, 
-				AbsoluteMinimum = DateTimeAxis.ToDouble(monthAgo), 
-				AbsoluteMaximum = DateTimeAxis.ToDouble(today), 
+			Plot.Axes.Add(new DateTimeAxis
+			{
+				Position = AxisPosition.Bottom,
+				AbsoluteMinimum = DateTimeAxis.ToDouble(monthAgo),
+				AbsoluteMaximum = DateTimeAxis.ToDouble(today),
 				StringFormat = "dd MMMM",
 				Title = "Дата",
 				TitleFontWeight = OxyPlot.FontWeights.Bold
@@ -70,7 +67,7 @@ namespace ComputerShop.viewmodel.adminTools
 				consumptionOfDay += supplies
 					.Where(supply => supply.Date > date && supply.Date <= date.AddDays(1))
 					.Sum(supply => supply.DeliveredToWareHouse.Sum(delivered => delivered.Price * delivered.Amount));
-				
+
 				double incomeDouble = Convert.ToDouble(incomeOfDay);
 				double consumptionDouble = Convert.ToDouble(consumptionOfDay);
 
@@ -85,7 +82,7 @@ namespace ComputerShop.viewmodel.adminTools
 			Plot.Series.Add(income);
 			Plot.Series.Add(consumption);
 			Plot.Series.Add(profit);
-			
- 		}
+
+		}
 	}
 }

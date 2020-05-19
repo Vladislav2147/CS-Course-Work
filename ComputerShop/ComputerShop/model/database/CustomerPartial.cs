@@ -1,17 +1,12 @@
 ﻿using ComputerShop.model.kindofmagic;
 using ComputerShop.model.validation;
-using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ComputerShop.model.database
 {
-	
+
 	[MetadataType(typeof(CustomerMetadata))]
-	public partial class Customer: PropertyChangedBase, IEntity
+	public partial class Customer : PropertyChangedBase, IEntity
 	{
 	}
 	class CustomerMetadata

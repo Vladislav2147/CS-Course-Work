@@ -1,9 +1,5 @@
 ﻿using ComputerShop.model.kindofmagic;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace ComputerShop.model.database
 {
@@ -12,7 +8,7 @@ namespace ComputerShop.model.database
 		public override string ToString()
 		{
 			StringBuilder description = new StringBuilder();
-			if(Year != null)
+			if (Year != null)
 			{
 				description.Append($"Год выпуска: {this.Year} ");
 			}

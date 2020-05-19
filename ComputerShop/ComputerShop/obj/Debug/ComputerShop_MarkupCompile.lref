@@ -1,9 +1,11 @@
-﻿
+﻿F:\course work\ComputerShop\ComputerShop\obj\Debug\GeneratedInternalTypeHelper.g.cs
 FF:\course work\ComputerShop\ComputerShop\App.xaml;;
 FF:\course work\ComputerShop\ComputerShop\view\adminTools\CreateSupplyWindow.xaml;;
 FF:\course work\ComputerShop\ComputerShop\view\adminTools\OrdersUC.xaml;;
 FF:\course work\ComputerShop\ComputerShop\view\adminTools\StatsUC.xaml;;
 FF:\course work\ComputerShop\ComputerShop\view\adminTools\SupplyUC.xaml;;
+FF:\course work\ComputerShop\ComputerShop\view\login\Backup.xaml;;
+FF:\course work\ComputerShop\ComputerShop\view\login\Password.xaml;;
 FF:\course work\ComputerShop\ComputerShop\view\main\filters\ComputerFilters.xaml;;
 FF:\course work\ComputerShop\ComputerShop\view\main\filters\PeripheralFilters.xaml;;
 FF:\course work\ComputerShop\ComputerShop\view\main\MainWindow.xaml;;
@@ -20,6 +22,4 @@ FF:\course work\ComputerShop\ComputerShop\view\products\ProductWindow.xaml;;
 FF:\course work\ComputerShop\ComputerShop\view\products\ProductDictionary.xaml;;
 FF:\course work\ComputerShop\ComputerShop\view\products\ReadonlyProductDictionary.xaml;;
 FF:\course work\ComputerShop\ComputerShop\view\shoppingcart\ShoppingCart.xaml;;
-FF:\course work\ComputerShop\ComputerShop\view\login\Backup.xaml;;
-FF:\course work\ComputerShop\ComputerShop\view\login\Password.xaml;;
 

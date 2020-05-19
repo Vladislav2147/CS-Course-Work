@@ -1,10 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data.Linq;
-using System.Linq;
-using System.Security.Cryptography;
+﻿using System.Security.Cryptography;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace ComputerShop.model.business
 {
@@ -25,11 +20,11 @@ namespace ComputerShop.model.business
 			byte[] data = utf8.GetBytes(password);
 			byte[] hashData = sha.ComputeHash(data);
 
-			if(hashData.Length == hash.Length)
+			if (hashData.Length == hash.Length)
 			{
-				for(int i = 0; i < hash.Length; i++)
+				for (int i = 0; i < hash.Length; i++)
 				{
-					if(hashData[i] != hash[i])
+					if (hashData[i] != hash[i])
 					{
 						return false;
 					}

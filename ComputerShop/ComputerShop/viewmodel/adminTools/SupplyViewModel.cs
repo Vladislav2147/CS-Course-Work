@@ -2,13 +2,7 @@
 using ComputerShop.model.kindofmagic;
 using ComputerShop.model.repository.implementations;
 using ComputerShop.view.adminTools;
-using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
 using System.Windows.Input;
 
 namespace ComputerShop.viewmodel.adminTools
@@ -31,7 +25,7 @@ namespace ComputerShop.viewmodel.adminTools
 			CreateCommand = new RelayCommand(param => Create());
 			RemoveCommand = new RelayCommand(param => Remove());
 		}
-		
+
 		private void Create()
 		{
 			var createWindow = new CreateSupplyWindow(SupplyRepository, CodeBehind);

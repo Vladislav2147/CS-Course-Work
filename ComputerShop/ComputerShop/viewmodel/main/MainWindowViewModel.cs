@@ -10,7 +10,6 @@ using ComputerShop.viewmodel.cart;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Reflection;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -24,7 +23,7 @@ namespace ComputerShop.viewmodel.main
 		public MainWindow CodeBehind { get; set; }
 		public ProductRepository ProductRepository { get; set; }
 		public Customer Customer { get; set; }
-		public Type CurrentProductType { get; set; } 
+		public Type CurrentProductType { get; set; }
 		public ICommand GoToCart { get; set; }
 		public ICommand Filter { get; set; }
 		public ICommand FindByName { get; set; }
@@ -45,7 +44,7 @@ namespace ComputerShop.viewmodel.main
 			{
 				Customer.Order.Add(new Order() { State = State.Created, Customer = this.Customer });
 			}
-			
+
 		}
 
 		private void ExecuteGoToCart()
@@ -63,7 +62,7 @@ namespace ComputerShop.viewmodel.main
 
 		private void ExecuteGoToDelivers()
 		{
-			CodeBehind.MainContent.Content = new SupplyUC();		
+			CodeBehind.MainContent.Content = new SupplyUC();
 		}
 
 		private void ExecuteGoToStats()
@@ -73,8 +72,8 @@ namespace ComputerShop.viewmodel.main
 
 		public void SelectAdminTool(string tool)
 		{
-			
-			switch(tool)
+
+			switch (tool)
 			{
 				case "Заказы":
 					ExecuteGoToOrders();
@@ -95,7 +94,7 @@ namespace ComputerShop.viewmodel.main
 			products = GetListOfCurrentType(products);
 			CurrentProductType = TypeOfList(products);
 
-			if(CurrentProductType == typeof(Product))
+			if (CurrentProductType == typeof(Product))
 			{
 				CodeBehind.FiltersContent.Content = null;
 			}
@@ -108,7 +107,7 @@ namespace ComputerShop.viewmodel.main
 				CodeBehind.FiltersContent.Content = new PeripheralFilters();
 			}
 
-			UpdateMainList(products);			
+			UpdateMainList(products);
 		}
 
 		public void UpdateMainList(List<Product> products)
@@ -143,7 +142,7 @@ namespace ComputerShop.viewmodel.main
 
 
 			int beginYear = DateTime.Now.Year - 20, endYear = DateTime.Now.Year;
-			
+
 			if (Int32.TryParse(CodeBehind.BeginYear.Text, out beginYear) || Int32.TryParse(CodeBehind.EndYear.Text, out endYear))
 			{
 				products = products.Where(product => product.Year >= beginYear && product.Year <= endYear).ToList();
@@ -154,7 +153,7 @@ namespace ComputerShop.viewmodel.main
 				products = products.Where(product => product.Amount != 0).ToList();
 			}
 
-			
+
 			if (Activator.CreateInstance(CurrentProductType) as Computer != null)
 			{
 				ComputerFilters filters = CodeBehind.FiltersContent.Content as ComputerFilters;
@@ -175,7 +174,7 @@ namespace ComputerShop.viewmodel.main
 					products = products.Where(product => (product as Computer).Frequency >= minFrequency && (product as Computer).Frequency <= maxFrequency).ToList();
 				}
 
-				
+
 				int minRam = 0, maxRam = Int32.MaxValue;
 
 				if (Int32.TryParse(filters.MinRAM.Text, out minRam) || Int32.TryParse(filters.MaxRAM.Text, out maxRam))
@@ -184,12 +183,12 @@ namespace ComputerShop.viewmodel.main
 				}
 
 				ComputerType computerType = (ComputerType)filters.ComputerType.SelectedItem;
-				
-				if(computerType != ComputerType.None)
+
+				if (computerType != ComputerType.None)
 				{
 					products = products.Where(product => (product as Computer).Type == computerType).ToList();
 				}
-				
+
 
 				OperatingSystem operating = (OperatingSystem)filters.OS.SelectedItem;
 
@@ -232,21 +231,21 @@ namespace ComputerShop.viewmodel.main
 				CodeBehind.SearchString.Clear();
 				List<Product> products = ProductRepository.FindByPredicate(product => product.Name.ToLower().Contains(nameToFind.ToLower())).ToList();
 				UpdateMainList(products);
-			}			
+			}
 		}
-		
+
 		private void CancelExecute()
 		{
 			UpdateMainList(GetListOfCurrentType(ProductRepository.GetAll()));
-			foreach(TextBox textBox in ChildFinder.FindVisualChildren<TextBox>(CodeBehind.Filters))
+			foreach (TextBox textBox in ChildFinder.FindVisualChildren<TextBox>(CodeBehind.Filters))
 			{
 				textBox.Text = "";
 			}
-			foreach(ComboBox comboBox in ChildFinder.FindVisualChildren<ComboBox>(CodeBehind.Filters))
+			foreach (ComboBox comboBox in ChildFinder.FindVisualChildren<ComboBox>(CodeBehind.Filters))
 			{
 				comboBox.SelectedIndex = 0;
 			}
-			foreach(CheckBox checkBox in ChildFinder.FindVisualChildren<CheckBox>(CodeBehind.Filters))
+			foreach (CheckBox checkBox in ChildFinder.FindVisualChildren<CheckBox>(CodeBehind.Filters))
 			{
 				checkBox.IsChecked = false;
 			}
@@ -254,7 +253,7 @@ namespace ComputerShop.viewmodel.main
 
 		public List<Product> GetListOfCurrentType(List<Product> products)
 		{
-			if(CodeBehind.Tree.SelectedItem as TreeViewItem != null)
+			if (CodeBehind.Tree.SelectedItem as TreeViewItem != null)
 			{
 				switch ((CodeBehind.Tree.SelectedItem as TreeViewItem).Header.ToString())
 				{
@@ -283,7 +282,7 @@ namespace ComputerShop.viewmodel.main
 						products = products.Where(product => product is model.database.Keyboard).ToList();
 						break;
 				}
-			}			
+			}
 
 			return products;
 		}

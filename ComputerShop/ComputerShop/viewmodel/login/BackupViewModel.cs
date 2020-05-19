@@ -4,10 +4,7 @@ using ComputerShop.model.repository.implementations;
 using ComputerShop.model.statics;
 using ComputerShop.view.login;
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
 
@@ -67,7 +64,7 @@ namespace ComputerShop.viewmodel.login
 		{
 			if (code == InputCode)
 			{
-				Password view = new Password();				
+				Password view = new Password();
 				view.DataContext = this;
 				CodeBehind.LoginOutputView.Content = view;
 			}

@@ -7,7 +7,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -19,7 +18,7 @@ namespace ComputerShop.viewmodel.adminTools
 		public OrderRepository OrderRepository { get; set; }
 		public CustomerRepository CustomerRepository { get; set; }
 		public OrdersUC CodeBehind { get; set; }
-		
+
 		public List<Order> NotAcceptedOrders { get; set; }
 		public List<Order> AcceptedOrders { get; set; }
 
@@ -39,7 +38,7 @@ namespace ComputerShop.viewmodel.adminTools
 		private void ExecuteAccept(object sender)
 		{
 			Order order = (sender as Button).DataContext as Order;
-			foreach(Ordered ordered in order.Ordered)
+			foreach (Ordered ordered in order.Ordered)
 			{
 				ordered.Product.Amount -= ordered.Amount;
 			}
@@ -59,14 +58,14 @@ namespace ComputerShop.viewmodel.adminTools
 			message.Append("<table border=\"1\"><tr><td>Название</td><td>Количество</td><td>Цена за шт</td></tr>");
 			decimal total = 0;
 
-			foreach(var ordered in order.Ordered)
+			foreach (var ordered in order.Ordered)
 			{
 				total += ordered.Product.Price * ordered.Amount;
 				message.Append($"<tr><td>{ordered.Product.Name}</td><td>{ordered.Amount}</td><td>{ordered.Product.Price:0.00}</td></tr>");
 			}
 			message.Append($"</table><br><b>К оплате:{total:0.00}</b>");
 
-			PostEmail.SendEmail(order.Customer.Email, message.ToString());			
+			PostEmail.SendEmail(order.Customer.Email, message.ToString());
 			UpdateLists();
 		}
 		private void UpdateLists()
