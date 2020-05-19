@@ -519,10 +519,10 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="model\database\ComputerShop.mdf">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="model\database\ComputerShop_log.ldf">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <DependentUpon>ComputerShop.mdf</DependentUpon>
     </Content>
     <Content Include="model\database\DatabaseModel.Context.tt">
