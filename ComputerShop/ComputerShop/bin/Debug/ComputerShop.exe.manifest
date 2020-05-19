@@ -54,14 +54,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="ComputerShop.exe" size="658424">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="ComputerShop.exe" size="658936">
       <assemblyIdentity name="ComputerShop" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>a8LwptGwS6sj4If5fS1MEXvQZWYExUp2na2czj8T3lo=</dsig:DigestValue>
+        <dsig:DigestValue>FoCc2X52lESLnkYAMgFdY7ZE+Ued5vqmlRFNPKryEn0=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -632,7 +632,7 @@
         <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-      <dsig:DigestValue>LnQmNh792t0SUs5aiQhA2hMref3rWMYU4Vandc/+MwA=</dsig:DigestValue>
+      <dsig:DigestValue>D0cCHoru0KDXNGk7C8YFvBJV3xemwWXPpXm9YSS+uy8=</dsig:DigestValue>
     </hash>
   </file>
   <file name="model\database\ComputerShop_log.ldf" size="8388608" writeableType="applicationData">
@@ -641,7 +641,7 @@
         <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-      <dsig:DigestValue>V7pESNj8GfZyVkgcqDn9Pc0lmonid6DPSVfG0wqJS8s=</dsig:DigestValue>
+      <dsig:DigestValue>LjEIIJlELTEKovI+pmH+jnGLJFy5EjsQWuqzVE4ZrWQ=</dsig:DigestValue>
     </hash>
   </file>
   <file name="model\database\DatabaseModel.Context.tt" size="22937">

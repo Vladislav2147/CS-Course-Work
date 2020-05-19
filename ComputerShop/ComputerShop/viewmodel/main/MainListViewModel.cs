@@ -93,7 +93,7 @@ namespace ComputerShop.viewmodel.main
 				{
 					foreach (Button button in ChildFinder.FindVisualChildren<Button>(CodeBehind.ProductList))
 					{
-						if (order.Ordered.FirstOrDefault(ord => ord.Product == (Product)button.DataContext) != null && MainVM.Customer.Role == model.enums.Role.User)
+						if (order.Ordered.FirstOrDefault(ord => ord.Product.Id == ((Product)button.DataContext).Id) != null && MainVM.Customer.Role == model.enums.Role.User)
 						{
 							button.IsEnabled = false;
 							button.Content = "В корзине";

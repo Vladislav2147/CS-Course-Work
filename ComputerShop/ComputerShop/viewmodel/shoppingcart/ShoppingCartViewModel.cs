@@ -130,6 +130,7 @@ namespace ComputerShop.viewmodel.cart
 						vm.MainVM = CodeBehind.Owner.DataContext as MainWindowViewModel;
 						view.DataContext = vm;
 						CodeBehind.Owner.MainContent.Content = view;
+						(CodeBehind.Owner.DataContext as MainWindowViewModel).Customer.Order.Add(new Order() { State = State.Created, Customer = this.Customer });
 						MessageBox.Show("Заказ успешно сформирован. Ожидайте подтверждения.");
 					}
 					else

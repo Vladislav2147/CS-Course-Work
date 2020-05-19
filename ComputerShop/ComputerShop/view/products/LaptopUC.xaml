@@ -254,7 +254,7 @@
                     <ColumnDefinition></ColumnDefinition>
                 </Grid.ColumnDefinitions>
 
-                <TextBlock Grid.Column="0" Text="Емкость, мА*ч:"></TextBlock>
+                <TextBlock Grid.Column="0" Text="Емкость, Вт*ч:"></TextBlock>
 
                 <TextBox Grid.Column="1" Validation.ErrorTemplate="{StaticResource validationErrorTemplate}">
                     <Binding Path="Product.BatteryCapacity" Mode="TwoWay" 

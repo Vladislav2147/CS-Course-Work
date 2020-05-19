@@ -31,7 +31,10 @@ namespace ComputerShop.view.products
 
 		private void ProductWindow_Closed(object sender, EventArgs e)
 		{
-			(DataContext as ProductWindowViewModel).Close();
+			if (DataContext != null)
+			{
+				(DataContext as ProductWindowViewModel).Close();
+			}			
 		}
 
 	}
