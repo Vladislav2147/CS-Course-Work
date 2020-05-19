@@ -1,6 +1,7 @@
 ﻿using ComputerShop.model.database;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity.Infrastructure;
 using System.Linq;
 
 namespace ComputerShop.model.repository
@@ -39,9 +40,15 @@ namespace ComputerShop.model.repository
 
 		public virtual void ChangeItem(T newItem)
 		{
-			Remove(GetById(newItem.Id));
-			ComputerShopContext.SaveChanges();
-			Add(newItem);
+			T item = (T)ComputerShopContext.GetEntity<T>().Find(newItem.Id);
+			if (item != null)
+			{
+				DbEntityEntry ee = ComputerShopContext.Entry(item);
+				ee.CurrentValues.SetValues(newItem);
+			}
+			//	Remove(GetById(newItem.Id));
+			//ComputerShopContext.SaveChanges();
+			//Add(newItem);
 		}
 
 		public IEnumerable<T> FindByPredicate(Predicate<T> predicate)

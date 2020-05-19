@@ -42,7 +42,7 @@ namespace ComputerShop.viewmodel.products
 			ProductRepository = new ProductRepository();
 			GetImage = new RelayCommand(param => GetImageExecute());
 			Accept = new RelayCommand(param => AcceptExecute());
-			ResetImage = new RelayCommand(param => ImageSource = "/pictures/none.png");
+			ResetImage = new RelayCommand(param => Product.Photo = null);
 			Cancel = new RelayCommand(param => CancelExecute());
 		}
 

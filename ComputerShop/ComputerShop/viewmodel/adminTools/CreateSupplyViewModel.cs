@@ -16,7 +16,6 @@ namespace ComputerShop.viewmodel.adminTools
 	class CreateSupplyViewModel
 	{
 		public SupplyRepository SupplyRepository { get; set; }
-		public ProductRepository ProductRepository { get; set; }
 		public CreateSupplyWindow CodeBehind { get; set; }
 		public Supply CreatedSupply { get; set; }
 		public List<DeliveredToWareHouse> Delivered { get; set; }
@@ -33,7 +32,6 @@ namespace ComputerShop.viewmodel.adminTools
 			codeBehind.DataContext = this;
 			SupplyRepository = supplyRepository;
 			CodeBehind = codeBehind;
-			ProductRepository = new ProductRepository();
 			CreatedSupply = new Supply();
 			Delivered = new List<DeliveredToWareHouse>();
 			CreateProduct = new RelayCommand(param => ExecuteCreateProduct());
@@ -85,12 +83,14 @@ namespace ComputerShop.viewmodel.adminTools
 					CreatedSupply.Date = Date;
 					CreatedSupply.DeliveredToWareHouse = Delivered;
 					
-					foreach(var delivered in Delivered)
+					using(ProductRepository productRepository = new ProductRepository())
 					{
-						Product deliveredProduct = ProductRepository.GetById(delivered.ProductId);
-						deliveredProduct.Amount += delivered.Amount;
-						ProductRepository.ChangeItem(deliveredProduct);
-						ProductRepository.SaveChanges();
+						foreach (var delivered in Delivered)
+						{
+							Product deliveredProduct = productRepository.GetById(delivered.ProductId);
+							deliveredProduct.Amount += delivered.Amount;
+							productRepository.SaveChanges();
+						}
 					}
 
 					SupplyRepository.Add(CreatedSupply);
