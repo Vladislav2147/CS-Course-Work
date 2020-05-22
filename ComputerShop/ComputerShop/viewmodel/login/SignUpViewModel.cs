@@ -1,12 +1,19 @@
 ﻿using ComputerShop.model.database;
 using ComputerShop.model.repository.implementations;
 using ComputerShop.view.login;
+using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Data;
+using System.Data.Entity.Infrastructure;
+using System.Data.Entity.Validation;
+using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Windows;
 using System.Windows.Input;
+using DbUpdateException = System.Data.Entity.Infrastructure.DbUpdateException;
 
 namespace ComputerShop.viewmodel.login
 {
@@ -31,9 +38,10 @@ namespace ComputerShop.viewmodel.login
 		private void ExecuteRegistrate()
 		{
 			StringBuilder stringBuilder = new StringBuilder("");
-			if (Password == null)
+			Regex pattern = new Regex(@"^\w{4,15}$");
+			if (Password == null || !pattern.IsMatch(Password))
 			{
-				stringBuilder.Append("Поле пароль не может быть пустым");
+				stringBuilder.Append("Поле пароль не может быть пустым, не должно содержать спец. символов и иметь длину не менее 4 и не более 15");
 			}
 			else
 			{
@@ -68,10 +76,35 @@ namespace ComputerShop.viewmodel.login
 								ExecuteBack();
 							}
 						}
-						catch (DataException e)
+						catch (DbEntityValidationException e)
 						{
-							stringBuilder.Append(e.Message);
-							stringBuilder.Append("\n");
+							foreach (DbEntityValidationResult validationError in e.EntityValidationErrors)
+							{
+								foreach (DbValidationError err in validationError.ValidationErrors)
+								{
+									stringBuilder.Append(err.ErrorMessage);
+
+									stringBuilder.Append("\n");
+
+								}
+							}
+
+							
+						}
+						catch (Exception e)
+						{
+							if (CustomerRepository.FindByPredicate(cust => cust.Email == Email).FirstOrDefault() != null)
+							{
+								stringBuilder.Append("Пользователь с данной почтой уже существует");
+
+								stringBuilder.Append("\n");
+							}
+							else
+							{
+								stringBuilder.Append(e.Message);
+
+								stringBuilder.Append("\n");
+							}
 						}
 					}
 				}

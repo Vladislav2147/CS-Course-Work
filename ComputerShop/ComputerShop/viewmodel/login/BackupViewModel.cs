@@ -5,6 +5,7 @@ using ComputerShop.model.statics;
 using ComputerShop.view.login;
 using System;
 using System.Linq;
+using System.Text.RegularExpressions;
 using System.Windows;
 using System.Windows.Input;
 
@@ -78,7 +79,9 @@ namespace ComputerShop.viewmodel.login
 		{
 			Customer customer = CustomerRepository.FindByPredicate(cust => cust.Email == Email).FirstOrDefault();
 
-			if (customer != null && Password == ConfirmPassword && Password.Length > 4)
+			Regex pattern = new Regex(@"^\w{4,15}$");
+
+			if (customer != null && Password == ConfirmPassword && pattern.IsMatch(Password))
 			{
 				customer.Password = CustomerRepository.HashPassword(Password);
 				CustomerRepository.ChangeItem(customer);
@@ -88,7 +91,7 @@ namespace ComputerShop.viewmodel.login
 			}
 			else
 			{
-				MessageBox.Show("Ошибка");
+				MessageBox.Show("Пароль должен иметь длину от 4 до 5 и состоять из букв и цифр");
 			}
 		}
 	}
