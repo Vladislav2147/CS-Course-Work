@@ -11,14 +11,14 @@ namespace ComputerShop.viewmodel.adminTools
 	{
 		public List<Supply> Supplies { get; set; }
 		public SupplyRepository SupplyRepository { get; set; }
-		public SupplyUC CodeBehind { get; set; }
+		public SupplyUC View { get; set; }
 
 		public ICommand CreateCommand { get; set; }
 		public ICommand RemoveCommand { get; set; }
 
-		public SupplyViewModel(SupplyUC codeBehind)
+		public SupplyViewModel(SupplyUC view)
 		{
-			CodeBehind = codeBehind;
+			View = view;
 			SupplyRepository = new SupplyRepository();
 			Supplies = SupplyRepository.GetAll();
 
@@ -28,12 +28,12 @@ namespace ComputerShop.viewmodel.adminTools
 
 		private void Create()
 		{
-			var createWindow = new CreateSupplyWindow(SupplyRepository, CodeBehind);
+			var createWindow = new CreateSupplyWindow(SupplyRepository, View);
 			createWindow.Show();
 		}
 		private void Remove()
 		{
-			SupplyRepository.RemoveById((CodeBehind.DataSupplies.SelectedItem as Supply).Id);
+			SupplyRepository.RemoveById((View.DataSupplies.SelectedItem as Supply).Id);
 			SupplyRepository.SaveChanges();
 			Update();
 		}

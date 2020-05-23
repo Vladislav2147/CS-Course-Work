@@ -26,7 +26,7 @@ namespace ComputerShop.view.login
 			SignIn view = new SignIn();
 
 			SignInViewModel vm = new SignInViewModel();
-			vm.CodeBehind = this;
+			vm.View = this;
 			view.DataContext = vm;
 			this.LoginOutputView.Content = view;
 

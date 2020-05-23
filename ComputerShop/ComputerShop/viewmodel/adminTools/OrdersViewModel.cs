@@ -17,16 +17,16 @@ namespace ComputerShop.viewmodel.adminTools
 	{
 		public OrderRepository OrderRepository { get; set; }
 		public CustomerRepository CustomerRepository { get; set; }
-		public OrdersUC CodeBehind { get; set; }
+		public OrdersUC View { get; set; }
 
 		public List<Order> NotAcceptedOrders { get; set; }
 		public List<Order> AcceptedOrders { get; set; }
 
 		public ICommand Accept { get; set; }
 
-		public OrdersViewModel(OrdersUC codeBehind)
+		public OrdersViewModel(OrdersUC view)
 		{
-			CodeBehind = codeBehind;
+			View = view;
 
 			CustomerRepository = new CustomerRepository();
 			OrderRepository = new OrderRepository();

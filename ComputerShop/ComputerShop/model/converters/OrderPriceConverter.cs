@@ -11,7 +11,7 @@ namespace ComputerShop.model.converters
 	{
 		public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
 		{
-			return (value as ShoppingCartViewModel).CodeBehind.Order.ItemsSource.Cast<Ordered>().Sum(orderd => orderd.Amount * orderd.Product.Price).ToString("0.00");
+			return (value as ShoppingCartViewModel).View.Order.ItemsSource.Cast<Ordered>().Sum(orderd => orderd.Amount * orderd.Product.Price).ToString("0.00");
 		}
 
 		public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)

@@ -12,16 +12,16 @@ namespace ComputerShop.viewmodel.adminTools
 {
 	class StatsViewModel
 	{
-		public StatsUC CodeBehind { get; set; }
+		public StatsUC View { get; set; }
 		public OrderRepository OrderRepository { get; set; }
 		public SupplyRepository SupplyRepository { get; set; }
 		public PlotModel Plot { get; set; }
 
-		public StatsViewModel(StatsUC codeBehind)
+		public StatsViewModel(StatsUC view)
 		{
 			OrderRepository = new OrderRepository();
 			SupplyRepository = new SupplyRepository();
-			CodeBehind = codeBehind;
+			View = view;
 
 			List<Order> approvedOrders = OrderRepository.FindByPredicate(order => order.State == State.Approved).ToList();
 			List<Supply> supplies = SupplyRepository.GetAll();

@@ -14,22 +14,22 @@ namespace ComputerShop.viewmodel.main
 	class MainListViewModel
 	{
 		public MainWindowViewModel MainVM { get; set; }
-		public MainList CodeBehind { get; set; }
+		public MainList View { get; set; }
 		public ICommand AddToCart { get; set; }
 		public ICommand Remove { get; set; }
 		public ICommand Create { get; set; }
 		public object ProductType { get; set; }
 
-		public MainListViewModel(MainList codeBehind)
+		public MainListViewModel(MainList view)
 		{
-			CodeBehind = codeBehind;
+			View = view;
 			AddToCart = new RelayCommand(param => ExecuteAddToCart(param));
 			Remove = new RelayCommand(param => ExecuteRemove());
 			Create = new RelayCommand(param => ExecuteCreate());
-			MainVM = CodeBehind.Owner.DataContext as MainWindowViewModel;
+			MainVM = View.Owner.DataContext as MainWindowViewModel;
 			if (MainVM.Customer.Role == model.enums.Role.User)
 			{
-				CodeBehind.AdminTools.Visibility = Visibility.Collapsed;
+				View.AdminTools.Visibility = Visibility.Collapsed;
 			}
 		}
 
@@ -50,7 +50,7 @@ namespace ComputerShop.viewmodel.main
 
 		private void ExecuteRemove()
 		{
-			Product product = CodeBehind.ProductList.SelectedItem as Product;
+			Product product = View.ProductList.SelectedItem as Product;
 			MainVM.ProductRepository.RemoveById(product.Id);
 			MainVM.ProductRepository.SaveChanges();
 			MainVM.UpdateMainList(MainVM.GetListOfCurrentType(MainVM.ProductRepository.GetAll()));
@@ -78,7 +78,7 @@ namespace ComputerShop.viewmodel.main
 					productWindow = new ProductWindow(new Mouse(), new MouseUC());
 					break;
 			}
-			productWindow.Owner = MainVM.CodeBehind;
+			productWindow.Owner = MainVM.View;
 			productWindow.Show();
 
 		}
@@ -91,7 +91,7 @@ namespace ComputerShop.viewmodel.main
 			{
 				if (MainVM.Customer.Role == model.enums.Role.User)
 				{
-					foreach (Button button in ChildFinder.FindVisualChildren<Button>(CodeBehind.ProductList))
+					foreach (Button button in ChildFinder.FindVisualChildren<Button>(View.ProductList))
 					{
 						if (order.Ordered.FirstOrDefault(ord => ord.Product.Id == ((Product)button.DataContext).Id) != null && MainVM.Customer.Role == model.enums.Role.User)
 						{
@@ -112,7 +112,7 @@ namespace ComputerShop.viewmodel.main
 				}
 				else
 				{
-					foreach (Button button in ChildFinder.FindVisualChildren<Button>(CodeBehind.ProductList))
+					foreach (Button button in ChildFinder.FindVisualChildren<Button>(View.ProductList))
 					{
 						button.Visibility = Visibility.Collapsed;
 					}
@@ -145,7 +145,7 @@ namespace ComputerShop.viewmodel.main
 			}
 
 			ProductWindow productWindow = new ProductWindow(product, productUC, MainVM.Customer.Role == model.enums.Role.User);
-			productWindow.Owner = MainVM.CodeBehind;
+			productWindow.Owner = MainVM.View;
 			productWindow.Show();
 		}
 

@@ -26,7 +26,7 @@ namespace ComputerShop.viewmodel.login
 		public CustomerRepository CustomerRepository { get; set; }
 		public ICommand Registrate { get; private set; }
 		public ICommand Back { get; private set; }
-		public LoginWindow CodeBehind { get; set; }
+		public LoginWindow View { get; set; }
 
 		public SignUpViewModel()
 		{
@@ -123,9 +123,9 @@ namespace ComputerShop.viewmodel.login
 		{
 			SignIn view = new SignIn();
 			SignInViewModel vm = new SignInViewModel();
-			vm.CodeBehind = this.CodeBehind;
+			vm.View = this.View;
 			view.DataContext = vm;
-			CodeBehind.LoginOutputView.Content = view;
+			View.LoginOutputView.Content = view;
 		}
 	}
 }

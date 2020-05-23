@@ -15,7 +15,7 @@ namespace ComputerShop.viewmodel.login
 		public ICommand LoadRegistration { get; private set; }
 		public ICommand LoadMainWindow { get; private set; }
 		public ICommand Backup { get; private set; }
-		public LoginWindow CodeBehind { get; set; }
+		public LoginWindow View { get; set; }
 		public CustomerRepository CustomerRepository { get; set; }
 
 		public SignInViewModel()
@@ -29,9 +29,9 @@ namespace ComputerShop.viewmodel.login
 		{
 			SignUp view = new SignUp();
 			SignUpViewModel vm = new SignUpViewModel();
-			vm.CodeBehind = this.CodeBehind;
+			vm.View = this.View;
 			view.DataContext = vm;
-			CodeBehind.LoginOutputView.Content = view;
+			View.LoginOutputView.Content = view;
 		}
 		private void ExecuteLoadMainWindow()
 		{
@@ -47,7 +47,7 @@ namespace ComputerShop.viewmodel.login
 						{
 							MainWindow mainWindow = new MainWindow(customer);
 							mainWindow.Show();
-							CodeBehind.Close();
+							View.Close();
 						}
 						else
 						{
@@ -71,9 +71,9 @@ namespace ComputerShop.viewmodel.login
 		{
 			Backup view = new Backup();
 			BackupViewModel vm = new BackupViewModel();
-			vm.CodeBehind = this.CodeBehind;
+			vm.View = this.View;
 			view.DataContext = vm;
-			CodeBehind.LoginOutputView.Content = view;
+			View.LoginOutputView.Content = view;
 		}
 
 	}

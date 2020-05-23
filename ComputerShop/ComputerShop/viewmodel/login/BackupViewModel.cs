@@ -15,7 +15,7 @@ namespace ComputerShop.viewmodel.login
 	{
 		private string code;
 
-		public LoginWindow CodeBehind { get; set; }
+		public LoginWindow View { get; set; }
 		public CustomerRepository CustomerRepository { get; set; }
 		public string Email { get; set; }
 		public string InputCode { get; set; }
@@ -41,9 +41,9 @@ namespace ComputerShop.viewmodel.login
 		{
 			SignIn view = new SignIn();
 			SignInViewModel vm = new SignInViewModel();
-			vm.CodeBehind = this.CodeBehind;
+			vm.View = this.View;
 			view.DataContext = vm;
-			CodeBehind.LoginOutputView.Content = view;
+			View.LoginOutputView.Content = view;
 		}
 
 		private void SendEmailExecute()
@@ -67,7 +67,7 @@ namespace ComputerShop.viewmodel.login
 			{
 				Password view = new Password();
 				view.DataContext = this;
-				CodeBehind.LoginOutputView.Content = view;
+				View.LoginOutputView.Content = view;
 			}
 			else
 			{

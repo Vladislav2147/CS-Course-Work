@@ -16,7 +16,7 @@ namespace ComputerShop.viewmodel.cart
 	class ShoppingCartViewModel : PropertyChangedBase
 	{
 		public OrderRepository OrderRepository { get; set; }
-		public ShoppingCart CodeBehind { get; set; }
+		public ShoppingCart View { get; set; }
 		public Customer Customer { get; set; }
 		public ICommand AddAmountCommand { get; set; }
 		public ICommand ReduceAmountCommand { get; set; }
@@ -31,24 +31,24 @@ namespace ComputerShop.viewmodel.cart
 			DeleteProductCommand = new RelayCommand(param => DeleteProductCommandExecute(param));
 			ConfirmCommand = new RelayCommand(param => ConfirmCommandExecute());
 			CancelCommand = new RelayCommand(param => CancelCommandExecute());
-			CodeBehind = codeBehing;
+			View = codeBehing;
 			Customer = customer;
 			Order order = Customer.Order.Where(ord => ord.State == State.Created).FirstOrDefault();
 			if (order != null)
 			{
-				CodeBehind.Order.ItemsSource = order.Ordered;
+				View.Order.ItemsSource = order.Ordered;
 			}
 		}
 
 		private void CancelCommandExecute()
 		{
-			MainList view = new MainList(this.CodeBehind.Owner);
-			view.ProductList.ItemsSource = (this.CodeBehind.Owner.DataContext as MainWindowViewModel).ProductRepository.GetAll();
+			MainList view = new MainList(this.View.Owner);
+			view.ProductList.ItemsSource = (this.View.Owner.DataContext as MainWindowViewModel).ProductRepository.GetAll();
 			MainListViewModel vm = new MainListViewModel(view);
-			vm.MainVM = this.CodeBehind.Owner.DataContext as MainWindowViewModel;
+			vm.MainVM = this.View.Owner.DataContext as MainWindowViewModel;
 			view.DataContext = vm;
-			CodeBehind.Owner.MainContent.Content = view;
-			(CodeBehind.Owner.DataContext as MainWindowViewModel).Filter.Execute(this);
+			View.Owner.MainContent.Content = view;
+			(View.Owner.DataContext as MainWindowViewModel).Filter.Execute(this);
 		}
 
 		private void AddAmountCommandExecute(object sender)
@@ -81,13 +81,13 @@ namespace ComputerShop.viewmodel.cart
 		{
 			Button button = sender as Button;
 			Ordered ordered = button.DataContext as Ordered;
-			CodeBehind.Order.ItemsSource = CodeBehind.Order.ItemsSource.Cast<Ordered>().Where(ord => ord != ordered);
+			View.Order.ItemsSource = View.Order.ItemsSource.Cast<Ordered>().Where(ord => ord != ordered);
 			Customer.Order.First(order => order.State == State.Created).Ordered.Remove(ordered);
 			UpdateTotal();
 		}
 		private void UpdateTotal()
 		{
-			CodeBehind.TotalCost.GetBindingExpression(TextBlock.TextProperty).UpdateTarget();
+			View.TotalCost.GetBindingExpression(TextBlock.TextProperty).UpdateTarget();
 		}
 		private void ConfirmCommandExecute()
 		{
@@ -97,23 +97,23 @@ namespace ComputerShop.viewmodel.cart
 				Order formedOrder = Customer.Order.FirstOrDefault(order => order.State == State.Created);
 				if (formedOrder != null)
 				{
-					if (CodeBehind.Address.Text.Length > 0)
+					if (View.Address.Text.Length > 0)
 					{
-						formedOrder.Address = CodeBehind.Address.Text;
+						formedOrder.Address = View.Address.Text;
 					}
 					else
 					{
 						errorMessage.Append("Поле адреса не может быть пустым!\n");
 					}
-					if (CodeBehind.Phone.IsMaskFull)
+					if (View.Phone.IsMaskFull)
 					{
-						formedOrder.Phone = CodeBehind.Phone.Text;
+						formedOrder.Phone = View.Phone.Text;
 					}
 					else
 					{
 						errorMessage.Append("Поле номера телефона заполнено некорректно!\n");
 					}
-					if (CodeBehind.Order.Items.Count == 0)
+					if (View.Order.Items.Count == 0)
 					{
 						errorMessage.Append("Заказ не может быть пустым!\n");
 					}
@@ -125,12 +125,12 @@ namespace ComputerShop.viewmodel.cart
 						formedOrder.Date = DateTime.Now;
 						context.Order.Add((Order)formedOrder.Clone());
 						context.SaveChanges();
-						MainList view = new MainList(CodeBehind.Owner);
+						MainList view = new MainList(View.Owner);
 						MainListViewModel vm = new MainListViewModel(view);
-						vm.MainVM = CodeBehind.Owner.DataContext as MainWindowViewModel;
+						vm.MainVM = View.Owner.DataContext as MainWindowViewModel;
 						view.DataContext = vm;
-						CodeBehind.Owner.MainContent.Content = view;
-						(CodeBehind.Owner.DataContext as MainWindowViewModel).Customer.Order.Add(new Order() { State = State.Created, Customer = this.Customer });
+						View.Owner.MainContent.Content = view;
+						(View.Owner.DataContext as MainWindowViewModel).Customer.Order.Add(new Order() { State = State.Created, Customer = this.Customer });
 						MessageBox.Show("Заказ успешно сформирован. Ожидайте подтверждения.");
 					}
 					else

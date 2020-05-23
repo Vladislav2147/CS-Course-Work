@@ -16,7 +16,7 @@ namespace ComputerShop.viewmodel.adminTools
 	class CreateSupplyViewModel
 	{
 		public SupplyRepository SupplyRepository { get; set; }
-		public CreateSupplyWindow CodeBehind { get; set; }
+		public CreateSupplyWindow View { get; set; }
 		public Supply CreatedSupply { get; set; }
 		public List<DeliveredToWareHouse> Delivered { get; set; }
 		public object ProductType { get; set; }
@@ -27,11 +27,11 @@ namespace ComputerShop.viewmodel.adminTools
 		public ICommand Accept { get; set; }
 
 
-		public CreateSupplyViewModel(SupplyRepository supplyRepository, CreateSupplyWindow codeBehind)
+		public CreateSupplyViewModel(SupplyRepository supplyRepository, CreateSupplyWindow view)
 		{
-			codeBehind.DataContext = this;
+			View.DataContext = this;
 			SupplyRepository = supplyRepository;
-			CodeBehind = codeBehind;
+			View = view;
 			CreatedSupply = new Supply();
 			Delivered = new List<DeliveredToWareHouse>();
 			CreateProduct = new RelayCommand(param => ExecuteCreateProduct());
@@ -95,8 +95,8 @@ namespace ComputerShop.viewmodel.adminTools
 
 					SupplyRepository.Add(CreatedSupply);
 					SupplyRepository.SaveChanges();
-					(CodeBehind.Owner.DataContext as SupplyViewModel).Update();
-					CodeBehind.Close();
+					(View.Owner.DataContext as SupplyViewModel).Update();
+					View.Close();
 				}
 				catch (Exception)
 				{

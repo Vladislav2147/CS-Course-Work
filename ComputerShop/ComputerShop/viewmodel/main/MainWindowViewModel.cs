@@ -20,7 +20,7 @@ namespace ComputerShop.viewmodel.main
 	class MainWindowViewModel
 	{
 		public MainList ListState { get; set; }
-		public MainWindow CodeBehind { get; set; }
+		public MainWindow View { get; set; }
 		public ProductRepository ProductRepository { get; set; }
 		public Customer Customer { get; set; }
 		public Type CurrentProductType { get; set; }
@@ -29,10 +29,10 @@ namespace ComputerShop.viewmodel.main
 		public ICommand FindByName { get; set; }
 		public ICommand Cancel { get; set; }
 
-		public MainWindowViewModel(MainWindow codeBehind, Customer customer)
+		public MainWindowViewModel(MainWindow view, Customer customer)
 		{
 			Customer = customer;
-			CodeBehind = codeBehind;
+			View = view;
 			ProductRepository = new ProductRepository();
 			GoToCart = new RelayCommand(param => ExecuteGoToCart());
 			Filter = new RelayCommand(param => FilterProducts());
@@ -49,25 +49,25 @@ namespace ComputerShop.viewmodel.main
 
 		private void ExecuteGoToCart()
 		{
-			ShoppingCart view = new ShoppingCart(CodeBehind);
+			ShoppingCart view = new ShoppingCart(View);
 			ShoppingCartViewModel vm = new ShoppingCartViewModel(Customer, view);
 			view.DataContext = vm;
-			CodeBehind.MainContent.Content = view;
+			View.MainContent.Content = view;
 		}
 
 		private void ExecuteGoToOrders()
 		{
-			CodeBehind.MainContent.Content = new OrdersUC();
+			View.MainContent.Content = new OrdersUC();
 		}
 
 		private void ExecuteGoToDelivers()
 		{
-			CodeBehind.MainContent.Content = new SupplyUC();
+			View.MainContent.Content = new SupplyUC();
 		}
 
 		private void ExecuteGoToStats()
 		{
-			CodeBehind.MainContent.Content = new StatsUC();
+			View.MainContent.Content = new StatsUC();
 		}
 
 		public void SelectAdminTool(string tool)
@@ -85,7 +85,7 @@ namespace ComputerShop.viewmodel.main
 					ExecuteGoToStats();
 					break;
 			}
-			CodeBehind.Filters.Visibility = Visibility.Collapsed;
+			View.Filters.Visibility = Visibility.Collapsed;
 		}
 
 		public void TreeItemExecute()
@@ -96,15 +96,15 @@ namespace ComputerShop.viewmodel.main
 
 			if (CurrentProductType == typeof(Product))
 			{
-				CodeBehind.FiltersContent.Content = null;
+				View.FiltersContent.Content = null;
 			}
 			if (Activator.CreateInstance(CurrentProductType) as Computer != null)
 			{
-				CodeBehind.FiltersContent.Content = new ComputerFilters();
+				View.FiltersContent.Content = new ComputerFilters();
 			}
 			if (Activator.CreateInstance(CurrentProductType) as Peripherals != null)
 			{
-				CodeBehind.FiltersContent.Content = new PeripheralFilters();
+				View.FiltersContent.Content = new PeripheralFilters();
 			}
 
 			UpdateMainList(products);
@@ -112,12 +112,12 @@ namespace ComputerShop.viewmodel.main
 
 		public void UpdateMainList(List<Product> products)
 		{
-			MainList view = new MainList(this.CodeBehind);
+			MainList view = new MainList(this.View);
 			view.ProductList.ItemsSource = products;
 			MainListViewModel vm = new MainListViewModel(view);
-			vm.MainVM = this.CodeBehind.DataContext as MainWindowViewModel;
+			vm.MainVM = this.View.DataContext as MainWindowViewModel;
 			view.DataContext = vm;
-			CodeBehind.MainContent.Content = view;
+			View.MainContent.Content = view;
 		}
 
 		public Order GetCreatedOrder()
@@ -135,7 +135,7 @@ namespace ComputerShop.viewmodel.main
 
 			decimal beginPrice = Decimal.Zero, endPrice = Decimal.MaxValue;
 
-			if (Decimal.TryParse(CodeBehind.BeginPrice.Text, out beginPrice) || Decimal.TryParse(CodeBehind.EndPrice.Text, out endPrice))
+			if (Decimal.TryParse(View.BeginPrice.Text, out beginPrice) || Decimal.TryParse(View.EndPrice.Text, out endPrice))
 			{
 				products = products.Where(product => product.Price >= beginPrice && product.Price <= endPrice).ToList();
 			}
@@ -143,12 +143,12 @@ namespace ComputerShop.viewmodel.main
 
 			int beginYear = DateTime.Now.Year - 20, endYear = DateTime.Now.Year;
 
-			if (Int32.TryParse(CodeBehind.BeginYear.Text, out beginYear) || Int32.TryParse(CodeBehind.EndYear.Text, out endYear))
+			if (Int32.TryParse(View.BeginYear.Text, out beginYear) || Int32.TryParse(View.EndYear.Text, out endYear))
 			{
 				products = products.Where(product => product.Year >= beginYear && product.Year <= endYear).ToList();
 			}
 
-			if (CodeBehind.IsInWarehouse.IsChecked.Value)
+			if (View.IsInWarehouse.IsChecked.Value)
 			{
 				products = products.Where(product => product.Amount != 0).ToList();
 			}
@@ -156,7 +156,7 @@ namespace ComputerShop.viewmodel.main
 
 			if (Activator.CreateInstance(CurrentProductType) as Computer != null)
 			{
-				ComputerFilters filters = CodeBehind.FiltersContent.Content as ComputerFilters;
+				ComputerFilters filters = View.FiltersContent.Content as ComputerFilters;
 
 
 				int minCores = 0, maxCores = Int32.MaxValue;
@@ -200,7 +200,7 @@ namespace ComputerShop.viewmodel.main
 			}
 			if (Activator.CreateInstance(CurrentProductType) as Peripherals != null)
 			{
-				PeripheralFilters filters = CodeBehind.FiltersContent.Content as PeripheralFilters;
+				PeripheralFilters filters = View.FiltersContent.Content as PeripheralFilters;
 
 
 				Color color = (Color)filters.Color.SelectedItem;
@@ -224,11 +224,11 @@ namespace ComputerShop.viewmodel.main
 
 		private void FindByNameExecute()
 		{
-			string nameToFind = CodeBehind.SearchString.Text;
+			string nameToFind = View.SearchString.Text;
 
 			if (nameToFind.Length != 0)
 			{
-				CodeBehind.SearchString.Clear();
+				View.SearchString.Clear();
 				List<Product> products = ProductRepository.FindByPredicate(product => product.Name.ToLower().Contains(nameToFind.ToLower())).ToList();
 				UpdateMainList(products);
 			}
@@ -237,15 +237,15 @@ namespace ComputerShop.viewmodel.main
 		private void CancelExecute()
 		{
 			UpdateMainList(GetListOfCurrentType(ProductRepository.GetAll()));
-			foreach (TextBox textBox in ChildFinder.FindVisualChildren<TextBox>(CodeBehind.Filters))
+			foreach (TextBox textBox in ChildFinder.FindVisualChildren<TextBox>(View.Filters))
 			{
 				textBox.Text = "";
 			}
-			foreach (ComboBox comboBox in ChildFinder.FindVisualChildren<ComboBox>(CodeBehind.Filters))
+			foreach (ComboBox comboBox in ChildFinder.FindVisualChildren<ComboBox>(View.Filters))
 			{
 				comboBox.SelectedIndex = 0;
 			}
-			foreach (CheckBox checkBox in ChildFinder.FindVisualChildren<CheckBox>(CodeBehind.Filters))
+			foreach (CheckBox checkBox in ChildFinder.FindVisualChildren<CheckBox>(View.Filters))
 			{
 				checkBox.IsChecked = false;
 			}
@@ -253,9 +253,9 @@ namespace ComputerShop.viewmodel.main
 
 		public List<Product> GetListOfCurrentType(List<Product> products)
 		{
-			if (CodeBehind.Tree.SelectedItem as TreeViewItem != null)
+			if (View.Tree.SelectedItem as TreeViewItem != null)
 			{
-				switch ((CodeBehind.Tree.SelectedItem as TreeViewItem).Header.ToString())
+				switch ((View.Tree.SelectedItem as TreeViewItem).Header.ToString())
 				{
 					case "Товары":
 						products = products.Where(product => product is Product).ToList();
@@ -290,7 +290,7 @@ namespace ComputerShop.viewmodel.main
 		private Type TypeOfList(List<Product> products)
 		{
 			Type type = null;
-			switch ((CodeBehind.Tree.SelectedItem as TreeViewItem).Header.ToString())
+			switch ((View.Tree.SelectedItem as TreeViewItem).Header.ToString())
 			{
 				case "Товары":
 					type = typeof(Product);
