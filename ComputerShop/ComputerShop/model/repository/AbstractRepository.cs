@@ -46,9 +46,6 @@ namespace ComputerShop.model.repository
 				DbEntityEntry ee = ComputerShopContext.Entry(item);
 				ee.CurrentValues.SetValues(newItem);
 			}
-			//	Remove(GetById(newItem.Id));
-			//ComputerShopContext.SaveChanges();
-			//Add(newItem);
 		}
 
 		public IEnumerable<T> FindByPredicate(Predicate<T> predicate)

@@ -37,15 +37,22 @@ namespace ComputerShop.viewmodel.main
 		{
 			Button button = sender as Button;
 			Product product = (Product)button.DataContext;
-			Ordered ordered = new Ordered() { Product = product, Amount = 1 };
-			Order order = MainVM.GetCreatedOrder();
-			if (order == null)
+			if (MainVM.ProductRepository.GetById(product.Id) != null)
 			{
-				order = new Order() { Customer = MainVM.Customer, State = State.Created };
+				Ordered ordered = new Ordered() { Product = product, Amount = 1 };
+				Order order = MainVM.GetCreatedOrder();
+				if (order == null)
+				{
+					order = new Order() { Customer = MainVM.Customer, State = State.Created };
+				}
+				order.Ordered.Add(ordered);
+				button.Content = "В корзине";
+				button.IsEnabled = false;
 			}
-			order.Ordered.Add(ordered);
-			button.Content = "В корзине";
-			button.IsEnabled = false;
+			else
+			{
+				MessageBox.Show("Товар не найден, пожалуйста, обновите страницу");
+			}
 		}
 
 		private void ExecuteRemove()

@@ -11,7 +11,7 @@ namespace ComputerShop.model.database
 	}
 	class CustomerMetadata
 	{
-		[StringLength(maximumLength: 50, MinimumLength = 5, ErrorMessage = "Логин должен быть не менее 5 символов и не более 50 символов в длину")]
+		[StringLength(maximumLength: 15, MinimumLength = 4, ErrorMessage = "Логин должен быть не менее 4 символов и не более 15 символов в длину")]
 		[Required(ErrorMessage = "Логин не может быть пустым")]
 		public string Login { get; set; }
 		[Required(ErrorMessage = "Email не может быть пустым")]

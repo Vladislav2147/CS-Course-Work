@@ -39,9 +39,9 @@ namespace ComputerShop.viewmodel.login
 		{
 			StringBuilder stringBuilder = new StringBuilder("");
 			Regex pattern = new Regex(@"^\w{4,15}$");
-			if (Password == null || !pattern.IsMatch(Password))
+			if (Password == null || Login == null || !pattern.IsMatch(Password) || !pattern.IsMatch(Login))
 			{
-				stringBuilder.Append("Поле пароль не может быть пустым, не должно содержать спец. символов и иметь длину не менее 4 и не более 15");
+				stringBuilder.Append("Поля логин и пароль не могут быть пустыми, не должны содержать спец. символы и должны иметь длину не менее 4 и не более 15 символов");
 			}
 			else
 			{

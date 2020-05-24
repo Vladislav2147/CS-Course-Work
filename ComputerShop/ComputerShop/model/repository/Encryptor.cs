@@ -29,8 +29,12 @@ namespace ComputerShop.model.business
 						return false;
 					}
 				}
+				return true;
 			}
-			return true;
+			else
+			{
+				return false;
+			}			
 		}
 	}
 }
