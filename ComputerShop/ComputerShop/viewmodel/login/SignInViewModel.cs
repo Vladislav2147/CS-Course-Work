@@ -1,4 +1,5 @@
 ﻿using ComputerShop.model.database;
+using ComputerShop.model.kindofmagic;
 using ComputerShop.model.repository.implementations;
 using ComputerShop.view.login;
 using System;
@@ -8,7 +9,7 @@ using System.Windows.Input;
 
 namespace ComputerShop.viewmodel.login
 {
-	class SignInViewModel
+	class SignInViewModel : PropertyChangedBase
 	{
 		public string Login { get; set; }
 		public string Password { get; set; }
@@ -33,6 +34,7 @@ namespace ComputerShop.viewmodel.login
 			view.DataContext = vm;
 			View.LoginOutputView.Content = view;
 		}
+
 		private void ExecuteLoadMainWindow()
 		{
 			try

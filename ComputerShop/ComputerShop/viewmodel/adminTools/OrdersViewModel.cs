@@ -50,7 +50,7 @@ namespace ComputerShop.viewmodel.adminTools
 			}
 			catch (Exception)
 			{
-				MessageBox.Show("Неваозможно принять заказ");
+				MessageBox.Show("Невозможно принять заказ");
 			}
 
 			Customer admin = CustomerRepository.FindByPredicate(cust => cust.Role == model.enums.Role.Admin).FirstOrDefault();

@@ -14,13 +14,13 @@
         <converter:OrderPriceConverter x:Key="TotalConverter"></converter:OrderPriceConverter>
         <DataTemplate x:Key="AmountTemplate" >
             <DockPanel LastChildFill="True">
-                <Button x:Name="MinusButton" Command="{Binding ElementName=CartView, Path=DataContext.ReduceAmountCommand}" CommandParameter="{Binding RelativeSource={RelativeSource Mode=Self}}" Width="15" Background="White" Content="-" DockPanel.Dock="Left"></Button>
-                <Button x:Name="PlusButton" Command="{Binding ElementName=CartView, Path=DataContext.AddAmountCommand}" CommandParameter="{Binding RelativeSource={RelativeSource Mode=Self}}" Width="15" Background="White" Content="+" DockPanel.Dock="Right"></Button>
+                <Button x:Name="MinusButton" Command="{Binding ElementName=CartView, Path=DataContext.ReduceAmount}" CommandParameter="{Binding RelativeSource={RelativeSource Mode=Self}}" Width="15" Background="White" Content="-" DockPanel.Dock="Left"></Button>
+                <Button x:Name="PlusButton" Command="{Binding ElementName=CartView, Path=DataContext.AddAmount}" CommandParameter="{Binding RelativeSource={RelativeSource Mode=Self}}" Width="15" Background="White" Content="+" DockPanel.Dock="Right"></Button>
                 <TextBlock x:Name="Amount" Text="{Binding Path=Amount}" TextAlignment="Center" DockPanel.Dock="Right"></TextBlock>
             </DockPanel>
         </DataTemplate>
         <DataTemplate x:Key="Delete">
-            <Button x:Name="DeleteButton" Command="{Binding ElementName=CartView, Path=DataContext.DeleteProductCommand}" CommandParameter="{Binding RelativeSource={RelativeSource Mode=Self}}" Background="White" Content="Удалить"></Button>
+            <Button x:Name="DeleteButton" Command="{Binding ElementName=CartView, Path=DataContext.DeleteProduct}" CommandParameter="{Binding RelativeSource={RelativeSource Mode=Self}}" Background="White" Content="Удалить"></Button>
         </DataTemplate>
     </UserControl.Resources>
     <ScrollViewer VerticalScrollBarVisibility="Auto">
@@ -58,8 +58,8 @@
             <TextBlock Text="Введите адрес и время доставки"></TextBlock>
             <TextBox x:Name="Address" MinWidth="100px" HorizontalAlignment="Left" HorizontalContentAlignment="Left"></TextBox>
             <StackPanel Orientation="Horizontal" FlowDirection="RightToLeft">
-                <Button x:Name="ConfirmButton" Content="Подтвердить" Style="{StaticResource WhiteButton}" Command="{Binding ElementName=CartView, Path=DataContext.ConfirmCommand}"></Button>
-                <Button x:Name="CancelButton" Content="Назад" Style="{StaticResource WhiteButton}" Command="{Binding ElementName=CartView, Path=DataContext.CancelCommand}"></Button>
+                <Button x:Name="ConfirmButton" Content="Подтвердить" Style="{StaticResource WhiteButton}" Command="{Binding ElementName=CartView, Path=DataContext.Confirm}"></Button>
+                <Button x:Name="CancelButton" Content="Назад" Style="{StaticResource WhiteButton}" Command="{Binding ElementName=CartView, Path=DataContext.Cancel}"></Button>
             </StackPanel>
 
         </StackPanel>

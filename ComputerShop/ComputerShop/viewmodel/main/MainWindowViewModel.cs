@@ -1,5 +1,6 @@
 ﻿using ComputerShop.model.database;
 using ComputerShop.model.enums;
+using ComputerShop.model.kindofmagic;
 using ComputerShop.model.repository.implementations;
 using ComputerShop.model.statics;
 using ComputerShop.view;
@@ -17,9 +18,8 @@ using OperatingSystem = ComputerShop.model.enums.OperatingSystem;
 
 namespace ComputerShop.viewmodel.main
 {
-	class MainWindowViewModel
+	class MainWindowViewModel : PropertyChangedBase
 	{
-		public MainList ListState { get; set; }
 		public MainWindow View { get; set; }
 		public ProductRepository ProductRepository { get; set; }
 		public Customer Customer { get; set; }
@@ -135,7 +135,7 @@ namespace ComputerShop.viewmodel.main
 
 			decimal beginPrice = Decimal.Zero, endPrice = Decimal.MaxValue;
 
-			if (Decimal.TryParse(View.BeginPrice.Text, out beginPrice) || Decimal.TryParse(View.EndPrice.Text, out endPrice))
+			if (Decimal.TryParse(View.BeginPrice.Text, out beginPrice) && Decimal.TryParse(View.EndPrice.Text, out endPrice))
 			{
 				products = products.Where(product => product.Price >= beginPrice && product.Price <= endPrice).ToList();
 			}
@@ -143,7 +143,7 @@ namespace ComputerShop.viewmodel.main
 
 			int beginYear = DateTime.Now.Year - 20, endYear = DateTime.Now.Year;
 
-			if (Int32.TryParse(View.BeginYear.Text, out beginYear) || Int32.TryParse(View.EndYear.Text, out endYear))
+			if (Int32.TryParse(View.BeginYear.Text, out beginYear) && Int32.TryParse(View.EndYear.Text, out endYear))
 			{
 				products = products.Where(product => product.Year >= beginYear && product.Year <= endYear).ToList();
 			}
@@ -161,7 +161,7 @@ namespace ComputerShop.viewmodel.main
 
 				int minCores = 0, maxCores = Int32.MaxValue;
 
-				if (Int32.TryParse(filters.MinCores.Text, out minCores) || Int32.TryParse(filters.MaxCores.Text, out maxCores))
+				if (Int32.TryParse(filters.MinCores.Text, out minCores) && Int32.TryParse(filters.MaxCores.Text, out maxCores))
 				{
 					products = products.Where(product => (product as Computer).Cores >= minCores && (product as Computer).Cores <= maxCores).ToList();
 				}
@@ -177,7 +177,7 @@ namespace ComputerShop.viewmodel.main
 
 				int minRam = 0, maxRam = Int32.MaxValue;
 
-				if (Int32.TryParse(filters.MinRAM.Text, out minRam) || Int32.TryParse(filters.MaxRAM.Text, out maxRam))
+				if (Int32.TryParse(filters.MinRAM.Text, out minRam) && Int32.TryParse(filters.MaxRAM.Text, out maxRam))
 				{
 					products = products.Where(product => (product as Computer).RamSize >= minRam && (product as Computer).RamSize <= maxRam).ToList();
 				}

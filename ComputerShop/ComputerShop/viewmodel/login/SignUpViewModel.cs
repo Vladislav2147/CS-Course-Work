@@ -1,4 +1,5 @@
 ﻿using ComputerShop.model.database;
+using ComputerShop.model.kindofmagic;
 using ComputerShop.model.repository.implementations;
 using ComputerShop.view.login;
 using Microsoft.EntityFrameworkCore;
@@ -13,11 +14,10 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Windows;
 using System.Windows.Input;
-using DbUpdateException = System.Data.Entity.Infrastructure.DbUpdateException;
 
 namespace ComputerShop.viewmodel.login
 {
-	class SignUpViewModel
+	class SignUpViewModel : PropertyChangedBase
 	{
 		public string Email { get; set; }
 		public string Login { get; set; }

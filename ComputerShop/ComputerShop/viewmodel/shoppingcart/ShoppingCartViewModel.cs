@@ -20,24 +20,24 @@ namespace ComputerShop.viewmodel.cart
 		public ShoppingCart View { get; set; }
 		public Customer Customer { get; set; }
 
-		public ICommand AddAmountCommand { get; set; }
-		public ICommand ReduceAmountCommand { get; set; }
-		public ICommand DeleteProductCommand { get; set; }
-		public ICommand ConfirmCommand { get; set; }
-		public ICommand CancelCommand { get; set; }
+		public ICommand AddAmount { get; set; }
+		public ICommand ReduceAmount { get; set; }
+		public ICommand DeleteProduct { get; set; }
+		public ICommand Confirm { get; set; }
+		public ICommand Cancel { get; set; }
 
-		public ShoppingCartViewModel(Customer customer, ShoppingCart codeBehing)
+		public ShoppingCartViewModel(Customer customer, ShoppingCart view)
 		{
 			OrderRepository = new OrderRepository();
 			ProductRepository = new ProductRepository();
 
-			AddAmountCommand = new RelayCommand(param => AddAmountCommandExecute(param));
-			ReduceAmountCommand = new RelayCommand(param => ReduceAmountCommandExecute(param));
-			DeleteProductCommand = new RelayCommand(param => DeleteProductCommandExecute(param));
-			ConfirmCommand = new RelayCommand(param => ConfirmCommandExecute());
-			CancelCommand = new RelayCommand(param => CancelCommandExecute());
+			AddAmount = new RelayCommand(param => AddAmountExecute(param));
+			ReduceAmount = new RelayCommand(param => ReduceAmountExecute(param));
+			DeleteProduct = new RelayCommand(param => DeleteProductExecute(param));
+			Confirm = new RelayCommand(param => ConfirmExecute());
+			Cancel = new RelayCommand(param => CancelExecute());
 
-			View = codeBehing;
+			View = view;
 			Customer = customer;
 			Order order = Customer.Order.Where(ord => ord.State == State.Created).FirstOrDefault();
 			if (order != null)
@@ -46,7 +46,7 @@ namespace ComputerShop.viewmodel.cart
 			}
 		}
 
-		private void CancelCommandExecute()
+		private void CancelExecute()
 		{
 			MainList view = new MainList(this.View.Owner);
 			view.ProductList.ItemsSource = (this.View.Owner.DataContext as MainWindowViewModel).ProductRepository.GetAll();
@@ -57,7 +57,7 @@ namespace ComputerShop.viewmodel.cart
 			(View.Owner.DataContext as MainWindowViewModel).Filter.Execute(this);
 		}
 
-		private void AddAmountCommandExecute(object sender)
+		private void AddAmountExecute(object sender)
 		{
 			Button button = sender as Button;
 			Ordered ordered = button.DataContext as Ordered;
@@ -70,7 +70,7 @@ namespace ComputerShop.viewmodel.cart
 			((button.Parent as DockPanel).Children[0] as Button).IsEnabled = true;
 			UpdateTotal();
 		}
-		private void ReduceAmountCommandExecute(object sender)
+		private void ReduceAmountExecute(object sender)
 		{
 			Button button = sender as Button;
 			Ordered ordered = button.DataContext as Ordered;
@@ -83,7 +83,7 @@ namespace ComputerShop.viewmodel.cart
 			((button.Parent as DockPanel).Children[1] as Button).IsEnabled = true;
 			UpdateTotal();
 		}
-		private void DeleteProductCommandExecute(object sender)
+		private void DeleteProductExecute(object sender)
 		{
 			Button button = sender as Button;
 			Ordered ordered = button.DataContext as Ordered;
@@ -95,7 +95,7 @@ namespace ComputerShop.viewmodel.cart
 		{
 			View.TotalCost.GetBindingExpression(TextBlock.TextProperty).UpdateTarget();
 		}
-		private void ConfirmCommandExecute()
+		private void ConfirmExecute()
 		{
 			StringBuilder errorMessage = new StringBuilder("");
 			Order formedOrder = Customer.Order.FirstOrDefault(order => order.State == State.Created);

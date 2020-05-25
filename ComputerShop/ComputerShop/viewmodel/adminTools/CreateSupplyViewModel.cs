@@ -29,9 +29,9 @@ namespace ComputerShop.viewmodel.adminTools
 
 		public CreateSupplyViewModel(SupplyRepository supplyRepository, CreateSupplyWindow view)
 		{
-			View.DataContext = this;
-			SupplyRepository = supplyRepository;
 			View = view;
+			View.DataContext = this;
+			SupplyRepository = supplyRepository;			
 			CreatedSupply = new Supply();
 			Delivered = new List<DeliveredToWareHouse>();
 			CreateProduct = new RelayCommand(param => ExecuteCreateProduct());

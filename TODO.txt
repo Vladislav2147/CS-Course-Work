@@ -2,22 +2,7 @@
 пояснительная записка раздел 2
 
 
-юзер и админ имеют общий доступ к продуктам, учесть при создании заказа
+<add name="ComputerShopContext" connectionString="metadata=res://*/model.database.DatabaseModel.csdl|res://*/model.database.DatabaseModel.ssdl|res://*/model.database.DatabaseModel.msl;provider=System.Data.SqlClient;provider connection string=&quot;data source=WIN-JN98GTRITGG\SQLEXPRESS;initial catalog=ComputerShop;persist security info=True;user id=testuser;password=1A2B3c4d;MultipleActiveResultSets=True;App=EntityFramework&quot;" providerName="System.Data.EntityClient" /></connectionStrings></configuration>
 
-сервак
-
-
-
-
-
-  <add name="ComputerShopContext" connectionString="Data Source=WIN-JN98GTRITGG\SQLEXPRESS;Initial Catalog=ComputerShop;User ID=testuser;Password=1A2B3c4d;Integrated Security=True"
-    providerName="System.Data.SqlClient" />
-
-
-metadata=res://*/model.database.DatabaseModel.csdl|res://*/model.database.DatabaseModel.ssdl|res://*/model.database.DatabaseModel.msl;provider=System.Data.SqlClient;provider connection string="data source=WIN-JN98GTRITGG\SQLEXPRESS;initial catalog=ComputerShop;persist security info=True;user id=testuser;password=***********;MultipleActiveResultSets=True;App=EntityFramework"
-
-
-using для корректного завершения (или dispose)
-асинхронность (необходимого)
 
 

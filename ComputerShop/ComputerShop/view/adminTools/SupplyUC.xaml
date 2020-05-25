@@ -14,8 +14,8 @@
         <StackPanel Margin="5">
             <TextBlock Text="Поставки" FontSize="32"></TextBlock>
             <StackPanel Orientation="Horizontal">
-                <Button Content="Создать" Command="{Binding CreateCommand}" Margin="0,5,5,5" Background="White"></Button>
-                <Button Content="Удалить" Command="{Binding RemoveCommand}" Margin="5" Background="White">
+                <Button Content="Создать" Command="{Binding Create}" Margin="0,5,5,5" Background="White"></Button>
+                <Button Content="Удалить" Command="{Binding Remove}" Margin="5" Background="White">
                     <Button.Style>
                         <Style TargetType="Button">
                             <Setter Property="IsEnabled" Value="True" />

@@ -13,8 +13,8 @@ namespace ComputerShop.viewmodel.adminTools
 		public SupplyRepository SupplyRepository { get; set; }
 		public SupplyUC View { get; set; }
 
-		public ICommand CreateCommand { get; set; }
-		public ICommand RemoveCommand { get; set; }
+		public ICommand Create { get; set; }
+		public ICommand Remove { get; set; }
 
 		public SupplyViewModel(SupplyUC view)
 		{
@@ -22,16 +22,16 @@ namespace ComputerShop.viewmodel.adminTools
 			SupplyRepository = new SupplyRepository();
 			Supplies = SupplyRepository.GetAll();
 
-			CreateCommand = new RelayCommand(param => Create());
-			RemoveCommand = new RelayCommand(param => Remove());
+			Create = new RelayCommand(param => CreateExecute());
+			Remove = new RelayCommand(param => RemoveExecute());
 		}
 
-		private void Create()
+		private void CreateExecute()
 		{
 			var createWindow = new CreateSupplyWindow(SupplyRepository, View);
 			createWindow.Show();
 		}
-		private void Remove()
+		private void RemoveExecute()
 		{
 			SupplyRepository.RemoveById((View.DataSupplies.SelectedItem as Supply).Id);
 			SupplyRepository.SaveChanges();
