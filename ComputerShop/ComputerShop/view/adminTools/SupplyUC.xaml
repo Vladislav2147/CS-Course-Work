@@ -11,45 +11,47 @@
         <converter:TotalCostConverter x:Key="TotalConverter"></converter:TotalCostConverter>
     </UserControl.Resources>
     <Grid>
-        <StackPanel Margin="5">
-            <TextBlock Text="Поставки" FontSize="32"></TextBlock>
-            <StackPanel Orientation="Horizontal">
-                <Button Content="Создать" Command="{Binding Create}" Margin="0,5,5,5" Background="White"></Button>
-                <Button Content="Удалить" Command="{Binding Remove}" Margin="5" Background="White">
-                    <Button.Style>
-                        <Style TargetType="Button">
-                            <Setter Property="IsEnabled" Value="True" />
-                            <Style.Triggers>
-                                <DataTrigger Binding="{Binding SelectedItem,ElementName=DataSupplies}" 
+        <ScrollViewer VerticalScrollBarVisibility="Auto">
+            <StackPanel Margin="5">
+                <TextBlock Text="Поставки" FontSize="32"></TextBlock>
+                <StackPanel Orientation="Horizontal">
+                    <Button Content="Создать" Command="{Binding Create}" Margin="0,5,5,5" Padding="5" Background="White"></Button>
+                    <Button Content="Удалить" Command="{Binding Remove}" Margin="5" Padding="5" Background="White">
+                        <Button.Style>
+                            <Style TargetType="Button">
+                                <Setter Property="IsEnabled" Value="True" />
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding SelectedItem,ElementName=DataSupplies}" 
                                              Value="{x:Null}">
-                                    <Setter Property="IsEnabled" Value="False"></Setter>
-                                </DataTrigger>
-                            </Style.Triggers>
-                        </Style>
-                    </Button.Style>
-                </Button>
+                                        <Setter Property="IsEnabled" Value="False"></Setter>
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Button.Style>
+                    </Button>
+                </StackPanel>
+
+                <DataGrid x:Name="DataSupplies" ItemsSource="{Binding Supplies}" AutoGenerateColumns="False" IsReadOnly="True" MaxHeight="500">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="N" Binding="{Binding Id}"></DataGridTextColumn>
+                        <DataGridTemplateColumn Header="Товары">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <DataGrid ItemsSource="{Binding DeliveredToWareHouse}" AutoGenerateColumns="False" IsReadOnly="True">
+                                        <DataGrid.Columns>
+                                            <DataGridTextColumn Header="Артикул" Binding="{Binding ProductId}"></DataGridTextColumn>
+                                            <DataGridTextColumn Header="Кол-во" Binding="{Binding Amount}"></DataGridTextColumn>
+                                            <DataGridTextColumn Header="Цена" Binding="{Binding Price}"></DataGridTextColumn>
+                                        </DataGrid.Columns>
+                                    </DataGrid>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+                        <DataGridTextColumn Header="Время" Binding="{Binding Date}"></DataGridTextColumn>
+                        <DataGridTextColumn Header="Сумма" Binding="{Binding Converter={StaticResource TotalConverter}}"></DataGridTextColumn>
+                    </DataGrid.Columns>
+                </DataGrid>
             </StackPanel>
-            
-            <DataGrid x:Name="DataSupplies" ItemsSource="{Binding Supplies}" AutoGenerateColumns="False" IsReadOnly="True" MaxHeight="500">
-                <DataGrid.Columns>
-                    <DataGridTextColumn Header="N" Binding="{Binding Id}"></DataGridTextColumn>
-                    <DataGridTemplateColumn Header="Товары">
-                        <DataGridTemplateColumn.CellTemplate>
-                            <DataTemplate>
-                                <DataGrid ItemsSource="{Binding DeliveredToWareHouse}" AutoGenerateColumns="False" IsReadOnly="True">
-                                    <DataGrid.Columns>
-                                        <DataGridTextColumn Header="Артикул" Binding="{Binding ProductId}"></DataGridTextColumn>
-                                        <DataGridTextColumn Header="Кол-во" Binding="{Binding Amount}"></DataGridTextColumn>
-                                        <DataGridTextColumn Header="Цена" Binding="{Binding Price}"></DataGridTextColumn>
-                                    </DataGrid.Columns>
-                                </DataGrid>
-                            </DataTemplate>
-                        </DataGridTemplateColumn.CellTemplate>
-                    </DataGridTemplateColumn>
-                    <DataGridTextColumn Header="Время" Binding="{Binding Date}"></DataGridTextColumn>
-                    <DataGridTextColumn Header="Сумма" Binding="{Binding Converter={StaticResource TotalConverter}}"></DataGridTextColumn>
-                </DataGrid.Columns>
-            </DataGrid>
-        </StackPanel>
+        </ScrollViewer>
     </Grid>
 </UserControl>

@@ -70,19 +70,21 @@ namespace ComputerShop.viewmodel.cart
 			((button.Parent as DockPanel).Children[0] as Button).IsEnabled = true;
 			UpdateTotal();
 		}
+
 		private void ReduceAmountExecute(object sender)
 		{
 			Button button = sender as Button;
 			Ordered ordered = button.DataContext as Ordered;
 			ordered.Amount--;
 
-			if (ordered.Amount == 1)
+			if (ordered.Amount <= 1)
 			{
 				button.IsEnabled = false;
 			}
 			((button.Parent as DockPanel).Children[1] as Button).IsEnabled = true;
 			UpdateTotal();
 		}
+
 		private void DeleteProductExecute(object sender)
 		{
 			Button button = sender as Button;
@@ -91,10 +93,12 @@ namespace ComputerShop.viewmodel.cart
 			Customer.Order.First(order => order.State == State.Created).Ordered.Remove(ordered);
 			UpdateTotal();
 		}
+
 		private void UpdateTotal()
 		{
 			View.TotalCost.GetBindingExpression(TextBlock.TextProperty).UpdateTarget();
 		}
+
 		private void ConfirmExecute()
 		{
 			StringBuilder errorMessage = new StringBuilder("");

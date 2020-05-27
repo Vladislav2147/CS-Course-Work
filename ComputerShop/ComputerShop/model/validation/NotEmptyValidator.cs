@@ -9,7 +9,7 @@ namespace ComputerShop.model.validation
 		{
 			if (value == null || ((string)value).Length < 3)
 			{
-				return new ValidationResult(false, "Поле не может быть пустым");
+				return new ValidationResult(false, "Длина строки должна быть > 3");
 			}
 			else
 			{

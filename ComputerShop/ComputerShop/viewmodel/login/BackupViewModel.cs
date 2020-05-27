@@ -91,7 +91,7 @@ namespace ComputerShop.viewmodel.login
 			}
 			else
 			{
-				MessageBox.Show("Пароль должен иметь длину от 4 до 5 и состоять из букв и цифр");
+				MessageBox.Show("Пароль должен иметь длину от 4 до 15 и состоять из букв и цифр");
 			}
 		}
 	}

@@ -6,6 +6,7 @@ using ComputerShop.view.products;
 using ComputerShop.viewmodel.main;
 using Microsoft.Win32;
 using System;
+using System.Data.Entity.Infrastructure;
 using System.Data.Entity.Validation;
 using System.IO;
 using System.Windows;
@@ -93,6 +94,10 @@ namespace ComputerShop.viewmodel.products
 						MessageBox.Show("Property: " + validationError.PropertyName + " Error: " + validationError.ErrorMessage);
 					}
 				}
+			}
+			catch (DbUpdateException e)
+			{
+				MessageBox.Show($"Ошибка: {e.Message}");
 			}
 		}
 

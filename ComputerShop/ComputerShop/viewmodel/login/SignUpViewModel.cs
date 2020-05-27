@@ -52,6 +52,12 @@ namespace ComputerShop.viewmodel.login
 						try
 						{
 							CustomerRepository = new CustomerRepository(context);
+
+							if(CustomerRepository.FindByPredicate(cust => cust.Login == Login).FirstOrDefault() != null)
+							{
+								throw new Exception("Пользователь с данным логином уже существует");
+							}
+
 							Customer customer = new Customer()
 							{
 								Login = Login,

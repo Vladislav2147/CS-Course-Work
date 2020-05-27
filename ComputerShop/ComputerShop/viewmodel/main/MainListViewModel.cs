@@ -105,7 +105,7 @@ namespace ComputerShop.viewmodel.main
 							button.IsEnabled = false;
 							button.Content = "В корзине";
 						}
-						else if (((Product)button.DataContext).Amount == 0)
+						else if (((Product)button.DataContext).Amount <= 0)
 						{
 							button.IsEnabled = false;
 							button.Content = "Нет на складе";

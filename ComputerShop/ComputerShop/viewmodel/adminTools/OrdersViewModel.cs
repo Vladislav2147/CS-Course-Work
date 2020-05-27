@@ -38,24 +38,33 @@ namespace ComputerShop.viewmodel.adminTools
 		private void ExecuteAccept(object sender)
 		{
 			Order order = (sender as Button).DataContext as Order;
-			foreach (Ordered ordered in order.Ordered)
-			{
-				ordered.Product.Amount -= ordered.Amount;
-			}
 			try
 			{
+				
+				foreach (Ordered ordered in order.Ordered)
+				{
+					if (ordered.Product.Amount - ordered.Amount >= 0)
+					{
+						ordered.Product.Amount -= ordered.Amount;
+					}
+					else
+					{
+						throw new ArgumentOutOfRangeException("Количество товара");
+					}
+				}
 				OrderRepository.SaveChanges();
 				order.State = State.Approved;
 				OrderRepository.SaveChanges();
 			}
-			catch (Exception)
+			catch (Exception e)
 			{
-				MessageBox.Show("Невозможно принять заказ");
+				MessageBox.Show($"Невозможно принять заказ: {e.Message}");
+				return;
 			}
 
-			Customer admin = CustomerRepository.FindByPredicate(cust => cust.Role == model.enums.Role.Admin).FirstOrDefault();
 			StringBuilder message = new StringBuilder($"Заказ N{order.Id} подтвержден");
 			message.Append("<table border=\"1\"><tr><td>Название</td><td>Количество</td><td>Цена за шт</td></tr>");
+
 			decimal total = 0;
 
 			foreach (var ordered in order.Ordered)
@@ -68,6 +77,7 @@ namespace ComputerShop.viewmodel.adminTools
 			PostEmail.SendEmail(order.Customer.Email, message.ToString());
 			UpdateLists();
 		}
+
 		private void UpdateLists()
 		{
 			NotAcceptedOrders = OrderRepository.FindByPredicate(order => order.State == State.Formed).ToList();

@@ -13,65 +13,64 @@
             <Button Command="{Binding ElementName=OrdersView, Path=DataContext.Accept}" CommandParameter="{Binding RelativeSource={RelativeSource Mode=Self}}" Background="White" Content="Принять"></Button>
         </DataTemplate>
     </UserControl.Resources>
-    
+
     <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="50px"></RowDefinition>
-            <RowDefinition Height="*"></RowDefinition>
-        </Grid.RowDefinitions>
-        <TextBlock Grid.Row="0" Text="Заказы" FontSize="32" Margin="5,5,5,0"></TextBlock>
-        <StackPanel Grid.Row="1" Margin="5">
-            <TextBlock Text="Запросы на заказ:"></TextBlock>
-            
-            <DataGrid ItemsSource="{Binding NotAcceptedOrders}" AutoGenerateColumns="False" IsReadOnly="True">
-                <DataGrid.Columns>
-                    <DataGridTextColumn Header="Номер" Binding="{Binding Id}"></DataGridTextColumn>
-                    <DataGridTemplateColumn Header="Товары">
-                        <DataGridTemplateColumn.CellTemplate>
-                            <DataTemplate>
-                                <DataGrid ItemsSource="{Binding Ordered}" AutoGenerateColumns="False" IsReadOnly="True">
-                                    <DataGrid.Columns>
-                                        <DataGridTextColumn Header="Артикул" Binding="{Binding ProductId}"></DataGridTextColumn>
-                                        <DataGridTextColumn Header="Название" Binding="{Binding Product.Name}"></DataGridTextColumn>
-                                        <DataGridTextColumn Header="Количество" Binding="{Binding Amount}"></DataGridTextColumn>
-                                        <DataGridTextColumn Header="Стоимость" Binding="{c:Binding Amount*Product.Price, StringFormat=0.00}"></DataGridTextColumn>
-                                    </DataGrid.Columns>
-                                </DataGrid>
-                            </DataTemplate>
-                        </DataGridTemplateColumn.CellTemplate>
-                    </DataGridTemplateColumn>
-                    <DataGridTextColumn Header="ID покупателя" Binding="{Binding CustomerId}"></DataGridTextColumn>
-                    <DataGridTextColumn Header="Адрес" Binding="{Binding Address}"></DataGridTextColumn>
-                    <DataGridTextColumn Header="Телефон" Binding="{Binding Phone}"></DataGridTextColumn>
-                    <DataGridTemplateColumn CellTemplate="{StaticResource ResourceKey=Accept}"></DataGridTemplateColumn>
-                </DataGrid.Columns>
-            </DataGrid>
-            
-            <TextBlock Text="Принятые заказы:"></TextBlock>
-            
-            <DataGrid ItemsSource="{Binding AcceptedOrders}" AutoGenerateColumns="False" IsReadOnly="True">
-                <DataGrid.Columns>
-                    <DataGridTextColumn Header="Номер" Binding="{Binding Id}"></DataGridTextColumn>
-                    <DataGridTemplateColumn Header="Товары">
-                        <DataGridTemplateColumn.CellTemplate>
-                            <DataTemplate>
-                                <DataGrid ItemsSource="{Binding Ordered}" AutoGenerateColumns="False" IsReadOnly="True">
-                                    <DataGrid.Columns>
-                                        <DataGridTextColumn Header="Артикул" Binding="{Binding ProductId}"></DataGridTextColumn>
-                                        <DataGridTextColumn Header="Название" Binding="{Binding Product.Name}"></DataGridTextColumn>
-                                        <DataGridTextColumn Header="Количество" Binding="{Binding Amount}"></DataGridTextColumn>
-                                        <DataGridTextColumn Header="Стоимость" Binding="{c:Binding Amount*Product.Price, StringFormat=0.00}"></DataGridTextColumn>
-                                    </DataGrid.Columns>
-                                </DataGrid>
-                            </DataTemplate>
-                        </DataGridTemplateColumn.CellTemplate>
-                    </DataGridTemplateColumn>
-                    <DataGridTextColumn Header="ID покупателя" Binding="{Binding CustomerId}"></DataGridTextColumn>
-                    <DataGridTextColumn Header="Адрес" Binding="{Binding Address}"></DataGridTextColumn>
-                    <DataGridTextColumn Header="Телефон" Binding="{Binding Phone}"></DataGridTextColumn>
-                </DataGrid.Columns>
-            </DataGrid>
-            
-        </StackPanel>
+        <ScrollViewer VerticalScrollBarVisibility="Auto">
+            <StackPanel Margin="5">
+                <TextBlock Grid.Row="0" Text="Заказы" FontSize="32"></TextBlock>
+                <TextBlock Text="Запросы на заказ:" FontSize="24"></TextBlock>
+
+                <DataGrid ItemsSource="{Binding NotAcceptedOrders}" AutoGenerateColumns="False" IsReadOnly="True">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="Номер" Binding="{Binding Id}"></DataGridTextColumn>
+                        <DataGridTemplateColumn Header="Товары">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <DataGrid ItemsSource="{Binding Ordered}" AutoGenerateColumns="False" IsReadOnly="True">
+                                        <DataGrid.Columns>
+                                            <DataGridTextColumn Header="Артикул" Binding="{Binding ProductId}"></DataGridTextColumn>
+                                            <DataGridTextColumn Header="Название" Binding="{Binding Product.Name}"></DataGridTextColumn>
+                                            <DataGridTextColumn Header="Количество" Binding="{Binding Amount}"></DataGridTextColumn>
+                                            <DataGridTextColumn Header="Стоимость" Binding="{c:Binding Amount*Product.Price, StringFormat=0.00}"></DataGridTextColumn>
+                                        </DataGrid.Columns>
+                                    </DataGrid>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+                        <DataGridTextColumn Header="ID покупателя" Binding="{Binding CustomerId}"></DataGridTextColumn>
+                        <DataGridTextColumn Header="Адрес" Binding="{Binding Address}"></DataGridTextColumn>
+                        <DataGridTextColumn Header="Телефон" Binding="{Binding Phone}"></DataGridTextColumn>
+                        <DataGridTemplateColumn CellTemplate="{StaticResource ResourceKey=Accept}"></DataGridTemplateColumn>
+                    </DataGrid.Columns>
+                </DataGrid>
+
+                <TextBlock Text="Принятые заказы:" FontSize="24"></TextBlock>
+
+                <DataGrid ItemsSource="{Binding AcceptedOrders}" AutoGenerateColumns="False" IsReadOnly="True">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="Номер" Binding="{Binding Id}"></DataGridTextColumn>
+                        <DataGridTemplateColumn Header="Товары">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <DataGrid ItemsSource="{Binding Ordered}" AutoGenerateColumns="False" IsReadOnly="True">
+                                        <DataGrid.Columns>
+                                            <DataGridTextColumn Header="Артикул" Binding="{Binding ProductId}"></DataGridTextColumn>
+                                            <DataGridTextColumn Header="Название" Binding="{Binding Product.Name}"></DataGridTextColumn>
+                                            <DataGridTextColumn Header="Количество" Binding="{Binding Amount}"></DataGridTextColumn>
+                                            <DataGridTextColumn Header="Стоимость" Binding="{c:Binding Amount*Product.Price, StringFormat=0.00}"></DataGridTextColumn>
+                                        </DataGrid.Columns>
+                                    </DataGrid>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+                        <DataGridTextColumn Header="ID покупателя" Binding="{Binding CustomerId}"></DataGridTextColumn>
+                        <DataGridTextColumn Header="Адрес" Binding="{Binding Address}"></DataGridTextColumn>
+                        <DataGridTextColumn Header="Телефон" Binding="{Binding Phone}"></DataGridTextColumn>
+                    </DataGrid.Columns>
+                </DataGrid>
+
+            </StackPanel>
+        </ScrollViewer>
+        
     </Grid>
 </UserControl>

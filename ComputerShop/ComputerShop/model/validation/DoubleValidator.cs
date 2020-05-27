@@ -8,7 +8,7 @@ namespace ComputerShop.model.validation
 	{
 		public override ValidationResult Validate(object value, CultureInfo cultureInfo)
 		{
-			if (value == null || !Double.TryParse((string)value, out _))
+			if (value == null || !Double.TryParse((string)value, out _) || Double.Parse((string)value) < 0)
 			{
 				return new ValidationResult(false, "Неверный формат");
 			}
